@@ -111,7 +111,7 @@ export const ModeToggle = {
     const styleStatus = main.getStyleStatus();
 
     if (styleStatus) {
-      styleStatus.isDark ? this.enableDarkMode() : this.enableLightMode();
+      styleStatus.isDark ? this.enableDarkMode() : this.enableDarkMode();
     } else {
       // this.isDarkPrefersColorScheme().matches
       //   ? this.enableDarkMode()
