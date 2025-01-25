@@ -113,9 +113,10 @@ export const ModeToggle = {
     if (styleStatus) {
       styleStatus.isDark ? this.enableDarkMode() : this.enableLightMode();
     } else {
-      this.isDarkPrefersColorScheme().matches
-        ? this.enableDarkMode()
-        : this.enableLightMode();
+      // this.isDarkPrefersColorScheme().matches
+      //   ? this.enableDarkMode()
+      //   : this.enableLightMode();
+      this.enableDarkMode();
     }
   },
 
@@ -140,14 +141,14 @@ export const ModeToggle = {
     this.iconDom = document.querySelector(".tool-dark-light-toggle i");
     this.mermaidLightTheme =
       typeof theme.mermaid !== "undefined" &&
-      typeof theme.mermaid.style !== "undefined" &&
-      typeof theme.mermaid.style.light !== "undefined"
+        typeof theme.mermaid.style !== "undefined" &&
+        typeof theme.mermaid.style.light !== "undefined"
         ? theme.mermaid.style.light
         : "default";
     this.mermaidDarkTheme =
       typeof theme.mermaid !== "undefined" &&
-      typeof theme.mermaid.style !== "undefined" &&
-      typeof theme.mermaid.style.dark !== "undefined"
+        typeof theme.mermaid.style !== "undefined" &&
+        typeof theme.mermaid.style.dark !== "undefined"
         ? theme.mermaid.style.dark
         : "dark";
     this.initModeStatus();
@@ -155,7 +156,7 @@ export const ModeToggle = {
     this.initModeAutoTrigger();
     try {
       await saveOriginalData().catch(console.error);
-    } catch (error) {}
+    } catch (error) { }
   },
 };
 
