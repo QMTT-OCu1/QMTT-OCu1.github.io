@@ -550,4 +550,12 @@ done &gt; test.txt
         <tag>Linux Debian Shell</tag>
       </tags>
   </entry>
+  <entry>
+    <title>test</title>
+    <url>/2025/03/06/test/</url>
+    <content><![CDATA[<h3 id="这是一篇测试文章"><a href="#这是一篇测试文章" class="headerlink" title="这是一篇测试文章"></a>这是一篇测试文章</h3>]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+  </entry>
 </search>
