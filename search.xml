@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2</title>
-    <url>/2025/03/06/2/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>1.Linux基础命令</title>
     <url>/2024/12/14/1-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h5 id="如何理解文件："><a href="#如何理解文件：" class="headerlink" title="如何理解文件："></a>如何理解文件：</h5><ol>
@@ -538,16 +533,9 @@ done &gt; test.txt
       </tags>
   </entry>
   <entry>
-    <title>test2</title>
-    <url>/2025/03/06/test2/</url>
-    <content><![CDATA[<p>test2</p>
-]]></content>
-      <categories>
-        <category>测试</category>
-      </categories>
-      <tags>
-        <tag>test2</tag>
-      </tags>
+    <title>2</title>
+    <url>/2025/03/06/2/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -566,6 +554,18 @@ done &gt; test.txt
 
 <p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>test2</title>
+    <url>/2025/03/06/test2/</url>
+    <content><![CDATA[<p>test2</p>
+]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+      <tags>
+        <tag>test2</tag>
+      </tags>
   </entry>
   <entry>
     <title>test</title>
