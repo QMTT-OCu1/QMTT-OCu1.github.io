@@ -19,11 +19,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>应用教程</title>
-    <url>/2025/03/15/%E5%BA%94%E7%94%A8%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>1.Linux基础命令</title>
     <url>/2024/12/14/1-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h5 id="如何理解文件："><a href="#如何理解文件：" class="headerlink" title="如何理解文件："></a>如何理解文件：</h5><ol>
@@ -559,6 +554,11 @@ done &gt; test.txt
         <tag>Debian</tag>
         <tag>Shell</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>应用教程</title>
+    <url>/2025/03/15/%E5%BA%94%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>termux搭建proot-debian</title>
