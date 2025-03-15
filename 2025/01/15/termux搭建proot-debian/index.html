@@ -1,574 +1,553 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>Hello World</title>
-    <url>/1970/01/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="qmtt">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://qmtt.com/2025/01/15/termux搭建proot-debian/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="my_blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="termux搭建proot-debian">
+<meta property="og:url" content="http://qmtt.com/2025/01/15/termux%E6%90%AD%E5%BB%BAproot-debian/index.html">
+<meta property="og:site_name" content="取名头疼_OCu1">
+<meta property="og:description" content="my_blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qmtt.com/images/OIP-C.jpg">
+<meta property="article:published_time" content="2025-01-15T09:26:01.000Z">
+<meta property="article:modified_time" content="2025-03-15T09:31:28.441Z">
+<meta property="article:author" content="QMTT">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="termux">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="proot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qmtt.com/images/OIP-C.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/OIP-C.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/OIP-C.jpg">
+    <meta name="theme-color" content="#CCCCFF">
+    <link rel="shortcut icon" href="/images/OIP-C.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            termux搭建proot-debian | QMTT-OCu1
+        
+    </title>
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>应用教程</title>
-    <url>/2025/03/15/%E5%BA%94%E7%94%A8%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>1.Linux基础命令</title>
-    <url>/2024/12/14/1-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h5 id="如何理解文件："><a href="#如何理解文件：" class="headerlink" title="如何理解文件："></a>如何理解文件：</h5><ol>
-<li><p>文件本文件</p>
-<ul>
-<li>在磁盘上创建，因为内存具有掉电易失性</li>
-<li>如果创建了一个空文件，也会占有磁盘空间</li>
-<li>文件&#x3D;文件的内容（数据）+文件的属性（元数据）（属性也是数据）</li>
-<li>故文件的实际占有内存大于标的内存（数据）</li>
-</ul>
-</li>
-<li><p>操作文件：</p>
-<ul>
-<li>操作文件的内容</li>
-<li>操作文件的属性</li>
-</ul>
-</li>
-<li><p>文件之间（普通文件 vs 目录）：</p>
-<ul>
-<li>普通文件</li>
-<li>目录-&gt;文件夹-&gt;保存其他文件的场所</li>
-</ul>
-</li>
-</ol>
-<h5 id="文件的简单命令："><a href="#文件的简单命令：" class="headerlink" title="文件的简单命令："></a>文件的简单命令：</h5><table>
-<thead>
-<tr>
-<th>clear</th>
-<th>清楚屏幕上显示的内容</th>
-</tr>
-</thead>
-</table>
-<table>
-<thead>
-<tr>
-<th>touch 文件名</th>
-<th>创建一个普通文件<br />若文件已存在，会更新文件的修改时间</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>stat 文件名</td>
-<td>显示文件详细信息，<br />包括修改时间属性等</td>
-</tr>
-<tr>
-<td>mkdir 文件名</td>
-<td>创建一个空目录</td>
-</tr>
-<tr>
-<td>mkdir-p</td>
-<td>创建一串路径</td>
-</tr>
-<tr>
-<td>rmdir 目录名</td>
-<td>只能删除空目录（若目录非空，则无法删除）</td>
-</tr>
-<tr>
-<td>rm 文件名</td>
-<td>默认删除普通文件，但不能删除目录</td>
-</tr>
-<tr>
-<td>rm -r 文件名</td>
-<td>递归删除，删除这整个目录</td>
-</tr>
-<tr>
-<td>rm -i</td>
-<td>询问是否删除</td>
-</tr>
-<tr>
-<td>rm -f 文件名</td>
-<td>强行删除，不会再询问是否删除（f：force）</td>
-</tr>
-<tr>
-<td>rm -rf 文件名</td>
-<td>递归强制删除指定的目录及其内部文件</td>
-</tr>
-<tr>
-<td>rm -rf &#x2F;</td>
-<td>系统直接挂掉</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>ls</th>
-<th>显示当前路径下的文件或文件或目录名称</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ls -l</td>
-<td>显文件或目录以及更详细的属性信息</td>
-</tr>
-<tr>
-<td>ls -all（简写为-a）<br />也可以写为：ll</td>
-<td>列出目录下的所有文件，包括.开头的隐藏文件</td>
-</tr>
-<tr>
-<td>ls 文件名<br />ls -l 文件名<br />ls -ld 文件名</td>
-<td>1.只显示这一个文件<br />2.显示文件里面的内容<br />3.显示该文件本身的属性</td>
-</tr>
-<tr>
-<td>-d</td>
-<td>不进入目录，显示本身</td>
-</tr>
-<tr>
-<td>-r</td>
-<td>对目录反向排序</td>
-</tr>
-<tr>
-<td>-t</td>
-<td>以时间排序</td>
-</tr>
-<tr>
-<td>-R</td>
-<td>列出所有子目录下的文件（递归）</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>cd  &#x2F;你的文件名&#x2F;</th>
-<th>切换路径，进入某个目录</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>.</td>
-<td>一个.当前目录</td>
-</tr>
-<tr>
-<td>..</td>
-<td>两个..是上级目录</td>
-</tr>
-<tr>
-<td>cd .</td>
-<td>当前目录</td>
-</tr>
-<tr>
-<td>cd ..</td>
-<td>返回上一个目录<br />如果不断回退，会一直回退到根目录，无法再回退</td>
-</tr>
-<tr>
-<td>cd -</td>
-<td>回到之前最近一次所处的路径（可以在两个热点路径下来回切换）</td>
-</tr>
-<tr>
-<td>绝对路径：</td>
-<td>从根目录开始，查找某一个文件，具有唯一性</td>
-</tr>
-<tr>
-<td>相对路径：</td>
-<td>不从根目录，根据当前位置，去查找某个目录下的某个文件</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>pwd</th>
-<th>显示当前用户所在的路径</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x2F;</td>
-<td>路径分隔符</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>tree</th>
-<th>以树形结构显示目录</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>yum install -y tree</td>
-<td>安装tree</td>
-</tr>
-<tr>
-<td>whoami</td>
-<td>查询当前是哪个用户正在使用系统</td>
-</tr>
-<tr>
-<td>cd ~</td>
-<td>进入当前用户的目录</td>
-</tr>
-<tr>
-<td>&#x2F;home&#x2F;名字</td>
-<td>叫做某用户的工作路径（家目录）特命<br />用户登录时，默认所处的路径</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>man 命令</th>
-<th>显示命令的用法，man是一个查看命令，系统调用，C接口的手册，手册是有编号的</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>安装man</td>
-<td>yum install man只能在root用户下安装</td>
-</tr>
-<tr>
-<td>man touch</td>
-<td>touch的用法</td>
-</tr>
-<tr>
-<td>man priintf</td>
-<td>printf的用法</td>
-</tr>
-<tr>
-<td>man 3 printf</td>
-<td>3号手册里printf的用法，若不带号，默认从1开始查，查到停止</td>
-</tr>
-<tr>
-<td>1</td>
-<td>shell命令</td>
-</tr>
-<tr>
-<td>2</td>
-<td>系统接口</td>
-</tr>
-<tr>
-<td>3</td>
-<td>C语言库</td>
-</tr>
-<tr>
-<td>进入以后：</td>
-<td>按q退出</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>cp src dst</th>
-<th>拷贝命令，把src文件拷贝到dst里面</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>cp -r 文件</td>
-<td>拷贝文件目录，命令和rm是一样的</td>
-</tr>
-<tr>
-<td>cat 文件名</td>
-<td>打印文件的内容，如cat a.txt是打印a.txt里面的内容</td>
-</tr>
-<tr>
-<td>echo</td>
-<td>向显示器显示信息的命令，跟printf一样，但没有格式化，把所有内容都显示出来</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>mv src dst</th>
-<th>移动命令，类似于剪切功能，同时还能对文件或目录进行重命名，这里不用带-r</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>注意事项</td>
-<td>mv移到一些目录会有权限问题 ，有-r和-f选项，和前面用法一样</td>
-</tr>
-</tbody></table>
-<h6 id="写一个输出10000行字符串的命令行脚本："><a href="#写一个输出10000行字符串的命令行脚本：" class="headerlink" title="写一个输出10000行字符串的命令行脚本："></a>写一个输出10000行字符串的命令行脚本：</h6><pre><code>cnt=0; 
-while [ $cnt -le 10000 ];
-do echo &quot;hello world&quot; [$cnt];
-let cnt++;
-done &gt; test.txt
-</code></pre>
-<h6 id="查看大文本（日志）："><a href="#查看大文本（日志）：" class="headerlink" title="查看大文本（日志）："></a>查看大文本（日志）：</h6><table>
-<thead>
-<tr>
-<th>cat 选项 文件</th>
-<th>查看目标文件的内容，但是cat是一次全输出，不适合查看大文本</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-b</td>
-<td>对非空输出行编号</td>
-</tr>
-<tr>
-<td>-n</td>
-<td>对输出的所有行编号</td>
-</tr>
-<tr>
-<td>-s</td>
-<td>不输出多行空行</td>
-</tr>
-<tr>
-<td>tac</td>
-<td>逆序输出</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>more</th>
-<th>和cat一样一屏打满就不再打了</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-n</td>
-<td>n为指定的行，就可以查看指定行的内容</td>
-</tr>
-<tr>
-<td>&#x2F;</td>
-<td>在more中输入&#x2F;有搜索功能</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>less</th>
-<th>和前面一样，但是支持上下翻，q退出</th>
-</tr>
-</thead>
-</table>
-<table>
-<thead>
-<tr>
-<th>head -n 文件</th>
-<th>查看文件头部的几行，n为指定的行，默认为10行</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>tail</td>
-<td>查看尾部的几行</td>
-</tr>
-</tbody></table>
-<h6 id="如何查看中间部分的内容："><a href="#如何查看中间部分的内容：" class="headerlink" title="如何查看中间部分的内容："></a>如何查看中间部分的内容：</h6><ol>
-<li>临时文件</li>
-<li>管道：<ul>
-<li>都是传输资源的</li>
-<li>一个入口，一个出口</li>
-<li>管道的命令行操作：<br> head -1010 test.txt | tail -10 </li>
-<li>#这里|前的默认将输出结果打印到管道空间中，tail再去读取</li>
-</ul>
-</li>
-<li>组合用法：<br>   head -1010 test | tail -10 | tac | head -3</li>
-</ol>
-<h6 id="时间相关的指令"><a href="#时间相关的指令" class="headerlink" title="时间相关的指令"></a>时间相关的指令</h6><table>
-<thead>
-<tr>
-<th>data</th>
-<th>显示时间</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>data +%Y&#x2F;%m&#x2F;%d-%H:%M:%S</td>
-<td>格式化显示,这里面的格式可以随便调整</td>
-</tr>
-<tr>
-<td>data +%s</td>
-<td>时间戳，从1970年1.1凌晨0：00到现在所经过的秒数</td>
-</tr>
-<tr>
-<td>data +%Y&#x2F;%m&#x2F;%d-%H:%M:%S -d@时间戳</td>
-<td>转化成我们认识的时间戳</td>
-</tr>
-<tr>
-<td>cal 年</td>
-<td>看日历</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>find -name</th>
-<th>查找命令，因为可能要访问磁盘，进而导致效率低下</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>find pathname -options</td>
-<td>在文件树中查找文件</td>
-</tr>
-<tr>
-<td>which       指令</td>
-<td>只能搜索命令，所使用的命令在哪个目录下</td>
-</tr>
-<tr>
-<td>whereis  名称</td>
-<td>查找范围比which范围更大比find查找范围更小，作用好是只要包含关键字都找出来</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>alias 新命令 &#x3D; ‘原命令’</th>
-<th>对命令进行重命名</th>
-</tr>
-</thead>
-</table>
-<table>
-<thead>
-<tr>
-<th>grep</th>
-<th>文本内容的行过滤工具，会匹配文本中的关键字，匹配上的进行行显示</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>grep ‘a’ test.txt</td>
-<td>就会在test.txt中查找a来匹配，含a的全部显示出来</td>
-</tr>
-<tr>
-<td>-n</td>
-<td>输出行号</td>
-</tr>
-<tr>
-<td>-i</td>
-<td>忽略大小写</td>
-</tr>
-<tr>
-<td>-v</td>
-<td>反向选择，把没有关键字的显示出来</td>
-</tr>
-</tbody></table>
-<h6 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h6><ol>
-<li>grep可以结合管道和其他命令一起使用，过滤关键内容<br> grep ‘a’ test.txt | wc -l #统计行数</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>sort file.txt</th>
-<th>对文本内容进行排序（按照ascall码值）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>uniq</td>
-<td>对文本相邻内容进行去重</td>
-</tr>
-</tbody></table>
-<h6 id="组合使用"><a href="#组合使用" class="headerlink" title="组合使用"></a>组合使用</h6><pre><code>sort file.txt | uniq
-先排序，后去重
-</code></pre>
-<h3 id="压缩包"><a href="#压缩包" class="headerlink" title="压缩包"></a>压缩包</h3><ol>
-<li>zip</li>
-</ol>
-<ul>
-<li>安装zip<br> yum install zip unzip</li>
-<li>使用<br>  zip -r my.zip<br>  unzip my.zip -d &#x2F;路径  #解压缩到指定目录，若不‘加-d 路径’，默认为当前目录</li>
-<li>注：打包和压缩是两个概念，打包和压缩的目的是便于传输，同时压缩包不存在下载丢失问题，因为体积小，传输更高效</li>
-</ul>
-<ol start="2">
-<li>tar</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>tar -czf my.tar.gz file</th>
-<th>对文件打包并压缩</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>tar -xzf my.tar.gz</td>
-<td>解包并解压</td>
-</tr>
-<tr>
-<td>-v</td>
-<td>把解包的过程也打印出来</td>
-</tr>
-<tr>
-<td>-tf</td>
-<td>不解压查看tar.gz里面的文件</td>
-</tr>
-<tr>
-<td>-C（大写C）</td>
-<td>解压到指定目录</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>bc</th>
-<th>计算器</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>echo “1+2+3”  | bc</td>
-<td>管道</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>uname -a</th>
-<th>显示系统信息</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>uname -r</td>
-<td>查看内核版本（体系结构：cpu架构）</td>
-</tr>
-</tbody></table>
-<h3 id="几个热键"><a href="#几个热键" class="headerlink" title="几个热键"></a>几个热键</h3><table>
-<thead>
-<tr>
-<th>Tab</th>
-<th>命令自动补齐</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ctrl C</td>
-<td>终止在前台的异常程序，比如死循环</td>
-</tr>
-<tr>
-<td>Ctrl r</td>
-<td>根据命令片段去搜索历史命令，左右即可选中</td>
-</tr>
-<tr>
-<td>Ctrl d</td>
-<td>退出当前用户</td>
-</tr>
-<tr>
-<td>\</td>
-<td>可以用来回车接着输入命令 ,对命令进行续行（其实C语言也可以）</td>
-</tr>
-</tbody></table>
-<h3 id="补充几条指令"><a href="#补充几条指令" class="headerlink" title="补充几条指令"></a>补充几条指令</h3><h6 id="查看CPU"><a href="#查看CPU" class="headerlink" title="查看CPU"></a>查看CPU</h6><pre><code>lscpu
-</code></pre>
-<h6 id="查看内存情况"><a href="#查看内存情况" class="headerlink" title="查看内存情况"></a>查看内存情况</h6><pre><code>lsmem
-</code></pre>
-<h6 id="查看磁盘结构"><a href="#查看磁盘结构" class="headerlink" title="查看磁盘结构"></a>查看磁盘结构</h6><pre><code>df -h
-</code></pre>
-<h6 id="查看当前都有谁登录了Linux系统"><a href="#查看当前都有谁登录了Linux系统" class="headerlink" title="查看当前都有谁登录了Linux系统"></a>查看当前都有谁登录了Linux系统</h6><pre><code>  who
-</code></pre>
-]]></content>
-      <categories>
-        <category>Linux教程</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Debian</tag>
-        <tag>Shell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>termux搭建proot-debian</title>
-    <url>/2025/01/15/termux%E6%90%AD%E5%BB%BAproot-debian/</url>
-    <content><![CDATA[<h2 id="Termux-搭建-Debian-环境并运行-PC-级-Linux-应用教程"><a href="#Termux-搭建-Debian-环境并运行-PC-级-Linux-应用教程" class="headerlink" title="Termux 搭建 Debian 环境并运行 PC 级 Linux 应用教程"></a><strong>Termux 搭建 Debian 环境并运行 PC 级 Linux 应用教程</strong></h2><hr>
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/build/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"qmtt.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/Background.png","skip_dirs":[]}},"colors":{"primary":"#CCCCFF","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"open_graph":{"enable":true,"image":"/images/OIP-C.jpg","description":"my_blog"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/Background.png","dark":"/images/Background.png"},"title":"Welcome To My Blog!","subtitle":{"text":["Hi!"],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":36000,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/QMTT-OCu1","instagram":null,"zhihu":null,"twitter":null,"email":"2402025908@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#367df7","right":"#f78736","transparency":75},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/11/11 11:11:11"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        QMTT-OCu1
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/OIP-C.jpg" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                QMTT-OCu1
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">termux搭建proot-debian</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/TouXiang.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">qmtt</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-15 17:26:01</span>
+        <span class="mobile">2025-01-15 17:26:01</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-15 17:31:28</span>
+            <span class="mobile">2025-03-15 17:31:28</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/termux/">termux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/debian/">debian</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/proot/">proot</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>7.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>29 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="Termux-搭建-Debian-环境并运行-PC-级-Linux-应用教程"><a href="#Termux-搭建-Debian-环境并运行-PC-级-Linux-应用教程" class="headerlink" title="Termux 搭建 Debian 环境并运行 PC 级 Linux 应用教程"></a><strong>Termux 搭建 Debian 环境并运行 PC 级 Linux 应用教程</strong></h2><hr>
 <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><strong>一、前言</strong></h3><h4 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a><strong>1. 背景</strong></h4><p>众所周知，最新搭载澎湃OS和鸿蒙OS的平板都内置了PC级WPS，办公效率直接拉满（<del>板子终于从“泡面盖”升级为“生产力”了</del>）。但问题来了：如果不是这两个系统，难道我们只能继续用平板盖泡面吗？当然不是！折腾了很长时间后，总算找到了一个好玩的东西：<strong>高级终端Termux</strong> 。现在，不仅能随时随地用WPS改文档，还能VSCode优雅地敲代码，再也不用背着电脑乱跑了。</p>
 <p>由于每次搭建环境时都要去不同的平台找不同功能，有时还找不到，所以我决定自己写一篇博客，<del>方便自己以后再搭建时直接“Ctrl C + Ctrl V”</del>，顺便分享给有同样需求的小伙伴们。话不多说，直接开整！</p>
 <h4 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a><strong>2. 准备工作</strong></h4><ul>
 <li><strong>一部安卓手机</strong>：性能越好，折腾起来越顺畅。</li>
-<li><strong>Termux 应用</strong>：  不想去F-droid下载的看过来<br>下载链接：<a class="link"   href="https://www.123912.com/s/m863Td-w3Jk" >点击这里<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>  访问密码：<code>Kw3z</code></li>
+<li><strong>Termux 应用</strong>：  不想去F-droid下载的看过来<br>下载链接：<a class="link"   target="_blank" rel="noopener" href="https://www.123912.com/s/m863Td-w3Jk" >点击这里<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>  访问密码：<code>Kw3z</code></li>
 <li><strong>脑子和耐心</strong></li>
 </ul>
 <p>以下是所有所需软件：<br><img  
@@ -580,7 +559,7 @@ done &gt; test.txt
 <h4 id="一切就绪，开始动手动脑！"><a href="#一切就绪，开始动手动脑！" class="headerlink" title="一切就绪，开始动手动脑！"></a><strong>一切就绪，开始动手动脑！</strong></h4><hr>
 <h3 id="二、Termux-基础设置"><a href="#二、Termux-基础设置" class="headerlink" title="二、Termux 基础设置"></a><strong>二、Termux 基础设置</strong></h3><h4 id="1-安装-Termux"><a href="#1-安装-Termux" class="headerlink" title="1. 安装 Termux"></a><strong>1. 安装 Termux</strong></h4><ul>
 <li><strong>从 F-Droid 安装 Termux</strong>：<ul>
-<li>Google Play 版本的 Termux 已停止更新，建议从 <a class="link"   href="https://f-droid.org/" >F-Droid<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 下载最新版本。</li>
+<li>Google Play 版本的 Termux 已停止更新，建议从 <a class="link"   target="_blank" rel="noopener" href="https://f-droid.org/" >F-Droid<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 下载最新版本。</li>
 </ul>
 </li>
 <li><strong>初始化环境</strong>：<ul>
@@ -644,7 +623,7 @@ done &gt; test.txt
                       alt="请添加图片描述"
                 ></p>
 <h5 id="2-4-设置存储权限"><a href="#2-4-设置存储权限" class="headerlink" title="2.4 设置存储权限"></a><strong>2.4 设置存储权限</strong></h5><ol>
-<li>打开 Termux，输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure></div></li>
+<li>打开 Termux，输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure></div></li>
 <li>在弹出的权限请求中，选择“始终允许”。<br><img  
                      lazyload
                      src="/images/loading.svg"
@@ -658,16 +637,16 @@ done &gt; test.txt
 <li><strong><code>apt</code></strong>：Debian 及其衍生发行版的包管理工具，因此 Termux 和我们后面安装的 Debian 刚好一样，所以我更倾向于 <code>apt</code>。</li>
 <li><strong><code>pkg</code></strong>：<code>pkg</code> 是 <code>apt</code> 的封装，使用方法和 <code>apt</code> 完全一致，但每次使用 <code>pkg</code> 时会自动更新软件包列表（个人感觉有点麻烦，所以下面使用的是 <code>apt</code>）。</li>
 </ul>
-<h5 id="APT-常用命令"><a href="#APT-常用命令" class="headerlink" title="APT 常用命令"></a><strong>APT 常用命令</strong></h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update 		<span class="comment"># 更新软件包列表（从软件源获取最新的包信息）</span></span><br><span class="line">apt upgrade		<span class="comment"># 升级所有已安装的软件包到最新版本</span></span><br><span class="line">apt search &lt;关键词&gt;	<span class="comment"># 搜索软件包（根据关键词查找可用的包）</span></span><br><span class="line">apt show &lt;包名&gt;		<span class="comment"># 查看某个软件包的详细信息（如版本、依赖关系等）</span></span><br><span class="line">apt install &lt;包名&gt;	<span class="comment"># 安装软件包（自动解决依赖关系）</span></span><br><span class="line">apt remove &lt;包名&gt;	<span class="comment"># 卸载软件包（保留配置文件）</span></span><br><span class="line">apt purge &lt;包名&gt;	<span class="comment"># 彻底卸载软件包（同时删除配置文件）</span></span><br><span class="line">apt clean 		<span class="comment"># 清理缓存（删除下载的软件包缓存以释放空间）</span></span><br><span class="line">apt autoremove 		<span class="comment"># 自动移除不再需要的依赖包</span></span><br><span class="line">apt --fix-broken install <span class="comment"># 修复损坏的依赖关系</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="APT-常用命令"><a href="#APT-常用命令" class="headerlink" title="APT 常用命令"></a><strong>APT 常用命令</strong></h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apt update 		<span class="comment"># 更新软件包列表（从软件源获取最新的包信息）</span></span><br><span class="line">apt upgrade		<span class="comment"># 升级所有已安装的软件包到最新版本</span></span><br><span class="line">apt search &lt;关键词&gt;	<span class="comment"># 搜索软件包（根据关键词查找可用的包）</span></span><br><span class="line">apt show &lt;包名&gt;		<span class="comment"># 查看某个软件包的详细信息（如版本、依赖关系等）</span></span><br><span class="line">apt install &lt;包名&gt;	<span class="comment"># 安装软件包（自动解决依赖关系）</span></span><br><span class="line">apt remove &lt;包名&gt;	<span class="comment"># 卸载软件包（保留配置文件）</span></span><br><span class="line">apt purge &lt;包名&gt;	<span class="comment"># 彻底卸载软件包（同时删除配置文件）</span></span><br><span class="line">apt clean 		<span class="comment"># 清理缓存（删除下载的软件包缓存以释放空间）</span></span><br><span class="line">apt autoremove 		<span class="comment"># 自动移除不再需要的依赖包</span></span><br><span class="line">apt --fix-broken install <span class="comment"># 修复损坏的依赖关系</span></span><br></pre></td></tr></table></figure></div>
 
-<h5 id="PKG-常用命令"><a href="#PKG-常用命令" class="headerlink" title="PKG 常用命令"></a><strong>PKG 常用命令</strong></h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">pkg update 		<span class="comment"># 更新软件包列表（相当于 apt update）</span></span><br><span class="line">pkg upgrade		<span class="comment"># 升级所有已安装的软件包（相当于 apt upgrade）</span></span><br><span class="line">pkg search &lt;关键词&gt;	<span class="comment"># 搜索软件包（相当于 apt search）</span></span><br><span class="line">pkg show &lt;包名&gt;		<span class="comment"># 查看某个软件包的详细信息（相当于 apt show）</span></span><br><span class="line">pkg install &lt;包名&gt;	<span class="comment"># 安装软件包（相当于 apt install）</span></span><br><span class="line">pkg remove &lt;包名&gt;	<span class="comment"># 卸载软件包（相当于 apt remove）</span></span><br><span class="line">pkg uninstall &lt;包名&gt;	<span class="comment"># 卸载软件包（相当于 apt remove）</span></span><br><span class="line">pkg clean 		<span class="comment"># 清理缓存（相当于 apt clean）</span></span><br><span class="line">pkg autoremove 		<span class="comment"># 自动移除不再需要的依赖包（相当于 apt autoremove）</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="PKG-常用命令"><a href="#PKG-常用命令" class="headerlink" title="PKG 常用命令"></a><strong>PKG 常用命令</strong></h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pkg update 		<span class="comment"># 更新软件包列表（相当于 apt update）</span></span><br><span class="line">pkg upgrade		<span class="comment"># 升级所有已安装的软件包（相当于 apt upgrade）</span></span><br><span class="line">pkg search &lt;关键词&gt;	<span class="comment"># 搜索软件包（相当于 apt search）</span></span><br><span class="line">pkg show &lt;包名&gt;		<span class="comment"># 查看某个软件包的详细信息（相当于 apt show）</span></span><br><span class="line">pkg install &lt;包名&gt;	<span class="comment"># 安装软件包（相当于 apt install）</span></span><br><span class="line">pkg remove &lt;包名&gt;	<span class="comment"># 卸载软件包（相当于 apt remove）</span></span><br><span class="line">pkg uninstall &lt;包名&gt;	<span class="comment"># 卸载软件包（相当于 apt remove）</span></span><br><span class="line">pkg clean 		<span class="comment"># 清理缓存（相当于 apt clean）</span></span><br><span class="line">pkg autoremove 		<span class="comment"># 自动移除不再需要的依赖包（相当于 apt autoremove）</span></span><br></pre></td></tr></table></figure></div>
 
 <hr>
 <h4 id="4-换源"><a href="#4-换源" class="headerlink" title="4. 换源"></a><strong>4. 换源</strong></h4><p>在使用 <code>apt</code> 或 <code>pkg</code> 安装软件包时，Termux 会通过特定的链接（即“源”）连接到服务器来查找和下载所需的软件包。默认情况下，Termux 的软件源位于国外，这可能导致下载速度较慢甚至失败。<del>除非你有拥有来自霍格沃兹的力量（bushi）</del></p>
 <p>为了解决这个问题，国内的一些公司和高校提供了镜像服务，将国外的软件包同步到国内服务器。通过更换为国内镜像源，我们可以显著提高下载速度。</p>
 <h5 id="4-1-使用-termux-change-repo-换源"><a href="#4-1-使用-termux-change-repo-换源" class="headerlink" title="4.1 使用 termux-change-repo 换源"></a><strong>4.1 使用 <code>termux-change-repo</code> 换源</strong></h5><ol>
 <li><p>输入以下命令：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">termux-change-repo</span><br></pre></td></tr></table></figure></div></li>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-change-repo</span><br></pre></td></tr></table></figure></div></li>
 </ol>
 <p><img  
                      lazyload
@@ -701,7 +680,7 @@ done &gt; test.txt
 <hr>
 <h4 id="5-更新软件包"><a href="#5-更新软件包" class="headerlink" title="5. 更新软件包"></a><strong>5. 更新软件包</strong></h4><p>换源完成后，需要更新软件包列表并升级已安装的软件包。</p>
 <ol>
-<li>输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade</span><br></pre></td></tr></table></figure></div></li>
+<li>输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade</span><br></pre></td></tr></table></figure></div></li>
 <li>如果出现选择提示，一律输入 <code>Y</code>。如果速度比较快，也说明换源是成功了的。</li>
 </ol>
 <p><img  
@@ -726,13 +705,13 @@ done &gt; test.txt
 <hr>
 <h4 id="1-安装-x11-repo"><a href="#1-安装-x11-repo" class="headerlink" title="1. 安装 x11-repo"></a><strong>1. 安装 x11-repo</strong></h4><p><code>x11-repo</code> 是 Termux 的一个扩展仓库，提供了图形界面相关的软件包。安装它以便后续使用桌面环境。</p>
 <p>运行以下命令安装 <code>x11-repo</code>：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install x11-repo</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install x11-repo</span><br></pre></td></tr></table></figure></div>
 
 <p>如果提示找不到包，可以先更新软件包列表，更新完以后再执行上面的安装命令：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
 
 <p>安装完成后，再次更新软件包列表：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
 
 
 
@@ -741,7 +720,7 @@ done &gt; test.txt
 <hr>
 <h4 id="2-安装-proot-distro"><a href="#2-安装-proot-distro" class="headerlink" title="2. 安装 proot-distro"></a><strong>2. 安装 proot-distro</strong></h4><p><code>proot-distro</code> 是一个基于 <code>proot</code> 的工具，用于在 Termux 中安装和管理 Linux 发行版。</p>
 <p>运行以下命令安装 <code>proot-distro</code>：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install proot-distro</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install proot-distro</span><br></pre></td></tr></table></figure></div>
 
 <p>在安装过程中，如果出现选择提示，一律输入 <code>Y</code>。<br><img  
                      lazyload
@@ -751,7 +730,7 @@ done &gt; test.txt
                 ></p>
 <hr>
 <h4 id="3-查看可安装的-Linux-发行版"><a href="#3-查看可安装的-Linux-发行版" class="headerlink" title="3. 查看可安装的 Linux 发行版"></a><strong>3. 查看可安装的 Linux 发行版</strong></h4><p>安装完成后，可以查看支持的 Linux 发行版列表：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">proot-distro list</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro list</span><br></pre></td></tr></table></figure></div>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -763,7 +742,7 @@ done &gt; test.txt
 <hr>
 <h4 id="5-修改-Debian-安装脚本"><a href="#5-修改-Debian-安装脚本" class="headerlink" title="5. 修改 Debian 安装脚本"></a><strong>5. 修改 Debian 安装脚本</strong></h4><p>默认情况下，<code>proot-distro</code> 会从 GitHub 下载 Debian 的根文件系统（rootfs），但由于网络原因，下载速度可能非常慢。我们可以通过修改安装脚本来加速下载。<del>（从沃格霍兹学成归来的可以跳过）</del></p>
 <h5 id="5-1-打开-Debian-安装脚本"><a href="#5-1-打开-Debian-安装脚本" class="headerlink" title="5.1 打开 Debian 安装脚本"></a><strong>5.1 打开 Debian 安装脚本</strong></h5><p>运行以下命令编辑 Debian 安装脚本：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /data/data/com.termux/files/usr/etc/proot-distro/debian.sh</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /data/data/com.termux/files/usr/etc/proot-distro/debian.sh</span><br></pre></td></tr></table></figure></div>
 
 <p><code>nano</code> 是一个简单的命令行文本编辑器，类似于 Windows 的记事本。<br><img  
                      lazyload
@@ -779,11 +758,11 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <h5 id="5-2-修改下载链接"><a href="#5-2-修改下载链接" class="headerlink" title="5.2 修改下载链接"></a><strong>5.2 修改下载链接</strong></h5><p>在编辑器中，找到以下内容：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">TARBALL_URL[<span class="string">&#x27;aarch64&#x27;</span>]=<span class="string">&quot;https://github.com/termux/proot-distro/releases/download/v4.17.3/debian-bookworm-aarch64-pd-v4.17.3.tar.xz&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TARBALL_URL[<span class="string">&#x27;aarch64&#x27;</span>]=<span class="string">&quot;https://github.com/termux/proot-distro/releases/download/v4.17.3/debian-bookworm-aarch64-pd-v4.17.3.tar.xz&quot;</span></span><br></pre></td></tr></table></figure></div>
 
 
 <p><del>将 <code>github.com</code> 替换为 GitHub 的镜像站（镜像站可以自行百度看是否失效，这里我使用 <code>https://bgithub.xyz</code>）：</del><br>今天发现镜像站也抽风，时灵时不灵的，于是将debian的包放在gitee上了，直接把上面那行替换掉：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">TARBALL_URL[<span class="string">&#x27;aarch64&#x27;</span>]=<span class="string">&quot;https://gitee.com/name134/proot-distro/releases/download/4.47.3/debian-bookworm-aarch64-pd-v4.17.3.tar.xz&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TARBALL_URL[<span class="string">&#x27;aarch64&#x27;</span>]=<span class="string">&quot;https://gitee.com/name134/proot-distro/releases/download/4.47.3/debian-bookworm-aarch64-pd-v4.17.3.tar.xz&quot;</span></span><br></pre></td></tr></table></figure></div>
 <p>替换后长这样：<br><img  
                      lazyload
                      src="/images/loading.svg"
@@ -801,7 +780,7 @@ done &gt; test.txt
 <p>接下来到下一步就可以快速安装了</p>
 <hr>
 <h4 id="6-安装-Debian"><a href="#6-安装-Debian" class="headerlink" title="6. 安装 Debian"></a><strong>6. 安装 Debian</strong></h4><p>修改脚本后，运行以下命令安装 Debian:</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">proot-distro install debian</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro install debian</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -813,7 +792,7 @@ done &gt; test.txt
 <hr>
 <h4 id="7-安装音频服务"><a href="#7-安装音频服务" class="headerlink" title="7. 安装音频服务"></a><strong>7. 安装音频服务</strong></h4><p>要想在 Debian 系统内听到声音，我们需要在 Termux 中安装音频服务。Termux 使用 <strong>PulseAudio</strong> 来管理音频，因此需要安装并配置 PulseAudio。</p>
 <h5 id="7-1-安装-PulseAudio"><a href="#7-1-安装-PulseAudio" class="headerlink" title="7.1 安装 PulseAudio"></a><strong>7.1 安装 PulseAudio</strong></h5><p>运行以下命令安装 PulseAudio：（安装完成后无需进行7.2和7.3的配置，这里仅为配置演示）</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install pulseaudio</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install pulseaudio</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -822,13 +801,13 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <h5 id="7-2-配置-PulseAudio"><a href="#7-2-配置-PulseAudio" class="headerlink" title="7.2 配置 PulseAudio"></a><strong>7.2 配置 PulseAudio</strong></h5><p>安装完成后，需要配置 PulseAudio 以支持网络音频传输。运行以下命令启动 PulseAudio：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">pulseaudio --start --load=<span class="string">&quot;module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1&quot;</span> --exit-idle-time=-1</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulseaudio --start --load=<span class="string">&quot;module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1&quot;</span> --exit-idle-time=-1</span><br></pre></td></tr></table></figure></div>
 
 <h5 id="7-3-设置环境变量"><a href="#7-3-设置环境变量" class="headerlink" title="7.3 设置环境变量"></a><strong>7.3 设置环境变量</strong></h5><p>在 Debian 环境中，需要设置 <code>PULSE_SERVER</code> 环境变量，以便连接到 Termux 的 PulseAudio 服务。可以在启动 Debian 时添加以下命令：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PULSE_SERVER=127.0.0.1</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PULSE_SERVER=127.0.0.1</span><br></pre></td></tr></table></figure></div>
 
 <hr>
-<h3 id="四、Debian配置"><a href="#四、Debian配置" class="headerlink" title="四、Debian配置"></a>四、Debian配置</h3><h4 id="1-成功安装debia后，输入下面命令登录Debian"><a href="#1-成功安装debia后，输入下面命令登录Debian" class="headerlink" title="1.成功安装debia后，输入下面命令登录Debian"></a>1.成功安装debia后，输入下面命令登录Debian</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">proot-distro login debian</span><br></pre></td></tr></table></figure></div>
+<h3 id="四、Debian配置"><a href="#四、Debian配置" class="headerlink" title="四、Debian配置"></a>四、Debian配置</h3><h4 id="1-成功安装debia后，输入下面命令登录Debian"><a href="#1-成功安装debia后，输入下面命令登录Debian" class="headerlink" title="1.成功安装debia后，输入下面命令登录Debian"></a>1.成功安装debia后，输入下面命令登录Debian</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro login debian</span><br></pre></td></tr></table></figure></div>
 
 <p>前面变成root@localhost表示已成功登录debian系统：</p>
 <p><img  
@@ -837,11 +816,11 @@ done &gt; test.txt
                      data-src="https://i-blog.csdnimg.cn/direct/79427b6df1ba43dfb2e5865bbcf7f2a2.png"
                       alt="在这里插入图片描述"
                 ></p>
-<h4 id="2-更新软件源（Debian的命令和termux一样，极大减少了学习成本）"><a href="#2-更新软件源（Debian的命令和termux一样，极大减少了学习成本）" class="headerlink" title="2.更新软件源（Debian的命令和termux一样，极大减少了学习成本）"></a>2.更新软件源（Debian的命令和termux一样，极大减少了学习成本）</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
+<h4 id="2-更新软件源（Debian的命令和termux一样，极大减少了学习成本）"><a href="#2-更新软件源（Debian的命令和termux一样，极大减少了学习成本）" class="headerlink" title="2.更新软件源（Debian的命令和termux一样，极大减少了学习成本）"></a>2.更新软件源（Debian的命令和termux一样，极大减少了学习成本）</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="3-换源"><a href="#3-换源" class="headerlink" title="3.换源"></a>3.换源</h4><p>当我们想直接使用apt update更新软件源时，会发现速度慢的要死，没错，又到了更换到国内源的时候</p>
 <p>debian的apt源的位置在&#x2F;etc&#x2F;apt&#x2F;sources.list</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
 
 <p>输入命令后回车看到这些：<img  
                      lazyload
@@ -850,7 +829,7 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <p>全部删掉，粘贴下面内容：(这里使用阿里源)</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm main non-free non-free-firmware contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian-security/ bookworm-security main</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian-security/ bookworm-security main</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm-updates main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm-updates main non-free non-free-firmware contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm-backports main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm-backports main non-free non-free-firmware contrib</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm main non-free non-free-firmware contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian-security/ bookworm-security main</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian-security/ bookworm-security main</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm-updates main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm-updates main non-free non-free-firmware contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm-backports main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm-backports main non-free non-free-firmware contrib</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -861,15 +840,15 @@ done &gt; test.txt
 <p>CTRL+x后输入y,回车保存退出。</p>
 <p>然后再次apt update &amp;&amp; apt upgrade,速度直接起飞！</p>
 <h4 id="4-设置中文环境（可选）"><a href="#4-设置中文环境（可选）" class="headerlink" title="4. 设置中文环境（可选）"></a>4. 设置中文环境（可选）</h4><h5 id="4-1安装语言包："><a href="#4-1安装语言包：" class="headerlink" title="4.1安装语言包："></a>4.1安装语言包：</h5><p>首先，安装 <code>locales</code> 包，它是管理系统语言环境的工具：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install locales</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install locales</span><br></pre></td></tr></table></figure></div>
 
 <p>然后安装中文的语言包：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install fonts-wqy-zenhei fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install fonts-wqy-zenhei fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</span><br></pre></td></tr></table></figure></div>
 
 <p><code> fonts-wqy-zenhei fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</code>这四个均为中文语言包。</p>
 <h5 id="4-2-生成中文语言环境"><a href="#4-2-生成中文语言环境" class="headerlink" title="4.2 生成中文语言环境"></a><strong>4.2 生成中文语言环境</strong></h5><p>安装完成后，需要生成中文语言环境。</p>
 <p>运行以下命令配置语言环境：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure></div>
 
 <p>输完后会见到这个界面：<br><img  
                      lazyload
@@ -895,7 +874,7 @@ done &gt; test.txt
 <hr>
 <h4 id="5-安装图形化界面"><a href="#5-安装图形化界面" class="headerlink" title="5. 安装图形化界面"></a><strong>5. 安装图形化界面</strong></h4><p>在 Debian 环境中，我们可以安装 <strong>Xfce</strong> 桌面环境，它是一个轻量级且功能强大的桌面环境，适合在资源有限的设备上运行。我试过KDE和GNOME，只能降低分辨率能勉强来运行，不但很卡而且特效全都无法使用，只好乖乖回Xfce了（也不是不能美化）。我看b站上有大佬使用图形加速的来跑kde非常流畅，不过我们只想搭建一个生产力，能跑就行，还要什么自行车（手动滑稽）</p>
 <h5 id="5-1-安装-Xfce-桌面环境"><a href="#5-1-安装-Xfce-桌面环境" class="headerlink" title="5.1 安装 Xfce 桌面环境"></a><strong>5.1 安装 Xfce 桌面环境</strong></h5><p>运行以下命令安装 Xfce 及其相关组件：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install xfce4 xfce4-goodies xfce4-terminal</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install xfce4 xfce4-goodies xfce4-terminal</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li><strong><code>xfce4</code></strong> ：Xfce 桌面环境的核心组件。</li>
@@ -913,7 +892,7 @@ done &gt; test.txt
 <p>此外，我还发现有些应用在 root 用户下，死活不肯正常运行。所以我们最好切换到  <strong>普通用户</strong> 。</p>
 <p>（PS：由于我们使用的是  <strong>proot</strong> ，这里的 root 其实是一个“假 root”。Termux 本身并没有真正的 root 权限，所以即使你在 proot 中删库跑路，也不会对手机系统造成实际危害。换句话说，你只是在“沙盒”里折腾，再怎么删也只是删了自己的“玩具”，手机系统平安无事。）</p>
 <p>不过，即使是这样，切换到普通用户仍然是个好习惯。毕竟，养成良好的操作习惯，才能在真正的 Linux 系统中游刃有余（<del>而不是一上来就删库跑路</del>）。</p>
-<h5 id="6-1添加新用户"><a href="#6-1添加新用户" class="headerlink" title="6.1添加新用户"></a>6.1添加新用户</h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">adduser &lt;用户名&gt;</span><br></pre></td></tr></table></figure></div>
+<h5 id="6-1添加新用户"><a href="#6-1添加新用户" class="headerlink" title="6.1添加新用户"></a>6.1添加新用户</h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser &lt;用户名&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>这里添加我的用户名为qmtt,用户名自己取</p>
 <p><img  
@@ -945,7 +924,7 @@ done &gt; test.txt
 <p>这里我们就成功添加了一个普通用户。</p>
 <p>下面有两种切换用户的命令：</p>
 <p>1.从当前用户直接切换：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">su &lt;用户名&gt;       <span class="comment">#比如我是 su qmtt</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su &lt;用户名&gt;       <span class="comment">#比如我是 su qmtt</span></span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -961,7 +940,7 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <p>2.切换用户并更换工作目录：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">su - qmtt</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - qmtt</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -972,13 +951,13 @@ done &gt; test.txt
 <p>这里工作目录变成了qmtt自己的家目录。</p>
 <h5 id="6-2将普通用户至添加sudo用户组"><a href="#6-2将普通用户至添加sudo用户组" class="headerlink" title="6.2将普通用户至添加sudo用户组"></a>6.2将普通用户至添加sudo用户组</h5><p>在普通用户下，系统虽然是安全了，但是当我们想要安装、卸载应用或执行其他需要管理员权限的操作时，这会涉及到修改系统的文件或配置。为了避免频繁切换到 <code>root</code>用户，我们可以使用一个非常强大的工具<code>sudo</code>,我们可以将普通用户添加到 <code>sudo</code>用户组，从而允许该用户通过 <code>sudo</code>命令临时获取 <code>root</code>权限。</p>
 <p>首先，我们需要以 <code>root</code>用户身份执行以下操作。如果当前是普通用户，可以通过以下命令切换到 <code>root</code>用户：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">su -</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -</span><br></pre></td></tr></table></figure></div>
 
 <p>然后安装 <code>sudo</code></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install <span class="built_in">sudo</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install <span class="built_in">sudo</span></span><br></pre></td></tr></table></figure></div>
 
 <p>安装完成后输入：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /etc/sudoers</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/sudoers</span><br></pre></td></tr></table></figure></div>
 
 <p>看到如下界面：</p>
 <p><img  
@@ -995,7 +974,7 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <p>在root的下一行添加：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;用户名&gt;   ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;用户名&gt;   ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure></div>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -1007,16 +986,16 @@ done &gt; test.txt
 <hr>
 <h3 id="五、启动桌面"><a href="#五、启动桌面" class="headerlink" title="五、启动桌面"></a>五、启动桌面</h3><p>准备了这么久，总算是到了桌面的启动环节了。直接划掉后台重新启动termux。</p>
 <h4 id="1-安装x11服务"><a href="#1-安装x11服务" class="headerlink" title="1.安装x11服务"></a>1.安装x11服务</h4><p>帮助我们在Termux:x11中连接桌面</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install termux-x11-nightly</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install termux-x11-nightly</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="2-安装图形加速工具"><a href="#2-安装图形加速工具" class="headerlink" title="2.安装图形加速工具"></a>2.安装图形加速工具</h4><p>termux默认是无法调用GPU的，只能靠CPU来硬算，因此需要安装图形加速的插件（但是我感觉Virgl的效果甚微…….）,别的加速方法可以自行搜索。</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install virglrenderer-android</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install virglrenderer-android</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="3-写启动脚本"><a href="#3-写启动脚本" class="headerlink" title="3.写启动脚本"></a>3.写启动脚本</h4><p>由于启动时要配置的东西比较多，所以直接写在一个启动脚本里(脚本来自B站UP主 <strong>qwe5283</strong>).</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano start.sh</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano start.sh</span><br></pre></td></tr></table></figure></div>
 
 <p>将下面的命令粘贴进去,<strong>注意！！！将倒数第四行的内的 <code>&lt;用户名&gt;</code>命令换成你的用户名！！！保证粘贴完颜色和我的图片里一样</strong></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/data/data/com.termux/files/usr/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 终止正在运行的 X11 进程</span></span><br><span class="line"><span class="comment"># 使用 pgrep 查找与 &quot;termux.x11&quot; 相关的进程，并使用 kill -9 强制终止</span></span><br><span class="line"><span class="built_in">kill</span> -9 $(pgrep -f <span class="string">&quot;termux.x11&quot;</span>) 2&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 PulseAudio 并配置网络音频支持</span></span><br><span class="line"><span class="comment"># --load 参数加载 TCP 模块，允许本地回环地址（127.0.0.1）匿名访问</span></span><br><span class="line"><span class="comment"># --exit-idle-time=-1 防止 PulseAudio 在空闲时退出</span></span><br><span class="line">pulseaudio --start --load=<span class="string">&quot;module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1&quot;</span> --exit-idle-time=-1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 virgl_test_server_android 服务</span></span><br><span class="line"><span class="comment"># virgl_test_server_android 是用于支持 3D 加速的服务</span></span><br><span class="line"><span class="comment"># 将其输出重定向到 /dev/null（丢弃输出），并在后台运行</span></span><br><span class="line">virgl_test_server_android &gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备 termux-x11 会话</span></span><br><span class="line"><span class="comment"># 设置 XDG_RUNTIME_DIR 环境变量为 Termux 的临时目录</span></span><br><span class="line"><span class="built_in">export</span> XDG_RUNTIME_DIR=<span class="variable">$&#123;TMPDIR&#125;</span></span><br><span class="line"><span class="comment"># 启动 termux-x11 服务，并将其输出重定向到 /dev/null（不显示）</span></span><br><span class="line">termux-x11 :0 &gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待 3 秒，确保 termux-x11 服务启动完成</span></span><br><span class="line"><span class="built_in">sleep</span> 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Termux X11 主活动</span></span><br><span class="line"><span class="comment"># 使用 am start 命令启动 com.termux.x11 应用的 MainActivity</span></span><br><span class="line"><span class="comment"># --user 0 表示以主用户身份运行</span></span><br><span class="line"><span class="comment"># 输出重定向到 /dev/null，避免显示在终端</span></span><br><span class="line">am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"><span class="comment"># 等待 1 秒，确保活动启动完成</span></span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录到 PRoot 环境</span></span><br><span class="line"><span class="comment"># 使用 proot-distro 登录到 Debian 系统，并共享临时目录（--shared-tmp）</span></span><br><span class="line"><span class="comment"># -- 后面的内容不会被解析为 proot-distro 的选项</span></span><br><span class="line"><span class="comment"># 在 PRoot 环境中执行以下命令：</span></span><br><span class="line"><span class="comment"># 1. 设置 PulseAudio 服务器地址为 127.0.0.1</span></span><br><span class="line"><span class="comment"># 2. 设置 XDG_RUNTIME_DIR 环境变量</span></span><br><span class="line"><span class="comment"># 3. 使用 su - &lt;用户名&gt; 切换到指定用户，并启动 XFCE4 桌面环境</span></span><br><span class="line"><span class="comment">#    同时设置语言环境（LANG=zh_CN.UTF-8）和输入法模块（fcitx）</span></span><br><span class="line">proot-distro login debian --shared-tmp -- /bin/bash -c  <span class="string">&#x27;export PULSE_SERVER=127.0.0.1 &amp;&amp; export XDG_RUNTIME_DIR=$&#123;TMPDIR&#125; &amp;&amp; su - &lt;用户名&gt; -c &quot;env DISPLAY=:0 LANG=zh_CN.UTF-8 GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx startxfce4&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 脚本执行完成，退出状态码为 0（表示成功）</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/data/data/com.termux/files/usr/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 终止正在运行的 X11 进程</span></span><br><span class="line"><span class="comment"># 使用 pgrep 查找与 &quot;termux.x11&quot; 相关的进程，并使用 kill -9 强制终止</span></span><br><span class="line"><span class="built_in">kill</span> -9 $(pgrep -f <span class="string">&quot;termux.x11&quot;</span>) 2&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 PulseAudio 并配置网络音频支持</span></span><br><span class="line"><span class="comment"># --load 参数加载 TCP 模块，允许本地回环地址（127.0.0.1）匿名访问</span></span><br><span class="line"><span class="comment"># --exit-idle-time=-1 防止 PulseAudio 在空闲时退出</span></span><br><span class="line">pulseaudio --start --load=<span class="string">&quot;module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1&quot;</span> --exit-idle-time=-1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 virgl_test_server_android 服务</span></span><br><span class="line"><span class="comment"># virgl_test_server_android 是用于支持 3D 加速的服务</span></span><br><span class="line"><span class="comment"># 将其输出重定向到 /dev/null（丢弃输出），并在后台运行</span></span><br><span class="line">virgl_test_server_android &gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备 termux-x11 会话</span></span><br><span class="line"><span class="comment"># 设置 XDG_RUNTIME_DIR 环境变量为 Termux 的临时目录</span></span><br><span class="line"><span class="built_in">export</span> XDG_RUNTIME_DIR=<span class="variable">$&#123;TMPDIR&#125;</span></span><br><span class="line"><span class="comment"># 启动 termux-x11 服务，并将其输出重定向到 /dev/null（不显示）</span></span><br><span class="line">termux-x11 :0 &gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待 3 秒，确保 termux-x11 服务启动完成</span></span><br><span class="line"><span class="built_in">sleep</span> 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Termux X11 主活动</span></span><br><span class="line"><span class="comment"># 使用 am start 命令启动 com.termux.x11 应用的 MainActivity</span></span><br><span class="line"><span class="comment"># --user 0 表示以主用户身份运行</span></span><br><span class="line"><span class="comment"># 输出重定向到 /dev/null，避免显示在终端</span></span><br><span class="line">am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"><span class="comment"># 等待 1 秒，确保活动启动完成</span></span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录到 PRoot 环境</span></span><br><span class="line"><span class="comment"># 使用 proot-distro 登录到 Debian 系统，并共享临时目录（--shared-tmp）</span></span><br><span class="line"><span class="comment"># -- 后面的内容不会被解析为 proot-distro 的选项</span></span><br><span class="line"><span class="comment"># 在 PRoot 环境中执行以下命令：</span></span><br><span class="line"><span class="comment"># 1. 设置 PulseAudio 服务器地址为 127.0.0.1</span></span><br><span class="line"><span class="comment"># 2. 设置 XDG_RUNTIME_DIR 环境变量</span></span><br><span class="line"><span class="comment"># 3. 使用 su - &lt;用户名&gt; 切换到指定用户，并启动 XFCE4 桌面环境</span></span><br><span class="line"><span class="comment">#    同时设置语言环境（LANG=zh_CN.UTF-8）和输入法模块（fcitx）</span></span><br><span class="line">proot-distro login debian --shared-tmp -- /bin/bash -c  <span class="string">&#x27;export PULSE_SERVER=127.0.0.1 &amp;&amp; export XDG_RUNTIME_DIR=$&#123;TMPDIR&#125; &amp;&amp; su - &lt;用户名&gt; -c &quot;env DISPLAY=:0 LANG=zh_CN.UTF-8 GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx startxfce4&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 脚本执行完成，退出状态码为 0（表示成功）</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure></div>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -1024,7 +1003,7 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <p><code>Ctrl+x</code>后Y然后回车保存退出。</p>
-<h4 id="4-给脚本添加可执行权限"><a href="#4-给脚本添加可执行权限" class="headerlink" title="4.给脚本添加可执行权限"></a>4.给脚本添加可执行权限</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x start.sh</span><br></pre></td></tr></table></figure></div>
+<h4 id="4-给脚本添加可执行权限"><a href="#4-给脚本添加可执行权限" class="headerlink" title="4.给脚本添加可执行权限"></a>4.给脚本添加可执行权限</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x start.sh</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -1033,7 +1012,7 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <h4 id="5-原神！（bushi），启动！"><a href="#5-原神！（bushi），启动！" class="headerlink" title="5.原神！（bushi），启动！"></a>5.<del>原神！（bushi）</del>，启动！</h4><p>以后我们启动桌面环境直接在termux终端中输入 <code>./stsrt.sh</code>即可</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -1063,7 +1042,7 @@ done &gt; test.txt
 </li>
 </ol>
 <h4 id="2-更简单的解决方案"><a href="#2-更简单的解决方案" class="headerlink" title="2.更简单的解决方案"></a>2.更简单的解决方案</h4><p>经过一番摸索，我在B站找到了一个更简单的方法：使用VMOS提供的一款调试工具来解决。</p>
-<h4 id="3-工具链接"><a href="#3-工具链接" class="headerlink" title="3.工具链接"></a>3.工具链接</h4><p>工具下载链接如下，里面有详细的视频演示：<br><a class="link"   href="https://www.vmos.cn/zhushou.htm" >VMOS调试工具下载<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h4 id="3-工具链接"><a href="#3-工具链接" class="headerlink" title="3.工具链接"></a>3.工具链接</h4><p>工具下载链接如下，里面有详细的视频演示：<br><a class="link"   target="_blank" rel="noopener" href="https://www.vmos.cn/zhushou.htm" >VMOS调试工具下载<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h4 id="4-备用方法"><a href="#4-备用方法" class="headerlink" title="4.备用方法"></a>4.备用方法</h4><p>可以在手机的 <strong>开发者选项</strong> 中找到 <strong><code>停止限制子进程</code></strong> 的设置选项，将其打开。<br> <strong>注意</strong> ：<code>停止限制子进程</code>这个选项在一些手机上是没有的，比如我的手机和平板都没有这个选项，因此无法提供演示。</p>
 <hr>
 <h3 id="七、配置Termux-X11"><a href="#七、配置Termux-X11" class="headerlink" title="七、配置Termux:X11"></a>七、配置Termux:X11</h3><p>重新打开Termux，输入 <code>./start.sh</code> 启动桌面，跳转到Ternux:x11后，你会再次看到熟悉的界面：</p>
@@ -1152,7 +1131,7 @@ done &gt; test.txt
                 ></p>
 </li>
 </ol>
-<h4 id="2-主题设置"><a href="#2-主题设置" class="headerlink" title="2. 主题设置"></a>2. 主题设置</h4><p>还是在<strong>外观</strong>里，默认的主题和图标少得可怜，我们可以去 <a class="link"   href="https://www.xfce-look.org/browse/" >Eyecandy for your XFCE-Desktop - xfce-look.org<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 里下载喜欢的主题或图标。（后面会安装浏览器）</p>
+<h4 id="2-主题设置"><a href="#2-主题设置" class="headerlink" title="2. 主题设置"></a>2. 主题设置</h4><p>还是在<strong>外观</strong>里，默认的主题和图标少得可怜，我们可以去 <a class="link"   target="_blank" rel="noopener" href="https://www.xfce-look.org/browse/" >Eyecandy for your XFCE-Desktop - xfce-look.org<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 里下载喜欢的主题或图标。（后面会安装浏览器）</p>
 <ol>
 <li>下载你喜欢的主题或图标包</li>
 <li>下载完后，点击左下角的 <strong>添加</strong>，选择你下载的压缩包，就可以用你下载的主题或图标。<br><img  
@@ -1234,7 +1213,7 @@ done &gt; test.txt
                 ></p>
 </li>
 <li><p>使用 <code>apt</code> 安装火狐浏览器：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install firefox-esr</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install firefox-esr</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li><strong>注意</strong>：<code>sudo</code> 是因为我们当前是普通用户身份，需要提升权限，输入密码时不会显示字符，输完后直接回车即可</li>
@@ -1259,7 +1238,7 @@ done &gt; test.txt
 <hr>
 <h4 id="3-安装输入法"><a href="#3-安装输入法" class="headerlink" title="3. 安装输入法"></a><strong>3. 安装输入法</strong></h4><p>在 Linux 上折腾输入法总是让我破防，尤其是在 ARM 架构的生态下。经过多次尝试，我找到了一款能用的输入法：<strong>华宇拼音输入法</strong>（搜狗和讯飞无法使用，Google 输入法的那个候选词是真难找）。</p>
 <ol>
-<li><p>访问华宇拼音输入法官网，选择“信创版下载”：<br><a class="link"   href="https://pinyin.thunisoft.com/index.html" >华宇拼音输入法<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><img  
+<li><p>访问华宇拼音输入法官网，选择“信创版下载”：<br><a class="link"   target="_blank" rel="noopener" href="https://pinyin.thunisoft.com/index.html" >华宇拼音输入法<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://i-blog.csdnimg.cn/direct/96b88f39d331475f940ff91c0c42e78a.png"
@@ -1276,7 +1255,7 @@ done &gt; test.txt
 <li><p>会出现点击安装会没反应的情况，看页面上方火狐浏览器会提示禁止弹窗，直接允许弹窗以下载就行。</p>
 </li>
 <li><p>下载完成后，在终端中输入以下命令进行安装：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install &lt;直接用鼠标把下载的.deb文件拖进去&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install &lt;直接用鼠标把下载的.deb文件拖进去&gt;</span><br></pre></td></tr></table></figure></div>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -1336,7 +1315,7 @@ done &gt; test.txt
 <h4 id="4-安装-VS-Code"><a href="#4-安装-VS-Code" class="headerlink" title="4. 安装 VS Code"></a><strong>4. 安装 VS Code</strong></h4><ol>
 <li><p><strong>下载 VS Code</strong></p>
 <ul>
-<li><p>访问 VS Code 官网：<a class="link"   href="https://code.visualstudio.com/" >Visual Studio Code - Code Editing. Redefined<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<li><p>访问 VS Code 官网：<a class="link"   target="_blank" rel="noopener" href="https://code.visualstudio.com/" >Visual Studio Code - Code Editing. Redefined<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 </li>
 <li><p>点击“其他平台”（other platforms）：<br><img  
                      lazyload
@@ -1356,7 +1335,7 @@ done &gt; test.txt
 </li>
 <li><p><strong>安装 VS Code</strong></p>
 <ul>
-<li>下载完成后，打开终端，输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install</span><br></pre></td></tr></table></figure></div></li>
+<li>下载完成后，打开终端，输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install</span><br></pre></td></tr></table></figure></div></li>
 <li>将下载的 <code>.deb</code> 文件拖入终端，回车执行安装：<br><img  
                      lazyload
                      src="/images/loading.svg"
@@ -1411,10 +1390,10 @@ done &gt; test.txt
 </ol>
 <hr>
 <h4 id="5-安装WPS"><a href="#5-安装WPS" class="headerlink" title="5.安装WPS"></a>5.安装WPS</h4><p>在我刚开始折腾 Termux 的时候，WPS 官网上还能找到 ARM 版的安装包。那时还能正常使用。但突然（没错，就是突然的），它就消失了，就像下定了某种决心……</p>
-<p>虽然网上还能找到一些用户留下的旧版本，比如这个：<br><a class="link"   href="https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/9719/wps-office_11.1.0.9719_arm64.deb" >WPS Office ARM64 版本<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>虽然网上还能找到一些用户留下的旧版本，比如这个：<br><a class="link"   target="_blank" rel="noopener" href="https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/9719/wps-office_11.1.0.9719_arm64.deb" >WPS Office ARM64 版本<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>但安装后，我发现它有时打不开，有时 PDF 功能无法使用，总之用起来不太稳定（技艺不精的我也不会修）。于是，在经历了漫长的搜索后，我找到了一个更<del>牛逼</del>的解决方案：<strong>星火应用商店</strong>。它不仅能解决 WPS 的问题，还能直接缓解 ARM 生态应用短缺的困境,直接打开了新世界的大门！直接看P6</p>
 <hr>
-<h4 id="6-安装星火商店"><a href="#6-安装星火商店" class="headerlink" title="6.安装星火商店"></a>6.安装星火商店</h4><p>星火官网：<a class="link"   href="https://www.spark-app.store/" >首页 - 星火应用商店<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h4 id="6-安装星火商店"><a href="#6-安装星火商店" class="headerlink" title="6.安装星火商店"></a>6.安装星火商店</h4><p>星火官网：<a class="link"   target="_blank" rel="noopener" href="https://www.spark-app.store/" >首页 - 星火应用商店<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>点击“下载最新版本”</p>
 <p><img  
                      lazyload
@@ -1473,7 +1452,7 @@ done &gt; test.txt
                       alt="在这里插入图片描述"
                 ></p>
 <p>在命令前面(<strong>注意是前面！！！</strong>)加入这行命令：(后面的数字自己设置，我设置的是150)，加完以后要留空格。（<strong>以后的缩放问题都可以这样解决！！！</strong>）</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">env</span> QT_QPA_PLATFORMTHEME=qt5ct QT_SCALE_FACTOR=1 QT_FONT_DPI=150 </span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">env</span> QT_QPA_PLATFORMTHEME=qt5ct QT_SCALE_FACTOR=1 QT_FONT_DPI=150 </span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -1505,10 +1484,10 @@ done &gt; test.txt
                 ></p>
 <p>直接打开终端：</p>
 <p>先更新一下：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">aptss update</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aptss update</span><br></pre></td></tr></table></figure></div>
 
 <p>安装WPS：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">aptss install wps-office</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aptss install wps-office</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -1558,8 +1537,8 @@ done &gt; test.txt
 <hr>
 <h4 id="1-配置快捷启动"><a href="#1-配置快捷启动" class="headerlink" title="1. 配置快捷启动"></a><strong>1. 配置快捷启动</strong></h4><ol>
 <li>划掉所有后台，重新进入 Termux。</li>
-<li>创建目录：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ./.shortcuts/tasks</span><br></pre></td></tr></table></figure></div></li>
-<li>将启动脚本移动到该目录：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> ./start.sh ./.shortcuts/tasks</span><br></pre></td></tr></table></figure></div></li>
+<li>创建目录：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ./.shortcuts/tasks</span><br></pre></td></tr></table></figure></div></li>
+<li>将启动脚本移动到该目录：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> ./start.sh ./.shortcuts/tasks</span><br></pre></td></tr></table></figure></div></li>
 </ol>
 <hr>
 <h4 id="2-添加桌面小部件"><a href="#2-添加桌面小部件" class="headerlink" title="2. 添加桌面小部件"></a><strong>2. 添加桌面小部件</strong></h4><ol>
@@ -1587,19 +1566,478 @@ done &gt; test.txt
 <h4 id="3-更多玩法"><a href="#3-更多玩法" class="headerlink" title="3. 更多玩法"></a><strong>3. 更多玩法</strong></h4><ul>
 <li><strong>添加图标</strong>：将图片（与脚本同名）放在 <code>./.shortcuts/icons/</code>目录下，可以在桌面快捷启动容器内的应用。</li>
 <li><strong>实测体验</strong>：虽然功能强大，但使用时仍需重复上述三步，感觉有点别扭，所以这里就不详细展开了。</li>
-<li>更多详细用法可以参考 Termux:Widget 的 GitHub 页面：<a class="link"   href="https://github.com/termux/termux-widget" >Termux:Widget GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>更多详细用法可以参考 Termux:Widget 的 GitHub 页面：<a class="link"   target="_blank" rel="noopener" href="https://github.com/termux/termux-widget" >Termux:Widget GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 <hr>
 <p>Termux交流群：637654759<br>至此，全部结束！！！<br>（再也不在期末周折腾了,希望我不挂科( ´•̥̥̥ω•̥̥̥&#96; )）</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>termux</tag>
-        <tag>debian</tag>
-        <tag>proot</tag>
-      </tags>
-  </entry>
-</search>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> termux搭建proot-debian</li>
+        <li><strong>作者:</strong> qmtt</li>
+        <li><strong>创建于
+                :</strong> 2025-01-15 17:26:01</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-03-15 17:31:28
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://qmtt.wang/2025/01/15/termux搭建proot-debian/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Linux/">#Linux</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/termux/">#termux</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/debian/">#debian</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/proot/">#proot</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/1970/01/01/hello-world/" title="Hello World" rel="bookmark">
+  <img src="/images/Background.png" alt="Hello World" class="!max-w-none">
+  <span class="title">Hello World</span>
+</a><a class="recommended-article-item" href="/2024/12/14/1-Linux基础命令/" title="1.Linux基础命令" rel="bookmark">
+  <img src="/images/Background.png" alt="1.Linux基础命令" class="!max-w-none">
+  <span class="title">1.Linux基础命令</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/1970/01/01/hello-world/" title="Hello World" rel="bookmark">
+  <img src="/images/Background.png" alt="Hello World" class="!max-w-none">
+  <span class="title">Hello World</span>
+</a><a class="recommended-article-item" href="/2024/12/14/1-Linux基础命令/" title="1.Linux基础命令" rel="bookmark">
+  <img src="/images/Background.png" alt="1.Linux基础命令" class="!max-w-none">
+  <span class="title">1.Linux基础命令</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/03/15/%E5%BA%94%E7%94%A8%E6%95%99%E7%A8%8B/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">应用教程</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/12/14/1-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">1.Linux基础命令</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://blogcomment-chi.vercel.app',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">termux搭建proot-debian</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Termux-%E6%90%AD%E5%BB%BA-Debian-%E7%8E%AF%E5%A2%83%E5%B9%B6%E8%BF%90%E8%A1%8C-PC-%E7%BA%A7-Linux-%E5%BA%94%E7%94%A8%E6%95%99%E7%A8%8B"><span class="nav-text">Termux 搭建 Debian 环境并运行 PC 级 Linux 应用教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Termux-%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE"><span class="nav-text">二、Termux 基础设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85-Debian-%E7%8E%AF%E5%A2%83"><span class="nav-text">三、安装 Debian 环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Debian%E9%85%8D%E7%BD%AE"><span class="nav-text">四、Debian配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%90%AF%E5%8A%A8%E6%A1%8C%E9%9D%A2"><span class="nav-text">五、启动桌面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E8%A7%A3%E5%86%B3%E5%BD%B1%E5%AD%90%E6%9D%80%E6%89%8B%E9%97%AE%E9%A2%98"><span class="nav-text">六、解决影子杀手问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E9%85%8D%E7%BD%AETermux-X11"><span class="nav-text">七、配置Termux:X11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%BE%8E%E5%8C%96%E5%92%8C%E9%85%8D%E7%BD%AEXfce%E6%A1%8C%E9%9D%A2%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-text">八、美化和配置Xfce桌面（可选）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E8%BF%90%E8%A1%8C-PC-%E7%BA%A7-Linux-%E5%BA%94%E7%94%A8"><span class="nav-text">九、安装和运行 PC 级 Linux 应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%BF%AB%E6%8D%B7%E5%90%AF%E5%8A%A8"><span class="nav-text">十、快捷启动</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">qmtt</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 4 篇文章
+                    </span>
+                    
+                        <span>
+                            共 9.9k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
