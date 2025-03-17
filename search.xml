@@ -1,6 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>动态内存管理</title>
+    <url>/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<p>在C语言中，我们已经知道有两种方式来获取内存空间：定义变量和创建数组</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;<span class="comment">//在栈空间获取4个字节来存储10</span></span><br><span class="line"><span class="type">int</span> arry[<span class="number">10</span>];<span class="comment">//在栈区获取10个字节的连续空间</span></span><br></pre></td></tr></table></figure></div>
+
+<p>他们特点很明显：内存空间都是固定的，数组也需要在声明的时候就指定长度（但c99中支持了数组定义时[]内写变量）。</p>
+<p>但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申请固定内存已经不满足了。这个时候就需要来动态开辟内存。</p>
+<p>C语言中共有三个申请内存空间的函数：malloc ， calloc ，realloc，也提供了一个将空间还给内存的函数：free。这四个函数都在头文件<strong>stdlib.h</strong>中声明。</p>
+<h3 id="malloc和free"><a href="#malloc和free" class="headerlink" title="malloc和free"></a>malloc和free</h3><p>malloc函数的原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>size_t为无符号整形，即在内存中申请一块连续可用的大小为size的空间（大小为字节）， 若申请并开辟成功，则返回值是指向这块空间起始位置的指针，类型为void* 需要我们自己来决定申请的类型。若申请失败，则返回NULL，因此使用mallloc函数时需要做检查。如果参数 size 为0，malloc的行为是标准是未定义的，出现的情况取决于你使用编译器。</p>
+<p>例如申请一个16字节的空间</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//在c语言中void*可以隐式类型转换，这里推荐第一种显式类型转换，可提高代码可读性</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这样p就指向了一个16字节的空间:</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317142649337.png"
+                      class="" title="image-20250317142649337"
+                >
+
+<p>有借有换，再借不难。我们向内存申请了空间，当我们不需要的时候，就需要将空间还给内存，C语言提供了free函数来对内存进行释放和回收，否则会有内存泄露的风险。函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">free</span> <span class="params">(<span class="type">void</span>* ptr)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>free用来释放我们自己动态开辟的内存，不能释放非动态开辟的。</p>
+<p>举例：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span>* p = <span class="literal">NULL</span>;</span><br><span class="line">    p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*n个字节的空间，即n个整形</span></span><br><span class="line">    <span class="keyword">if</span>(p!=<span class="literal">NULL</span>)		<span class="comment">//判断是否申请失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            *(p+i)=<span class="number">0</span>;	<span class="comment">//int*型指针，每次+1跳过4个字节，将n个整形全部赋值为0</span></span><br><span class="line">                <span class="comment">//其实这里对于整形指针p指向空间的访问既可以写:*(p+i),更直观的写法是:p[i]两种写法是等价的，就像数组一样</span></span><br><span class="line">            	<span class="comment">//其他类型的指针也是一样的，比如char*指针*(p+1)一次跳过1个字节</span></span><br><span class="line">            	<span class="comment">//long long一次8个字节</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在使用完以后，就需要释放掉p所指向的空间</span></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;<span class="comment">//这里要注意的是我们只是将空间还给了内存，p对该区域不再有访问权限，但是它仍指向了这个位置即现在p指向了非法的位置，成了野指针，因此需要置空。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h3><p>calloc函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">calloc</span><span class="params">(<span class="type">size_t</span> num,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>calloc函数的功能:是为num（元素个数）个大小为size（一个元素所占的字节数）的函数申请一块空间，并且把空间内的每个字节都初始化为0</p>
+<p><strong>calloc与malloc函数区别就是将每个字节都置为0且calloc函数可自定义每个元素长度</strong>，calloc更适合初始化大型数据结构，比如创建数组或结构体</p>
+<p>举例：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*4个整形的空间，即4个整形</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    if(p!= NULL)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        //这里直接就可以使用，无需自己初始化。</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//或者另一种判断是否为空的方法：</span></span><br><span class="line">    <span class="keyword">if</span>(p==<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);<span class="comment">//中间可以填任意非0数字，在申请内存失败时就可以终止程序并终止程序</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//.....使用空间</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//释放空间</span></span><br><span class="line">   	<span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a>realloc</h3><p>realloc函数可以对我们申请到的空间动态的调整。函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">realloc</span><span class="params">(<span class="type">void</span>* ptr,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>ptr为我们要调整内存的地址，size是重新调整之后的大小。返回值仍然是是调整之后的内存起始位置。</p>
+<p>当我们缩小空间时，会直接在原空间后面切除。如果后面有数据也会直接丢失。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p = <span class="built_in">realloc</span>(p,<span class="number">5</span>);<span class="comment">//由10个字节缩减为5个字节</span></span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317164844609.png"
+                      class="" title="image-20250317164844609"
+                >
+
+<p>当我们放大空间时就会有问题：</p>
+<p>我们知道申请的空间在内存中是连续的，所以在使用realloc函数拓展内存时我们会遇到两种情况：</p>
+<p>第一种是后面的内存够用：会直接往后延长</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317153346617.png"
+                      class="" title="image-20250317153346617"
+                >
+
+<p>第二种是后面的内存不够用：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317154253721.png"
+                      class="" title="image-20250317154253721"
+                >
+
+<p>此时realloc会在堆区找一块新的连续空间，将原内存块的数据拷贝到新内存，然后再释放掉原内存块。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        p[i] = i*<span class="number">2</span>;</span><br><span class="line">    &#125;<span class="comment">//p的四个值分别是0,2,4,6</span></span><br><span class="line">    <span class="type">int</span>* q = p;<span class="comment">//使用q来记录p的地址</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//再申请多块空间</span></span><br><span class="line">    <span class="type">int</span>* a = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* b = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* c = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">    </span><br><span class="line">    p=<span class="built_in">realloc</span>(p, <span class="number">100000</span>);	<span class="comment">//将p扩大到10000个字节</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p:%p\n&quot;</span>, p);<span class="comment">//查看现在p的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;q:%p\n&quot;</span>, q);<span class="comment">//查看原来p的地址</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p[%d]:%d &quot;</span>,i,p[i]);<span class="comment">//访问现在p内的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="comment">//free(q);</span></span><br><span class="line">    <span class="built_in">free</span>(a);</span><br><span class="line">    <span class="built_in">free</span>(b);</span><br><span class="line">    <span class="built_in">free</span>(c);</span><br><span class="line">    p=q=a=b=c=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这是输出结果：可以看到p的地址发生了改变。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317160634225.png"
+                      class="" title="image-20250317160634225"
+                >
+
+<p>这时就要考虑一个问题：要是realloc失败了呢？</p>
+<p>此时p就会得到一个NULL，而原数据就消失在内存的茫茫大海中了（并不会被释放）此时我们丢了数据又泄露了内存。而解决方法就是和上面一样：使用一个临时指针来接受返回值，若失败了仍然可以操作原内存。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="type">int</span> *tmp = <span class="built_in">realloc</span>(p, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="keyword">if</span>(tmp!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    p=tmp;<span class="comment">//这样就可以避免原指针丢失</span></span><br><span class="line">    tmp=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="动态内存常见的问题："><a href="#动态内存常见的问题：" class="headerlink" title="动态内存常见的问题："></a>动态内存常见的问题：</h3><ol>
+<li><p>内存泄露：使用了malloc但是未释放内存</p>
+</li>
+<li><p>重复释放内存：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//对同已块空间连续释放两次，会导致程序崩溃</span></span><br><span class="line"><span class="comment">//解决方法是：释放完内存后立即置空</span></span><br><span class="line"><span class="comment">//即：</span></span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">p=<span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//这时再free(p)就不会报错了</span></span><br></pre></td></tr></table></figure></div>
+
+<ol start="3">
+<li><p>迷航指针</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = <span class="built_in">malloc</span>(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">*p = <span class="number">10</span>;<span class="comment">//这里操作已经释放的内存</span></span><br></pre></td></tr></table></figure></div>
+
+<p>解决方法同上：操作完就置空free(p);p&#x3D;NULL</p>
+</li>
+<li><p>对非动态开辟的内存free释放</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span>* p = &amp;a;</span><br><span class="line">    <span class="built_in">free</span>(p);<span class="comment">//这里会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>使用free释放动态开辟内存的一部分</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p++;</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//这时p已经指向了下一个位置，解决方法是使用*(p+i)即p[i]或者使用新指针指向下一个位置</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>申请多少内存就只能使用多少内存，不能越界访问。</p>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/1970/01/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>1.Linux基础命令</title>
     <url>/2024/12/14/1-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h5 id="如何理解文件："><a href="#如何理解文件：" class="headerlink" title="如何理解文件："></a>如何理解文件：</h5><ol>
@@ -535,141 +670,6 @@ done &gt; test.txt
         <tag>Linux</tag>
         <tag>Debian</tag>
         <tag>Shell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/1970/01/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>动态内存管理</title>
-    <url>/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<p>在C语言中，我们已经知道有两种方式来获取内存空间：定义变量和创建数组</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;<span class="comment">//在栈空间获取4个字节来存储10</span></span><br><span class="line"><span class="type">int</span> arry[<span class="number">10</span>];<span class="comment">//在栈区获取10个字节的连续空间</span></span><br></pre></td></tr></table></figure></div>
-
-<p>他们特点很明显：内存空间都是固定的，数组也需要在声明的时候就指定长度（但c99中支持了数组定义时[]内写变量）。</p>
-<p>但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申请固定内存已经不满足了。这个时候就需要来动态开辟内存。</p>
-<p>C语言中共有三个申请内存空间的函数：malloc ， calloc ，realloc，也提供了一个将空间还给内存的函数：free。这四个函数都在头文件<strong>stdlib.h</strong>中声明。</p>
-<h3 id="malloc和free"><a href="#malloc和free" class="headerlink" title="malloc和free"></a>malloc和free</h3><p>malloc函数的原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>size_t为无符号整形，即在内存中申请一块连续可用的大小为size的空间（大小为字节）， 若申请并开辟成功，则返回值是指向这块空间起始位置的指针，类型为void* 需要我们自己来决定申请的类型。若申请失败，则返回NULL，因此使用mallloc函数时需要做检查。如果参数 size 为0，malloc的行为是标准是未定义的，出现的情况取决于你使用编译器。</p>
-<p>例如申请一个16字节的空间</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//在c语言中void*可以隐式类型转换，这里推荐第一种显式类型转换，可提高代码可读性</span></span><br></pre></td></tr></table></figure></div>
-
-<p>这样p就指向了一个16字节的空间:</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317142649337.png"
-                      class="" title="image-20250317142649337"
-                >
-
-<p>有借有换，再借不难。我们向内存申请了空间，当我们不需要的时候，就需要将空间还给内存，C语言提供了free函数来对内存进行释放和回收，否则会有内存泄露的风险。函数原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">free</span> <span class="params">(<span class="type">void</span>* ptr)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>free用来释放我们自己动态开辟的内存，不能释放非动态开辟的。</p>
-<p>举例：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span>* p = <span class="literal">NULL</span>;</span><br><span class="line">    p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*n个字节的空间，即n个整形</span></span><br><span class="line">    <span class="keyword">if</span>(p!=<span class="literal">NULL</span>)		<span class="comment">//判断是否申请失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            *(p+i)=<span class="number">0</span>;	<span class="comment">//int*型指针，每次+1跳过4个字节，将n个整形全部赋值为0</span></span><br><span class="line">                <span class="comment">//其实这里对于整形指针p指向空间的访问既可以写:*(p+i),更直观的写法是:p[i]两种写法是等价的，就像数组一样</span></span><br><span class="line">            	<span class="comment">//其他类型的指针也是一样的，比如char*指针*(p+1)一次跳过1个字节</span></span><br><span class="line">            	<span class="comment">//long long一次8个字节</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在使用完以后，就需要释放掉p所指向的空间</span></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;<span class="comment">//这里要注意的是我们只是将空间还给了内存，p对该区域不再有访问权限，但是它仍指向了这个位置即现在p指向了非法的位置，成了野指针，因此需要置空。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h4><p>calloc函数原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">calloc</span><span class="params">(<span class="type">size_t</span> num,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>calloc函数的功能:是为num（元素个数）个大小为size（一个元素所占的字节数）的函数申请一块空间，并且把空间内的每个字节都初始化为0</p>
-<p><strong>calloc与malloc函数区别就是将每个字节都置为0且calloc函数可自定义每个元素长度</strong>，calloc更适合初始化大型数据结构，比如创建数组或结构体</p>
-<p>举例：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*4个整形的空间，即4个整形</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    if(p!= NULL)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        //这里直接就可以使用，无需自己初始化。</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//或者另一种判断是否为空的方法：</span></span><br><span class="line">    <span class="keyword">if</span>(p==<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);<span class="comment">//中间可以填任意非0数字，在申请内存失败时就可以终止程序并终止程序</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//.....使用空间</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//释放空间</span></span><br><span class="line">   	<span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a>realloc</h4><p>realloc函数可以对我们申请到的空间动态的调整。函数原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">realloc</span><span class="params">(<span class="type">void</span>* ptr,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>ptr为我们要调整内存的地址，size是重新调整之后的大小。返回值仍然是是调整之后的内存起始位置。</p>
-<p>当我们缩小空间时，会直接在原空间后面切除。如果后面有数据也会直接丢失。</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p = <span class="built_in">realloc</span>(p,<span class="number">5</span>);<span class="comment">//由10个字节缩减为5个字节</span></span><br></pre></td></tr></table></figure></div>
-
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317164844609.png"
-                      class="" title="image-20250317164844609"
-                >
-
-<p>当我们放大空间时就会有问题：</p>
-<p>我们知道申请的空间在内存中是连续的，所以在使用realloc函数拓展内存时我们会遇到两种情况：</p>
-<p>第一种是后面的内存够用：会直接往后延长</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317153346617.png"
-                      class="" title="image-20250317153346617"
-                >
-
-<p>第二种是后面的内存不够用：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317154253721.png"
-                      class="" title="image-20250317154253721"
-                >
-
-<p>此时realloc会在堆区找一块新的连续空间，将原内存块的数据拷贝到新内存，然后再释放掉原内存块。</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        p[i] = i*<span class="number">2</span>;</span><br><span class="line">    &#125;<span class="comment">//p的四个值分别是0,2,4,6</span></span><br><span class="line">    <span class="type">int</span>* q = p;<span class="comment">//使用q来记录p的地址</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//再申请多块空间</span></span><br><span class="line">    <span class="type">int</span>* a = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* b = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* c = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">    </span><br><span class="line">    p=<span class="built_in">realloc</span>(p, <span class="number">100000</span>);	<span class="comment">//将p扩大到10000个字节</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p:%p\n&quot;</span>, p);<span class="comment">//查看现在p的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;q:%p\n&quot;</span>, q);<span class="comment">//查看原来p的地址</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p[%d]:%d &quot;</span>,i,p[i]);<span class="comment">//访问现在p内的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="comment">//free(q);</span></span><br><span class="line">    <span class="built_in">free</span>(a);</span><br><span class="line">    <span class="built_in">free</span>(b);</span><br><span class="line">    <span class="built_in">free</span>(c);</span><br><span class="line">    p=q=a=b=c=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>这是输出结果：可以看到p的地址发生了改变。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317160634225.png"
-                      class="" title="image-20250317160634225"
-                >
-
-<p>这时就要考虑一个问题：要是realloc失败了呢？</p>
-<p>此时p就会得到一个NULL，而原数据就消失在内存的茫茫大海中了（并不会被释放）此时我们丢了数据又泄露了内存。而解决方法就是和上面一样：使用一个临时指针来接受返回值，若失败了仍然可以操作原内存。</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="type">int</span> *tmp = <span class="built_in">realloc</span>(p, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="keyword">if</span>(tmp!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    p=tmp;<span class="comment">//这样就可以避免原指针丢失</span></span><br><span class="line">    tmp=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="动态内存常见的问题："><a href="#动态内存常见的问题：" class="headerlink" title="动态内存常见的问题："></a>动态内存常见的问题：</h4><ol>
-<li><p>内存泄露：使用了malloc但是未释放内存</p>
-</li>
-<li><p>重复释放内存：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//对同已块空间连续释放两次，会导致程序崩溃</span></span><br><span class="line"><span class="comment">//解决方法是：释放完内存后立即置空</span></span><br><span class="line"><span class="comment">//即：</span></span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">p=<span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//这时再free(p)就不会报错了</span></span><br></pre></td></tr></table></figure></div>
-
-<ol start="3">
-<li><p>迷航指针</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = <span class="built_in">malloc</span>(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">*p = <span class="number">10</span>;<span class="comment">//这里操作已经释放的内存</span></span><br></pre></td></tr></table></figure></div>
-
-<p>解决方法同上：操作完就置空free(p);p&#x3D;NULL</p>
-</li>
-<li><p>对非动态开辟的内存free释放</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span>* p = &amp;a;</span><br><span class="line">    <span class="built_in">free</span>(p);<span class="comment">//这里会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>使用free释放动态开辟内存的一部分</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p++;</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//这时p已经指向了下一个位置，解决方法是使用*(p+i)即p[i]或者使用新指针指向下一个位置</span></span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>申请多少内存就只能使用多少内存，不能越界访问。</p>
-</li>
-</ol>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>“C语言”</tag>
       </tags>
   </entry>
 </search>

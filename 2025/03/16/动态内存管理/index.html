@@ -30,9 +30,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://qmtt.com/images/OIP-C.jpg">
 <meta property="article:published_time" content="2025-03-16T13:51:43.000Z">
-<meta property="article:modified_time" content="2025-03-17T09:43:00.564Z">
+<meta property="article:modified_time" content="2025-03-17T09:49:00.808Z">
 <meta property="article:author" content="QMTT">
-<meta property="article:tag" content="“C语言”">
+<meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://qmtt.com/images/OIP-C.jpg">
     
@@ -464,8 +464,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-03-17 17:43</span>
-            <span class="mobile">2025-03-17 17:43</span>
+            <span class="desktop">2025-03-17 17:49</span>
+            <span class="mobile">2025-03-17 17:49</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -493,7 +493,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E2%80%9CC%E8%AF%AD%E8%A8%80%E2%80%9D/">“C语言”</a>&nbsp;
+                        <a href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a>&nbsp;
                     </li>
                 
             </ul>
@@ -555,7 +555,7 @@
 <p>举例：</p>
 <div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span>* p = <span class="literal">NULL</span>;</span><br><span class="line">    p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*n个字节的空间，即n个整形</span></span><br><span class="line">    <span class="keyword">if</span>(p!=<span class="literal">NULL</span>)		<span class="comment">//判断是否申请失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            *(p+i)=<span class="number">0</span>;	<span class="comment">//int*型指针，每次+1跳过4个字节，将n个整形全部赋值为0</span></span><br><span class="line">                <span class="comment">//其实这里对于整形指针p指向空间的访问既可以写:*(p+i),更直观的写法是:p[i]两种写法是等价的，就像数组一样</span></span><br><span class="line">            	<span class="comment">//其他类型的指针也是一样的，比如char*指针*(p+1)一次跳过1个字节</span></span><br><span class="line">            	<span class="comment">//long long一次8个字节</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在使用完以后，就需要释放掉p所指向的空间</span></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;<span class="comment">//这里要注意的是我们只是将空间还给了内存，p对该区域不再有访问权限，但是它仍指向了这个位置即现在p指向了非法的位置，成了野指针，因此需要置空。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h4 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h4><p>calloc函数原型：</p>
+<h3 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h3><p>calloc函数原型：</p>
 <div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">calloc</span><span class="params">(<span class="type">size_t</span> num,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
 
 <p>calloc函数的功能:是为num（元素个数）个大小为size（一个元素所占的字节数）的函数申请一块空间，并且把空间内的每个字节都初始化为0</p>
@@ -563,7 +563,7 @@
 <p>举例：</p>
 <div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*4个整形的空间，即4个整形</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    if(p!= NULL)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        //这里直接就可以使用，无需自己初始化。</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//或者另一种判断是否为空的方法：</span></span><br><span class="line">    <span class="keyword">if</span>(p==<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);<span class="comment">//中间可以填任意非0数字，在申请内存失败时就可以终止程序并终止程序</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//.....使用空间</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//释放空间</span></span><br><span class="line">   	<span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h4 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a>realloc</h4><p>realloc函数可以对我们申请到的空间动态的调整。函数原型：</p>
+<h3 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a>realloc</h3><p>realloc函数可以对我们申请到的空间动态的调整。函数原型：</p>
 <div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">realloc</span><span class="params">(<span class="type">void</span>* ptr,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
 
 <p>ptr为我们要调整内存的地址，size是重新调整之后的大小。返回值仍然是是调整之后的内存起始位置。</p>
@@ -610,7 +610,7 @@
 <p>此时p就会得到一个NULL，而原数据就消失在内存的茫茫大海中了（并不会被释放）此时我们丢了数据又泄露了内存。而解决方法就是和上面一样：使用一个临时指针来接受返回值，若失败了仍然可以操作原内存。</p>
 <div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="type">int</span> *tmp = <span class="built_in">realloc</span>(p, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="keyword">if</span>(tmp!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    p=tmp;<span class="comment">//这样就可以避免原指针丢失</span></span><br><span class="line">    tmp=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h4 id="动态内存常见的问题："><a href="#动态内存常见的问题：" class="headerlink" title="动态内存常见的问题："></a>动态内存常见的问题：</h4><ol>
+<h3 id="动态内存常见的问题："><a href="#动态内存常见的问题：" class="headerlink" title="动态内存常见的问题："></a>动态内存常见的问题：</h3><ol>
 <li><p>内存泄露：使用了malloc但是未释放内存</p>
 </li>
 <li><p>重复释放内存：</p>
@@ -647,7 +647,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-03-17 17:43:00
+                    :</strong> 2025-03-17 17:49:00
             </li>
         
         <li>
@@ -673,7 +673,7 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/%E2%80%9CC%E8%AF%AD%E8%A8%80%E2%80%9D/">#“C语言”</a>&nbsp;
+				<a href="/tags/C%E8%AF%AD%E8%A8%80/">#C语言</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -779,7 +779,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">动态内存管理</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#malloc%E5%92%8Cfree"><span class="nav-text">malloc和free</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#malloc%E5%92%8Cfree"><span class="nav-text">malloc和free</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#calloc"><span class="nav-text">calloc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#realloc"><span class="nav-text">realloc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-text">动态内存常见的问题：</span></a></li></ol>
 
 	</div>
 </div>
