@@ -538,28 +538,6 @@ done &gt; test.txt
       </tags>
   </entry>
   <entry>
-    <title>pic_test</title>
-    <url>/2025/03/15/pic-test/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./images/Background.png"
-                      alt="test"
-                ></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>C语言自定义类型</title>
-    <url>/2025/03/16/C%E8%AF%AD%E8%A8%80%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/_posts/C%E8%AF%AD%E8%A8%80%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B/image-20250316121257273.png"
-                      alt="image-20250316121257273"
-                ></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/1970/01/01/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
@@ -578,1056 +556,120 @@ done &gt; test.txt
 ]]></content>
   </entry>
   <entry>
-    <title>test1.1</title>
-    <url>/2025/03/15/test1-1/</url>
-    <content><![CDATA[<p><img  
+    <title>动态内存管理</title>
+    <url>/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<p>在C语言中，我们已经知道有两种方式来获取内存空间：定义变量和创建数组</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;<span class="comment">//在栈空间获取4个字节来存储10</span></span><br><span class="line"><span class="type">int</span> arry[<span class="number">10</span>];<span class="comment">//在栈区获取10个字节的连续空间</span></span><br></pre></td></tr></table></figure></div>
+
+<p>他们特点很明显：内存空间都是固定的，数组也需要在声明的时候就指定长度（但c99中支持了数组定义时[]内写变量）。</p>
+<p>但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申请固定内存已经不满足了。这个时候就需要来动态开辟内存。</p>
+<p>C语言中共有三个申请内存空间的函数：malloc ， calloc ，realloc，也提供了一个将空间还给内存的函数：free。这四个函数都在头文件<strong>stdlib.h</strong>中声明。</p>
+<h3 id="malloc和free"><a href="#malloc和free" class="headerlink" title="malloc和free"></a>malloc和free</h3><p>malloc函数的原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>size_t为无符号整形，即在内存中申请一块连续可用的大小为size的空间（大小为字节）， 若申请并开辟成功，则返回值是指向这块空间起始位置的指针，类型为void* 需要我们自己来决定申请的类型。若申请失败，则返回NULL，因此使用mallloc函数时需要做检查。如果参数 size 为0，malloc的行为是标准是未定义的，出现的情况取决于你使用编译器。</p>
+<p>例如申请一个16字节的空间</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//在c语言中void*可以隐式类型转换，这里推荐第一种显式类型转换，可提高代码可读性</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这样p就指向了一个16字节的空间:</p>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./_posts/test1-1/image-20250316121211906.png"
-                      alt="image-20250316121211906"
-                ></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>termux搭建proot-debian</title>
-    <url>/2025/01/15/termux%E6%90%AD%E5%BB%BAproot-debian/</url>
-    <content><![CDATA[<h2 id="Termux-搭建-Debian-环境并运行-PC-级-Linux-应用教程"><a href="#Termux-搭建-Debian-环境并运行-PC-级-Linux-应用教程" class="headerlink" title="Termux 搭建 Debian 环境并运行 PC 级 Linux 应用教程"></a><strong>Termux 搭建 Debian 环境并运行 PC 级 Linux 应用教程</strong></h2><hr>
-<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><strong>一、前言</strong></h3><h4 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a><strong>1. 背景</strong></h4><p>众所周知，最新搭载澎湃OS和鸿蒙OS的平板都内置了PC级WPS，办公效率直接拉满（<del>板子终于从“泡面盖”升级为“生产力”了</del>）。但问题来了：如果不是这两个系统，难道我们只能继续用平板盖泡面吗？当然不是！折腾了很长时间后，总算找到了一个好玩的东西：<strong>高级终端Termux</strong> 。现在，不仅能随时随地用WPS改文档，还能VSCode优雅地敲代码，再也不用背着电脑乱跑了。</p>
-<p>由于每次搭建环境时都要去不同的平台找不同功能，有时还找不到，所以我决定自己写一篇博客，<del>方便自己以后再搭建时直接“Ctrl C + Ctrl V”</del>，顺便分享给有同样需求的小伙伴们。话不多说，直接开整！</p>
-<h4 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a><strong>2. 准备工作</strong></h4><ul>
-<li><strong>一部安卓手机</strong>：性能越好，折腾起来越顺畅。</li>
-<li><strong>Termux 应用</strong>：  不想去F-droid下载的看过来<br>下载链接：<a class="link"   href="https://www.123912.com/s/m863Td-w3Jk" >点击这里<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>  访问密码：<code>Kw3z</code></li>
-<li><strong>脑子和耐心</strong></li>
-</ul>
-<p>以下是所有所需软件：<br><img  
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317142649337.png"
+                      class="" title="image-20250317142649337"
+                >
+
+<p>有借有换，再借不难。我们向内存申请了空间，当我们不需要的时候，就需要将空间还给内存，C语言提供了free函数来对内存进行释放和回收，否则会有内存泄露的风险。函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">free</span> <span class="params">(<span class="type">void</span>* ptr)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>free用来释放我们自己动态开辟的内存，不能释放非动态开辟的。</p>
+<p>举例：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span>* p = <span class="literal">NULL</span>;</span><br><span class="line">    p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*n个字节的空间，即n个整形</span></span><br><span class="line">    <span class="keyword">if</span>(p!=<span class="literal">NULL</span>)		<span class="comment">//判断是否申请失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            *(p+i)=<span class="number">0</span>;	<span class="comment">//int*型指针，每次+1跳过4个字节，将n个整形全部赋值为0</span></span><br><span class="line">                <span class="comment">//其实这里对于整形指针p指向空间的访问既可以写:*(p+i),更直观的写法是:p[i]两种写法是等价的，就像数组一样</span></span><br><span class="line">            	<span class="comment">//其他类型的指针也是一样的，比如char*指针*(p+1)一次跳过1个字节</span></span><br><span class="line">            	<span class="comment">//long long一次8个字节</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在使用完以后，就需要释放掉p所指向的空间</span></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;<span class="comment">//这里要注意的是我们只是将空间还给了内存，p对该区域不再有访问权限，但是它仍指向了这个位置即现在p指向了非法的位置，成了野指针，因此需要置空。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h4><p>calloc函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">calloc</span><span class="params">(<span class="type">size_t</span> num,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>calloc函数的功能:是为num（元素个数）个大小为size（一个元素所占的字节数）的函数申请一块空间，并且把空间内的每个字节都初始化为0</p>
+<p><strong>calloc与malloc函数区别就是将每个字节都置为0且calloc函数可自定义每个元素长度</strong>，calloc更适合初始化大型数据结构，比如创建数组或结构体</p>
+<p>举例：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*4个整形的空间，即4个整形</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    if(p!= NULL)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        //这里直接就可以使用，无需自己初始化。</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//或者另一种判断是否为空的方法：</span></span><br><span class="line">    <span class="keyword">if</span>(p==<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);<span class="comment">//中间可以填任意非0数字，在申请内存失败时就可以终止程序并终止程序</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//.....使用空间</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//释放空间</span></span><br><span class="line">   	<span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a>realloc</h4><p>realloc函数可以对我们申请到的空间动态的调整。函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">realloc</span><span class="params">(<span class="type">void</span>* ptr,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>ptr为我们要调整内存的地址，size是重新调整之后的大小。返回值仍然是是调整之后的内存起始位置。</p>
+<p>当我们缩小空间时，会直接在原空间后面切除。如果后面有数据也会直接丢失。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p = <span class="built_in">realloc</span>(p,<span class="number">5</span>);<span class="comment">//由10个字节缩减为5个字节</span></span><br></pre></td></tr></table></figure></div>
+
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/8f9c1e5f4b974a92a52eba0d9e78c826.png"
-                      alt="请添加图片描述"
-                ></p>
-<h4 id="一切就绪，开始动手动脑！"><a href="#一切就绪，开始动手动脑！" class="headerlink" title="一切就绪，开始动手动脑！"></a><strong>一切就绪，开始动手动脑！</strong></h4><hr>
-<h3 id="二、Termux-基础设置"><a href="#二、Termux-基础设置" class="headerlink" title="二、Termux 基础设置"></a><strong>二、Termux 基础设置</strong></h3><h4 id="1-安装-Termux"><a href="#1-安装-Termux" class="headerlink" title="1. 安装 Termux"></a><strong>1. 安装 Termux</strong></h4><ul>
-<li><strong>从 F-Droid 安装 Termux</strong>：<ul>
-<li>Google Play 版本的 Termux 已停止更新，建议从 <a class="link"   href="https://f-droid.org/" >F-Droid<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 下载最新版本。</li>
-</ul>
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317164844609.png"
+                      class="" title="image-20250317164844609"
+                >
+
+<p>当我们放大空间时就会有问题：</p>
+<p>我们知道申请的空间在内存中是连续的，所以在使用realloc函数拓展内存时我们会遇到两种情况：</p>
+<p>第一种是后面的内存够用：会直接往后延长</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317153346617.png"
+                      class="" title="image-20250317153346617"
+                >
+
+<p>第二种是后面的内存不够用：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317154253721.png"
+                      class="" title="image-20250317154253721"
+                >
+
+<p>此时realloc会在堆区找一块新的连续空间，将原内存块的数据拷贝到新内存，然后再释放掉原内存块。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        p[i] = i*<span class="number">2</span>;</span><br><span class="line">    &#125;<span class="comment">//p的四个值分别是0,2,4,6</span></span><br><span class="line">    <span class="type">int</span>* q = p;<span class="comment">//使用q来记录p的地址</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//再申请多块空间</span></span><br><span class="line">    <span class="type">int</span>* a = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* b = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* c = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">    </span><br><span class="line">    p=<span class="built_in">realloc</span>(p, <span class="number">100000</span>);	<span class="comment">//将p扩大到10000个字节</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p:%p\n&quot;</span>, p);<span class="comment">//查看现在p的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;q:%p\n&quot;</span>, q);<span class="comment">//查看原来p的地址</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p[%d]:%d &quot;</span>,i,p[i]);<span class="comment">//访问现在p内的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="comment">//free(q);</span></span><br><span class="line">    <span class="built_in">free</span>(a);</span><br><span class="line">    <span class="built_in">free</span>(b);</span><br><span class="line">    <span class="built_in">free</span>(c);</span><br><span class="line">    p=q=a=b=c=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这是输出结果：可以看到p的地址发生了改变。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317160634225.png"
+                      class="" title="image-20250317160634225"
+                >
+
+<p>这时就要考虑一个问题：要是realloc失败了呢？</p>
+<p>此时p就会得到一个NULL，而原数据就消失在内存的茫茫大海中了（并不会被释放）此时我们丢了数据又泄露了内存。而解决方法就是和上面一样：使用一个临时指针来接受返回值，若失败了仍然可以操作原内存。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="type">int</span> *tmp = <span class="built_in">realloc</span>(p, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="keyword">if</span>(tmp!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    p=tmp;<span class="comment">//这样就可以避免原指针丢失</span></span><br><span class="line">    tmp=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="动态内存常见的问题："><a href="#动态内存常见的问题：" class="headerlink" title="动态内存常见的问题："></a>动态内存常见的问题：</h4><ol>
+<li><p>内存泄露：使用了malloc但是未释放内存</p>
 </li>
-<li><strong>初始化环境</strong>：<ul>
-<li>安装完成后，打开 Termux，等待环境初始化完成。</li>
-</ul>
+<li><p>重复释放内存：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//对同已块空间连续释放两次，会导致程序崩溃</span></span><br><span class="line"><span class="comment">//解决方法是：释放完内存后立即置空</span></span><br><span class="line"><span class="comment">//即：</span></span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">p=<span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//这时再free(p)就不会报错了</span></span><br></pre></td></tr></table></figure></div>
+
+<ol start="3">
+<li><p>迷航指针</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = <span class="built_in">malloc</span>(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">*p = <span class="number">10</span>;<span class="comment">//这里操作已经释放的内存</span></span><br></pre></td></tr></table></figure></div>
+
+<p>解决方法同上：操作完就置空free(p);p&#x3D;NULL</p>
 </li>
-</ul>
-<hr>
-<h4 id="2-设置权限"><a href="#2-设置权限" class="headerlink" title="2. 设置权限"></a><strong>2. 设置权限</strong></h4><p>为了确保 Termux 能够正常运行，需要设置一些权限。</p>
-<h5 id="2-1-允许自启动"><a href="#2-1-允许自启动" class="headerlink" title="2.1 允许自启动"></a><strong>2.1 允许自启动</strong></h5><ol>
-<li><p>长按 Termux 图标，选择“应用信息”。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/091b7e432ec74057a834481b9a0ebdb0.png"
-                      alt="在这里插入图片描述"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/26479c874e984059b85b36264ae3eb42.png"
-                      alt="请添加图片描述"
-                ></p>
+<li><p>对非动态开辟的内存free释放</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span>* p = &amp;a;</span><br><span class="line">    <span class="built_in">free</span>(p);<span class="comment">//这里会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 </li>
-<li><p>找到“自启动”选项，设置为“允许”。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/a70c552981404148a823846d805ea018.png"
-                      alt="请添加图片描述"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/23cc67c54aa44a2689ac42bff4893ed9.png"
-                      alt="请添加图片描述"
-                ></p>
+<li><p>使用free释放动态开辟内存的一部分</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p++;</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//这时p已经指向了下一个位置，解决方法是使用*(p+i)即p[i]或者使用新指针指向下一个位置</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>申请多少内存就只能使用多少内存，不能越界访问。</p>
 </li>
 </ol>
-<h5 id="2-2-设置省电策略"><a href="#2-2-设置省电策略" class="headerlink" title="2.2 设置省电策略"></a><strong>2.2 设置省电策略</strong></h5><ol>
-<li>在“应用信息”中，找到“省电策略”。</li>
-<li>将省电策略改为“无限制”。<br> <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/22348453404341abb4a6fc4894a620ee.png"
-                      alt="请添加图片描述"
-                ><br> <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/04feba4f060a450e89f97e44529be0f5.png"
-                      alt="请添加图片描述"
-                ></li>
-</ol>
-<h5 id="2-3-其他设置"><a href="#2-3-其他设置" class="headerlink" title="2.3 其他设置"></a><strong>2.3 其他设置</strong></h5><p>根据个人需求，可以设置其他权限（如通知、后台运行等）。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/9d3c71956f0a4686983c8f93625838d8.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/91df5f014ace428f9020bf756d37319e.png"
-                      alt="请添加图片描述"
-                ></p>
-<h5 id="2-4-设置存储权限"><a href="#2-4-设置存储权限" class="headerlink" title="2.4 设置存储权限"></a><strong>2.4 设置存储权限</strong></h5><ol>
-<li>打开 Termux，输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure></div></li>
-<li>在弹出的权限请求中，选择“始终允许”。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/a9f0810189264902869c9375f7debe8a.png"
-                      alt="请添加图片描述"
-                ></li>
-</ol>
-<hr>
-<h4 id="3-包管理工具介绍"><a href="#3-包管理工具介绍" class="headerlink" title="3. 包管理工具介绍"></a><strong>3. 包管理工具介绍</strong></h4><p>Termux 默认使用 <code>apt</code> 或 <code>pkg</code> 进行包管理，这类似于我们使用手机的应用商店来查看、安装、更新和卸载应用。</p>
-<ul>
-<li><strong><code>apt</code></strong>：Debian 及其衍生发行版的包管理工具，因此 Termux 和我们后面安装的 Debian 刚好一样，所以我更倾向于 <code>apt</code>。</li>
-<li><strong><code>pkg</code></strong>：<code>pkg</code> 是 <code>apt</code> 的封装，使用方法和 <code>apt</code> 完全一致，但每次使用 <code>pkg</code> 时会自动更新软件包列表（个人感觉有点麻烦，所以下面使用的是 <code>apt</code>）。</li>
-</ul>
-<h5 id="APT-常用命令"><a href="#APT-常用命令" class="headerlink" title="APT 常用命令"></a><strong>APT 常用命令</strong></h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update 		<span class="comment"># 更新软件包列表（从软件源获取最新的包信息）</span></span><br><span class="line">apt upgrade		<span class="comment"># 升级所有已安装的软件包到最新版本</span></span><br><span class="line">apt search &lt;关键词&gt;	<span class="comment"># 搜索软件包（根据关键词查找可用的包）</span></span><br><span class="line">apt show &lt;包名&gt;		<span class="comment"># 查看某个软件包的详细信息（如版本、依赖关系等）</span></span><br><span class="line">apt install &lt;包名&gt;	<span class="comment"># 安装软件包（自动解决依赖关系）</span></span><br><span class="line">apt remove &lt;包名&gt;	<span class="comment"># 卸载软件包（保留配置文件）</span></span><br><span class="line">apt purge &lt;包名&gt;	<span class="comment"># 彻底卸载软件包（同时删除配置文件）</span></span><br><span class="line">apt clean 		<span class="comment"># 清理缓存（删除下载的软件包缓存以释放空间）</span></span><br><span class="line">apt autoremove 		<span class="comment"># 自动移除不再需要的依赖包</span></span><br><span class="line">apt --fix-broken install <span class="comment"># 修复损坏的依赖关系</span></span><br></pre></td></tr></table></figure></div>
-
-<h5 id="PKG-常用命令"><a href="#PKG-常用命令" class="headerlink" title="PKG 常用命令"></a><strong>PKG 常用命令</strong></h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">pkg update 		<span class="comment"># 更新软件包列表（相当于 apt update）</span></span><br><span class="line">pkg upgrade		<span class="comment"># 升级所有已安装的软件包（相当于 apt upgrade）</span></span><br><span class="line">pkg search &lt;关键词&gt;	<span class="comment"># 搜索软件包（相当于 apt search）</span></span><br><span class="line">pkg show &lt;包名&gt;		<span class="comment"># 查看某个软件包的详细信息（相当于 apt show）</span></span><br><span class="line">pkg install &lt;包名&gt;	<span class="comment"># 安装软件包（相当于 apt install）</span></span><br><span class="line">pkg remove &lt;包名&gt;	<span class="comment"># 卸载软件包（相当于 apt remove）</span></span><br><span class="line">pkg uninstall &lt;包名&gt;	<span class="comment"># 卸载软件包（相当于 apt remove）</span></span><br><span class="line">pkg clean 		<span class="comment"># 清理缓存（相当于 apt clean）</span></span><br><span class="line">pkg autoremove 		<span class="comment"># 自动移除不再需要的依赖包（相当于 apt autoremove）</span></span><br></pre></td></tr></table></figure></div>
-
-<hr>
-<h4 id="4-换源"><a href="#4-换源" class="headerlink" title="4. 换源"></a><strong>4. 换源</strong></h4><p>在使用 <code>apt</code> 或 <code>pkg</code> 安装软件包时，Termux 会通过特定的链接（即“源”）连接到服务器来查找和下载所需的软件包。默认情况下，Termux 的软件源位于国外，这可能导致下载速度较慢甚至失败。<del>除非你有拥有来自霍格沃兹的力量（bushi）</del></p>
-<p>为了解决这个问题，国内的一些公司和高校提供了镜像服务，将国外的软件包同步到国内服务器。通过更换为国内镜像源，我们可以显著提高下载速度。</p>
-<h5 id="4-1-使用-termux-change-repo-换源"><a href="#4-1-使用-termux-change-repo-换源" class="headerlink" title="4.1 使用 termux-change-repo 换源"></a><strong>4.1 使用 <code>termux-change-repo</code> 换源</strong></h5><ol>
-<li><p>输入以下命令：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">termux-change-repo</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/245783e7a02648fcae8492effcf9f61f.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<ol start="2">
-<li><p>使用上下键移动，按空格键选择“Single mirror”，然后回车。<br> <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/d44161ed22da4231a42b81ebfab04112.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>找到“清华源”，按<strong>空格</strong>键选择，然后回车。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/7e8b8447e0ec496a83e75d0ed231b085.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>出现以下界面表示换源成功。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/aa36d34621bb47b1b6953d8c286a650a.png"
-                      alt="在这里插入图片描述"
-                ></p>
 </li>
 </ol>
-<hr>
-<h4 id="5-更新软件包"><a href="#5-更新软件包" class="headerlink" title="5. 更新软件包"></a><strong>5. 更新软件包</strong></h4><p>换源完成后，需要更新软件包列表并升级已安装的软件包。</p>
-<ol>
-<li>输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade</span><br></pre></td></tr></table></figure></div></li>
-<li>如果出现选择提示，一律输入 <code>Y</code>。如果速度比较快，也说明换源是成功了的。</li>
-</ol>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e6a5563e830a4a8caf7724b32e75a708.png"
-                      alt="在这里插入图片描述"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/2f44958352c046c5a66af25ce4b143e1.png"
-                      alt="在这里插入图片描述"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/b124d11511444ef784917b5ac017569c.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<hr>
-<h4 id="至此-Termux-基本设置完成，开始系统搭建！"><a href="#至此-Termux-基本设置完成，开始系统搭建！" class="headerlink" title="至此 Termux 基本设置完成，开始系统搭建！"></a><strong>至此 Termux 基本设置完成，开始系统搭建！</strong></h4><hr>
-<h3 id="三、安装-Debian-环境"><a href="#三、安装-Debian-环境" class="headerlink" title="三、安装 Debian 环境"></a><strong>三、安装 Debian 环境</strong></h3><p>在 Termux 中，<code>x11-repo</code> 提供了 <code>proot</code>（一种容器技术，可以创建一个独立的运行环境，但不是虚拟机）。我们可以使用 <code>proot</code> 来安装 Linux 发行版。</p>
-<hr>
-<h4 id="1-安装-x11-repo"><a href="#1-安装-x11-repo" class="headerlink" title="1. 安装 x11-repo"></a><strong>1. 安装 x11-repo</strong></h4><p><code>x11-repo</code> 是 Termux 的一个扩展仓库，提供了图形界面相关的软件包。安装它以便后续使用桌面环境。</p>
-<p>运行以下命令安装 <code>x11-repo</code>：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install x11-repo</span><br></pre></td></tr></table></figure></div>
-
-<p>如果提示找不到包，可以先更新软件包列表，更新完以后再执行上面的安装命令：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
-
-<p>安装完成后，再次更新软件包列表：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
-
-
-
-<p>如果碰到选择一律“Y”</p>
-<p>安装完以后，我们就可以安装proot了。</p>
-<hr>
-<h4 id="2-安装-proot-distro"><a href="#2-安装-proot-distro" class="headerlink" title="2. 安装 proot-distro"></a><strong>2. 安装 proot-distro</strong></h4><p><code>proot-distro</code> 是一个基于 <code>proot</code> 的工具，用于在 Termux 中安装和管理 Linux 发行版。</p>
-<p>运行以下命令安装 <code>proot-distro</code>：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install proot-distro</span><br></pre></td></tr></table></figure></div>
-
-<p>在安装过程中，如果出现选择提示，一律输入 <code>Y</code>。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/8842a88dc7ab4a4aa59186923940b372.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<hr>
-<h4 id="3-查看可安装的-Linux-发行版"><a href="#3-查看可安装的-Linux-发行版" class="headerlink" title="3. 查看可安装的 Linux 发行版"></a><strong>3. 查看可安装的 Linux 发行版</strong></h4><p>安装完成后，可以查看支持的 Linux 发行版列表：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">proot-distro list</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/7e68cc39a77b4072bc9e57815532c51e.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<hr>
-<h4 id="4-为什么选择-Debian-系统"><a href="#4-为什么选择-Debian-系统" class="headerlink" title="4. 为什么选择 Debian 系统"></a><strong>4. 为什么选择 Debian 系统</strong></h4><p>我们选择安装 <strong>Debian</strong> 系统，而不是 Ubuntu。原因是 Ubuntu 的 <code>snap</code> 商店在 <code>proot</code> 中无法使用，而一些应用会强制要求使用 <code>snap</code>，与其折腾卸载 <code>snap</code>，不如直接使用 Debian。此外，Debian 的 <code>.deb</code> 软件包资源丰富，安装和配置更加方便。</p>
-<hr>
-<h4 id="5-修改-Debian-安装脚本"><a href="#5-修改-Debian-安装脚本" class="headerlink" title="5. 修改 Debian 安装脚本"></a><strong>5. 修改 Debian 安装脚本</strong></h4><p>默认情况下，<code>proot-distro</code> 会从 GitHub 下载 Debian 的根文件系统（rootfs），但由于网络原因，下载速度可能非常慢。我们可以通过修改安装脚本来加速下载。<del>（从沃格霍兹学成归来的可以跳过）</del></p>
-<h5 id="5-1-打开-Debian-安装脚本"><a href="#5-1-打开-Debian-安装脚本" class="headerlink" title="5.1 打开 Debian 安装脚本"></a><strong>5.1 打开 Debian 安装脚本</strong></h5><p>运行以下命令编辑 Debian 安装脚本：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /data/data/com.termux/files/usr/etc/proot-distro/debian.sh</span><br></pre></td></tr></table></figure></div>
-
-<p><code>nano</code> 是一个简单的命令行文本编辑器，类似于 Windows 的记事本。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e088a4462d9e4b0c91494fe1fa0580f6.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>在输入命令并按下回车键后，将看到如下界面。当前大多数移动设备均采用ARM架构处理器，所以只需关注输出中的“AArch64”和“ARM”两行。在这里，“ARM”指的是32位的ARM架构。然而，由于现代智能手机和平板电脑普遍使用64位处理器，32位的ARM架构在这些设备上已较少见，所以可以忽略。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/74d793efd0c84f4aa03cfca89891503e.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h5 id="5-2-修改下载链接"><a href="#5-2-修改下载链接" class="headerlink" title="5.2 修改下载链接"></a><strong>5.2 修改下载链接</strong></h5><p>在编辑器中，找到以下内容：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">TARBALL_URL[<span class="string">&#x27;aarch64&#x27;</span>]=<span class="string">&quot;https://github.com/termux/proot-distro/releases/download/v4.17.3/debian-bookworm-aarch64-pd-v4.17.3.tar.xz&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-
-<p><del>将 <code>github.com</code> 替换为 GitHub 的镜像站（镜像站可以自行百度看是否失效，这里我使用 <code>https://bgithub.xyz</code>）：</del><br>今天发现镜像站也抽风，时灵时不灵的，于是将debian的包放在gitee上了，直接把上面那行替换掉：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">TARBALL_URL[<span class="string">&#x27;aarch64&#x27;</span>]=<span class="string">&quot;https://gitee.com/name134/proot-distro/releases/download/4.47.3/debian-bookworm-aarch64-pd-v4.17.3.tar.xz&quot;</span></span><br></pre></td></tr></table></figure></div>
-<p>替换后长这样：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/70caa69c7e4b4260b29b06ecab9a7ab5.png"
-                      alt="请添加图片描述"
-                ></p>
-<h5 id="5-3-保存并退出"><a href="#5-3-保存并退出" class="headerlink" title="5.3 保存并退出"></a><strong>5.3 保存并退出</strong></h5><p>然后点击一下小键盘上的CTRL（它会变颜色），再输入X（一定要是英文），然后输入Y，回车，就可以保存我们的更改</p>
-<p>这里要注意，使用外接键盘的朋友键盘上的CTRL是不管用的，仍需要点击屏幕上的CTRL然后再输键盘上的”x“</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/29f077471f3a42be9e053ae5368bf88a.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>接下来到下一步就可以快速安装了</p>
-<hr>
-<h4 id="6-安装-Debian"><a href="#6-安装-Debian" class="headerlink" title="6. 安装 Debian"></a><strong>6. 安装 Debian</strong></h4><p>修改脚本后，运行以下命令安装 Debian:</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">proot-distro install debian</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/7caff037fb544909b7a4cc8cdd7566b1.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>出现上面的页面表面我们已经成功安装了Debian操作系统.</p>
-<hr>
-<h4 id="7-安装音频服务"><a href="#7-安装音频服务" class="headerlink" title="7. 安装音频服务"></a><strong>7. 安装音频服务</strong></h4><p>要想在 Debian 系统内听到声音，我们需要在 Termux 中安装音频服务。Termux 使用 <strong>PulseAudio</strong> 来管理音频，因此需要安装并配置 PulseAudio。</p>
-<h5 id="7-1-安装-PulseAudio"><a href="#7-1-安装-PulseAudio" class="headerlink" title="7.1 安装 PulseAudio"></a><strong>7.1 安装 PulseAudio</strong></h5><p>运行以下命令安装 PulseAudio：（安装完成后无需进行7.2和7.3的配置，这里仅为配置演示）</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install pulseaudio</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e19acd4ca5794c78a40cc6fd3868e76d.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h5 id="7-2-配置-PulseAudio"><a href="#7-2-配置-PulseAudio" class="headerlink" title="7.2 配置 PulseAudio"></a><strong>7.2 配置 PulseAudio</strong></h5><p>安装完成后，需要配置 PulseAudio 以支持网络音频传输。运行以下命令启动 PulseAudio：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">pulseaudio --start --load=<span class="string">&quot;module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1&quot;</span> --exit-idle-time=-1</span><br></pre></td></tr></table></figure></div>
-
-<h5 id="7-3-设置环境变量"><a href="#7-3-设置环境变量" class="headerlink" title="7.3 设置环境变量"></a><strong>7.3 设置环境变量</strong></h5><p>在 Debian 环境中，需要设置 <code>PULSE_SERVER</code> 环境变量，以便连接到 Termux 的 PulseAudio 服务。可以在启动 Debian 时添加以下命令：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PULSE_SERVER=127.0.0.1</span><br></pre></td></tr></table></figure></div>
-
-<hr>
-<h3 id="四、Debian配置"><a href="#四、Debian配置" class="headerlink" title="四、Debian配置"></a>四、Debian配置</h3><h4 id="1-成功安装debia后，输入下面命令登录Debian"><a href="#1-成功安装debia后，输入下面命令登录Debian" class="headerlink" title="1.成功安装debia后，输入下面命令登录Debian"></a>1.成功安装debia后，输入下面命令登录Debian</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">proot-distro login debian</span><br></pre></td></tr></table></figure></div>
-
-<p>前面变成root@localhost表示已成功登录debian系统：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/79427b6df1ba43dfb2e5865bbcf7f2a2.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="2-更新软件源（Debian的命令和termux一样，极大减少了学习成本）"><a href="#2-更新软件源（Debian的命令和termux一样，极大减少了学习成本）" class="headerlink" title="2.更新软件源（Debian的命令和termux一样，极大减少了学习成本）"></a>2.更新软件源（Debian的命令和termux一样，极大减少了学习成本）</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="3-换源"><a href="#3-换源" class="headerlink" title="3.换源"></a>3.换源</h4><p>当我们想直接使用apt update更新软件源时，会发现速度慢的要死，没错，又到了更换到国内源的时候</p>
-<p>debian的apt源的位置在&#x2F;etc&#x2F;apt&#x2F;sources.list</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
-
-<p>输入命令后回车看到这些：<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/9005a7fdd9e048068259b234945f8c06.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>全部删掉，粘贴下面内容：(这里使用阿里源)</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm main non-free non-free-firmware contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian-security/ bookworm-security main</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian-security/ bookworm-security main</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm-updates main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm-updates main non-free non-free-firmware contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bookworm-backports main non-free non-free-firmware contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bookworm-backports main non-free non-free-firmware contrib</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/8d4f70d4f2fd4edfaf4ba7b903fe7bba.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>CTRL+x后输入y,回车保存退出。</p>
-<p>然后再次apt update &amp;&amp; apt upgrade,速度直接起飞！</p>
-<h4 id="4-设置中文环境（可选）"><a href="#4-设置中文环境（可选）" class="headerlink" title="4. 设置中文环境（可选）"></a>4. 设置中文环境（可选）</h4><h5 id="4-1安装语言包："><a href="#4-1安装语言包：" class="headerlink" title="4.1安装语言包："></a>4.1安装语言包：</h5><p>首先，安装 <code>locales</code> 包，它是管理系统语言环境的工具：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install locales</span><br></pre></td></tr></table></figure></div>
-
-<p>然后安装中文的语言包：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install fonts-wqy-zenhei fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</span><br></pre></td></tr></table></figure></div>
-
-<p><code> fonts-wqy-zenhei fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</code>这四个均为中文语言包。</p>
-<h5 id="4-2-生成中文语言环境"><a href="#4-2-生成中文语言环境" class="headerlink" title="4.2 生成中文语言环境"></a><strong>4.2 生成中文语言环境</strong></h5><p>安装完成后，需要生成中文语言环境。</p>
-<p>运行以下命令配置语言环境：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure></div>
-
-<p>输完后会见到这个界面：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/59b80c8aa0164f6992eaea9babad74c1.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>一直往下翻，找到zh_CN.UTF-8 UTF-8，这个就是简体中文选项，按<strong>空格键</strong>进行选择，选完回车</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e1a22d9e42794fd0ac2af76ccccf4f81.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>选择zh_CN.UTF-8，然后回车</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/fc6c105176ba49f4b1ac4ff23e2353bd.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>至此中文环境设置成功。</p>
-<hr>
-<h4 id="5-安装图形化界面"><a href="#5-安装图形化界面" class="headerlink" title="5. 安装图形化界面"></a><strong>5. 安装图形化界面</strong></h4><p>在 Debian 环境中，我们可以安装 <strong>Xfce</strong> 桌面环境，它是一个轻量级且功能强大的桌面环境，适合在资源有限的设备上运行。我试过KDE和GNOME，只能降低分辨率能勉强来运行，不但很卡而且特效全都无法使用，只好乖乖回Xfce了（也不是不能美化）。我看b站上有大佬使用图形加速的来跑kde非常流畅，不过我们只想搭建一个生产力，能跑就行，还要什么自行车（手动滑稽）</p>
-<h5 id="5-1-安装-Xfce-桌面环境"><a href="#5-1-安装-Xfce-桌面环境" class="headerlink" title="5.1 安装 Xfce 桌面环境"></a><strong>5.1 安装 Xfce 桌面环境</strong></h5><p>运行以下命令安装 Xfce 及其相关组件：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install xfce4 xfce4-goodies xfce4-terminal</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><strong><code>xfce4</code></strong> ：Xfce 桌面环境的核心组件。</li>
-<li><strong><code>xfce4-goodies</code></strong> ：Xfce 的附加工具和插件（如截图工具、任务管理器等）。</li>
-<li><strong><code>xfce4-terminal</code></strong> ：Xfce 的轻量级终端模拟器。</li>
-</ul>
-<p>安装过程中会选择键盘布局，选1即可。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/caf98cd5db3f4b7880bae4e967d2543f.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<hr>
-<h4 id="6-切换普通用户"><a href="#6-切换普通用户" class="headerlink" title="6.切换普通用户"></a>6.切换普通用户</h4><p>到目前为止，为了方便，我们一直都在以 <strong>root 用户</strong> 运行。Linux下的root 用户就像 Windows 下的管理员，但它比管理员更“霸道”——它拥有至高无上的权利，可以轻松删库跑路（<del>删库一时爽，跑路火葬场</del>）。因此root用户十分危险。</p>
-<p>此外，我还发现有些应用在 root 用户下，死活不肯正常运行。所以我们最好切换到  <strong>普通用户</strong> 。</p>
-<p>（PS：由于我们使用的是  <strong>proot</strong> ，这里的 root 其实是一个“假 root”。Termux 本身并没有真正的 root 权限，所以即使你在 proot 中删库跑路，也不会对手机系统造成实际危害。换句话说，你只是在“沙盒”里折腾，再怎么删也只是删了自己的“玩具”，手机系统平安无事。）</p>
-<p>不过，即使是这样，切换到普通用户仍然是个好习惯。毕竟，养成良好的操作习惯，才能在真正的 Linux 系统中游刃有余（<del>而不是一上来就删库跑路</del>）。</p>
-<h5 id="6-1添加新用户"><a href="#6-1添加新用户" class="headerlink" title="6.1添加新用户"></a>6.1添加新用户</h5><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">adduser &lt;用户名&gt;</span><br></pre></td></tr></table></figure></div>
-
-<p>这里添加我的用户名为qmtt,用户名自己取</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/595a69ea1f36473a90baa0d84ee2fa95.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>这里会让输入密码，输入自己想要设置的密码（我设置的123456，不然老是忘，毕竟是自己玩，不用那么高的安全级别），在Linux中输入密码终端是不会显示的，直接输入后回车即可：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/a6a613cb9fcd4935a13c8504fbaaa314.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>重新确认密码，把刚才的密码再输入一遍：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/c590a7b11ead4c04b75b558127f6b6c8.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>输完密码后会问这些名字电话什么的直接回车跳过即可，到询问时直接Y确认。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/42b1c374ac244df1b1fca92718bfe7ed.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>这里我们就成功添加了一个普通用户。</p>
-<p>下面有两种切换用户的命令：</p>
-<p>1.从当前用户直接切换：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">su &lt;用户名&gt;       <span class="comment">#比如我是 su qmtt</span></span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/2ca1bd0528bf430a81e37f6d9b191192.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>切换后我们会发现当前的路径是在 <code>/root</code>下,说明我们从root用户直接变为了普通用户而工作目录没有切换。</p>
-<p>输入可以 <code>exit</code>或 <code>Ctrl+D</code>（但是termux中快捷键不生效，只能点屏幕下方的工具栏上的Ctrl）可以退回上一个用户<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/baf9064695354e17998c96f1de08130f.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>2.切换用户并更换工作目录：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">su - qmtt</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/ee0ff088b2904a849687cd2e499aaac4.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>这里工作目录变成了qmtt自己的家目录。</p>
-<h5 id="6-2将普通用户至添加sudo用户组"><a href="#6-2将普通用户至添加sudo用户组" class="headerlink" title="6.2将普通用户至添加sudo用户组"></a>6.2将普通用户至添加sudo用户组</h5><p>在普通用户下，系统虽然是安全了，但是当我们想要安装、卸载应用或执行其他需要管理员权限的操作时，这会涉及到修改系统的文件或配置。为了避免频繁切换到 <code>root</code>用户，我们可以使用一个非常强大的工具<code>sudo</code>,我们可以将普通用户添加到 <code>sudo</code>用户组，从而允许该用户通过 <code>sudo</code>命令临时获取 <code>root</code>权限。</p>
-<p>首先，我们需要以 <code>root</code>用户身份执行以下操作。如果当前是普通用户，可以通过以下命令切换到 <code>root</code>用户：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">su -</span><br></pre></td></tr></table></figure></div>
-
-<p>然后安装 <code>sudo</code></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install <span class="built_in">sudo</span></span><br></pre></td></tr></table></figure></div>
-
-<p>安装完成后输入：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /etc/sudoers</span><br></pre></td></tr></table></figure></div>
-
-<p>看到如下界面：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/159077a680964b05b69dbcc5ad02a9e8.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>一直往下翻，翻到底部，找到图示位置：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/97aea3f19d914d729c04a172878a0803.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>在root的下一行添加：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;用户名&gt;   ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/11164ccedfb2488c9f2351bed5b52379.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>Ctrl + X后输入Y，回车保存退出。</p>
-<p><strong>这样我们就成功添加了普通用户，以后我们在普通用户下想要以root身份执行命令时只需在上面所有使用过的命令前面加上 <code>sudo</code>即可。</strong></p>
-<hr>
-<h3 id="五、启动桌面"><a href="#五、启动桌面" class="headerlink" title="五、启动桌面"></a>五、启动桌面</h3><p>准备了这么久，总算是到了桌面的启动环节了。直接划掉后台重新启动termux。</p>
-<h4 id="1-安装x11服务"><a href="#1-安装x11服务" class="headerlink" title="1.安装x11服务"></a>1.安装x11服务</h4><p>帮助我们在Termux:x11中连接桌面</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install termux-x11-nightly</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="2-安装图形加速工具"><a href="#2-安装图形加速工具" class="headerlink" title="2.安装图形加速工具"></a>2.安装图形加速工具</h4><p>termux默认是无法调用GPU的，只能靠CPU来硬算，因此需要安装图形加速的插件（但是我感觉Virgl的效果甚微…….）,别的加速方法可以自行搜索。</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install virglrenderer-android</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="3-写启动脚本"><a href="#3-写启动脚本" class="headerlink" title="3.写启动脚本"></a>3.写启动脚本</h4><p>由于启动时要配置的东西比较多，所以直接写在一个启动脚本里(脚本来自B站UP主 <strong>qwe5283</strong>).</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano start.sh</span><br></pre></td></tr></table></figure></div>
-
-<p>将下面的命令粘贴进去,<strong>注意！！！将倒数第四行的内的 <code>&lt;用户名&gt;</code>命令换成你的用户名！！！保证粘贴完颜色和我的图片里一样</strong></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/data/data/com.termux/files/usr/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 终止正在运行的 X11 进程</span></span><br><span class="line"><span class="comment"># 使用 pgrep 查找与 &quot;termux.x11&quot; 相关的进程，并使用 kill -9 强制终止</span></span><br><span class="line"><span class="built_in">kill</span> -9 $(pgrep -f <span class="string">&quot;termux.x11&quot;</span>) 2&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 PulseAudio 并配置网络音频支持</span></span><br><span class="line"><span class="comment"># --load 参数加载 TCP 模块，允许本地回环地址（127.0.0.1）匿名访问</span></span><br><span class="line"><span class="comment"># --exit-idle-time=-1 防止 PulseAudio 在空闲时退出</span></span><br><span class="line">pulseaudio --start --load=<span class="string">&quot;module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1&quot;</span> --exit-idle-time=-1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 virgl_test_server_android 服务</span></span><br><span class="line"><span class="comment"># virgl_test_server_android 是用于支持 3D 加速的服务</span></span><br><span class="line"><span class="comment"># 将其输出重定向到 /dev/null（丢弃输出），并在后台运行</span></span><br><span class="line">virgl_test_server_android &gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备 termux-x11 会话</span></span><br><span class="line"><span class="comment"># 设置 XDG_RUNTIME_DIR 环境变量为 Termux 的临时目录</span></span><br><span class="line"><span class="built_in">export</span> XDG_RUNTIME_DIR=<span class="variable">$&#123;TMPDIR&#125;</span></span><br><span class="line"><span class="comment"># 启动 termux-x11 服务，并将其输出重定向到 /dev/null（不显示）</span></span><br><span class="line">termux-x11 :0 &gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待 3 秒，确保 termux-x11 服务启动完成</span></span><br><span class="line"><span class="built_in">sleep</span> 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Termux X11 主活动</span></span><br><span class="line"><span class="comment"># 使用 am start 命令启动 com.termux.x11 应用的 MainActivity</span></span><br><span class="line"><span class="comment"># --user 0 表示以主用户身份运行</span></span><br><span class="line"><span class="comment"># 输出重定向到 /dev/null，避免显示在终端</span></span><br><span class="line">am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"><span class="comment"># 等待 1 秒，确保活动启动完成</span></span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录到 PRoot 环境</span></span><br><span class="line"><span class="comment"># 使用 proot-distro 登录到 Debian 系统，并共享临时目录（--shared-tmp）</span></span><br><span class="line"><span class="comment"># -- 后面的内容不会被解析为 proot-distro 的选项</span></span><br><span class="line"><span class="comment"># 在 PRoot 环境中执行以下命令：</span></span><br><span class="line"><span class="comment"># 1. 设置 PulseAudio 服务器地址为 127.0.0.1</span></span><br><span class="line"><span class="comment"># 2. 设置 XDG_RUNTIME_DIR 环境变量</span></span><br><span class="line"><span class="comment"># 3. 使用 su - &lt;用户名&gt; 切换到指定用户，并启动 XFCE4 桌面环境</span></span><br><span class="line"><span class="comment">#    同时设置语言环境（LANG=zh_CN.UTF-8）和输入法模块（fcitx）</span></span><br><span class="line">proot-distro login debian --shared-tmp -- /bin/bash -c  <span class="string">&#x27;export PULSE_SERVER=127.0.0.1 &amp;&amp; export XDG_RUNTIME_DIR=$&#123;TMPDIR&#125; &amp;&amp; su - &lt;用户名&gt; -c &quot;env DISPLAY=:0 LANG=zh_CN.UTF-8 GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx startxfce4&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 脚本执行完成，退出状态码为 0（表示成功）</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/40da14c994754121b8abe86d04e1157c.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p><code>Ctrl+x</code>后Y然后回车保存退出。</p>
-<h4 id="4-给脚本添加可执行权限"><a href="#4-给脚本添加可执行权限" class="headerlink" title="4.给脚本添加可执行权限"></a>4.给脚本添加可执行权限</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x start.sh</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/8cb991edc29843fba23504248d055202.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="5-原神！（bushi），启动！"><a href="#5-原神！（bushi），启动！" class="headerlink" title="5.原神！（bushi），启动！"></a>5.<del>原神！（bushi）</del>，启动！</h4><p>以后我们启动桌面环境直接在termux终端中输入 <code>./stsrt.sh</code>即可</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/b5bb2541f86a45d0911303ffac8862ca.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>等待几秒后，就会自动跳转到Termux:x11</p>
-<p><em><strong>如果看到下面的界面，恭喜你成功一半了！</strong></em></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/915368efff554adfbc090f7c71e47b8d.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="一饱眼福之后，我们可以先划掉Termux和Termux-x11后台，因为我们有更重要的事情要做！"><a href="#一饱眼福之后，我们可以先划掉Termux和Termux-x11后台，因为我们有更重要的事情要做！" class="headerlink" title="一饱眼福之后，我们可以先划掉Termux和Termux:x11后台，因为我们有更重要的事情要做！"></a>一饱眼福之后，我们可以先划掉Termux和Termux:x11后台，因为我们有更重要的事情要做！</h4><hr>
-<h3 id="六、解决影子杀手问题"><a href="#六、解决影子杀手问题" class="headerlink" title="六、解决影子杀手问题"></a>六、解决影子杀手问题</h3><p>在安卓12及以上版本中，使用Termux时可能会遇到图像自动断开的问题，Termux中会报出 <code>signal 9</code> 错误。虽然很多教程提到这是一个“可能”出现的情况，但实际上，这几乎是一个必然会出现的问题（emmmmm……该踩的坑一个都没少）。这里提供一个简单的解决办法。</p>
-<h4 id="1-常见解决方案的问题"><a href="#1-常见解决方案的问题" class="headerlink" title="1.常见解决方案的问题"></a>1.常见解决方案的问题</h4><ol>
-<li><strong>使用电脑ADB调试</strong><br>（网上直接搜 <code>解决termux中signal9问题</code> 就能找到，这里就不详细写了）<ul>
-<li>网上大多数教程推荐使用电脑通过ADB调试来解决。</li>
-<li>但如果你有电脑，可能就不会在手机上折腾Termux了（bushi）。</li>
-</ul>
-</li>
-<li><strong>Termux本地调试</strong><ul>
-<li>也有通过Termux本地调试的方案，但操作复杂，容易出错，工作量巨大。</li>
-</ul>
-</li>
-</ol>
-<h4 id="2-更简单的解决方案"><a href="#2-更简单的解决方案" class="headerlink" title="2.更简单的解决方案"></a>2.更简单的解决方案</h4><p>经过一番摸索，我在B站找到了一个更简单的方法：使用VMOS提供的一款调试工具来解决。</p>
-<h4 id="3-工具链接"><a href="#3-工具链接" class="headerlink" title="3.工具链接"></a>3.工具链接</h4><p>工具下载链接如下，里面有详细的视频演示：<br><a class="link"   href="https://www.vmos.cn/zhushou.htm" >VMOS调试工具下载<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h4 id="4-备用方法"><a href="#4-备用方法" class="headerlink" title="4.备用方法"></a>4.备用方法</h4><p>可以在手机的 <strong>开发者选项</strong> 中找到 <strong><code>停止限制子进程</code></strong> 的设置选项，将其打开。<br> <strong>注意</strong> ：<code>停止限制子进程</code>这个选项在一些手机上是没有的，比如我的手机和平板都没有这个选项，因此无法提供演示。</p>
-<hr>
-<h3 id="七、配置Termux-X11"><a href="#七、配置Termux-X11" class="headerlink" title="七、配置Termux:X11"></a>七、配置Termux:X11</h3><p>重新打开Termux，输入 <code>./start.sh</code> 启动桌面，跳转到Ternux:x11后，你会再次看到熟悉的界面：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/919df54a5fcc4bf19124a70fce65a2ce.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>不过，上方的通知栏和下方的工具栏会影响观感，并且使用体验较差。因此，我们需要进行一些简单的设置。</p>
-<h4 id="打开设置的两种方法"><a href="#打开设置的两种方法" class="headerlink" title="打开设置的两种方法"></a>打开设置的两种方法</h4><ol>
-<li><p>通过界面右上角的菜单按钮打开设置：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/adabe0c08cd546ceb713cf02c34067e3.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>桌面长按图标打开设置：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/6fd3107679524b5e8175bb5a52bcd2eb.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ol>
-<p>打开设置后，你会看到以下界面。可以自行翻译，建议按照我的设置进行调整：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/f85f506ae7d64c5093f6cf1c5c47fc92.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="1-显示设置-Output"><a href="#1-显示设置-Output" class="headerlink" title="1. 显示设置 (Output)"></a>1. 显示设置 (Output)</h4><ul>
-<li>调整显示分辨率、屏幕方向等选项：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/6cf1d63e78bc4409907290b55ed39735.png"
-                      alt="在这里插入图片描述"
-                ></li>
-</ul>
-<h4 id="2-指针设置-Pointer"><a href="#2-指针设置-Pointer" class="headerlink" title="2. 指针设置 (Pointer)"></a>2. 指针设置 (Pointer)</h4><ul>
-<li>这里不需要修改，保持默认即可。</li>
-</ul>
-<h4 id="3-键盘设置-Keyboard"><a href="#3-键盘设置-Keyboard" class="headerlink" title="3. 键盘设置 (Keyboard)"></a>3. 键盘设置 (Keyboard)</h4><ul>
-<li>配置键盘布局和快捷键：</li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/52755e06dede4617a8af2b6db0896bb7.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="4-其他设置-Other"><a href="#4-其他设置-Other" class="headerlink" title="4. 其他设置 (Other)"></a>4. 其他设置 (Other)</h4><ul>
-<li>无需修改，保持默认即可。</li>
-</ul>
-<p>完成设置后，返回主界面，就可以愉快地使用了！</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/48373d3240354d419234d072e4d2ed44.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<hr>
-<h3 id="八、美化和配置Xfce桌面（可选）"><a href="#八、美化和配置Xfce桌面（可选）" class="headerlink" title="八、美化和配置Xfce桌面（可选）"></a>八、美化和配置Xfce桌面（可选）</h3><h4 id="1-缩放设置"><a href="#1-缩放设置" class="headerlink" title="1. 缩放设置"></a>1. 缩放设置</h4><p>刚进入桌面，我们会发现字体非常小（快给我眼瞪瞎了），所以先设置一下缩放。</p>
-<ol>
-<li><p>点击左上角的 <strong>显示所有应用</strong> -&gt; <strong>设置</strong> -&gt; <strong>外观</strong>：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/55cf8b4f9f3a4da392aa3166872a3ccf.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>点击 <strong>设置</strong>：<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e8104bd29ddf44caa32b92e58734eb10.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>把 <strong>窗口缩放</strong> 调到 <code>2x</code>，瞬间世界清晰了：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e416ee2074164588a3e95346f43b550f.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ol>
-<h4 id="2-主题设置"><a href="#2-主题设置" class="headerlink" title="2. 主题设置"></a>2. 主题设置</h4><p>还是在<strong>外观</strong>里，默认的主题和图标少得可怜，我们可以去 <a class="link"   href="https://www.xfce-look.org/browse/" >Eyecandy for your XFCE-Desktop - xfce-look.org<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 里下载喜欢的主题或图标。（后面会安装浏览器）</p>
-<ol>
-<li>下载你喜欢的主题或图标包</li>
-<li>下载完后，点击左下角的 <strong>添加</strong>，选择你下载的压缩包，就可以用你下载的主题或图标。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/3b08a63fa84d4d42bd38bdfdc70013ab.png"
-                      alt="在这里插入图片描述"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/80c91ddc24dc4968a87ae46faf9dc6ad.png"
-                      alt="在这里插入图片描述"
-                ></li>
-</ol>
-<h4 id="3-面板位置调整"><a href="#3-面板位置调整" class="headerlink" title="3. 面板位置调整"></a>3. 面板位置调整</h4><p>Xfce默认把面板放在屏幕顶部，不符合以前的使用习惯（我感觉还挺好看的）。如果你更喜欢Windows的风格，我们可以把它搬到下面。</p>
-<ol>
-<li><p>把鼠标移到面板上，双指点击（右键）：<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/d4874418d45a4a13a000bea317c8d2f2.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>选择 <strong>面板</strong> -&gt; <strong>面板首选项</strong>：<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/b4d98c0d7beb4acf88accb58d4d72c14.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>我们看到 <strong>面板1</strong>（顶栏）和 <strong>面板2</strong>（底部应用栏）。先对 <strong>面板2</strong> 下手，取消 <strong>锁定面板</strong>，然后把它拖到屏幕右侧：<br>（两侧出现的那些可以动）<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/9d69e62c590c4cea976390937e5fc2d1.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ol>
-<p>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/333b20cee84641bbba23b481a9576809.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<ol start="5">
-<li><p>别忘了重新 <strong>锁定面板</strong><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/ec634ebe107244edb22bb3b018092f90.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>最后，把 <strong>面板1</strong> 拖到屏幕底部：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/4e746f3ed1474bf88c4d9d723cd56880.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ol>
-<h4 id="4-壁纸设置"><a href="#4-壁纸设置" class="headerlink" title="4. 壁纸设置"></a>4. 壁纸设置</h4><p>这个就自己找吧，挺简单的（滑稽）</p>
-<hr>
-<h3 id="九、安装和运行-PC-级-Linux-应用"><a href="#九、安装和运行-PC-级-Linux-应用" class="headerlink" title="九、安装和运行 PC 级 Linux 应用"></a><strong>九、安装和运行 PC 级 Linux 应用</strong></h3><p>经过一番折腾，一个能正常使用的操作系统终于搭建完成了！接下来，我们将介绍如何在系统中安装和运行 PC 级 Linux 应用。</p>
-<hr>
-<h4 id="1-应用安装方法概述"><a href="#1-应用安装方法概述" class="headerlink" title="1. 应用安装方法概述"></a><strong>1. 应用安装方法概述</strong></h4><p>在 Linux 中，安装应用主要有以下几种方式：</p>
-<ul>
-<li><strong>通过 <code>apt</code> 安装</strong>：类似于手机上的应用商店，直接从软件源安装。</li>
-<li><strong>下载安装包手动安装</strong>：适用于不在软件源中的应用。</li>
-<li><strong>使用第三方工具安装</strong>：如 Snap、Flatpak 等。</li>
-</ul>
-<p>下面我们将以具体应用为例，详细介绍安装方法。</p>
-<hr>
-<h4 id="2-安装火狐浏览器"><a href="#2-安装火狐浏览器" class="headerlink" title="2. 安装火狐浏览器"></a><strong>2. 安装火狐浏览器</strong></h4><ol>
-<li><p>打开终端：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/3ecbdf6b467f4a849c842391efcefeb0.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>使用 <code>apt</code> 安装火狐浏览器：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install firefox-esr</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><strong>注意</strong>：<code>sudo</code> 是因为我们当前是普通用户身份，需要提升权限，输入密码时不会显示字符，输完后直接回车即可</li>
-<li><strong>说明</strong>：原本想安装 Chromium 浏览器，但最新版在 ARM 架构上问题较多，因此改用火狐浏览器。阿里源中只有 <code>firefox-esr</code>（长期支持版）。</li>
-</ul>
-</li>
-<li><p>安装完成后，可以在应用菜单中找到火狐浏览器：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/0daa546f33cd46d3a7126bcf831c5363.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>长按图标并拖动，即可将其添加到桌面。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e355f8d3aa804539ae4b6a95e7a888f6.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ol>
-<hr>
-<h4 id="3-安装输入法"><a href="#3-安装输入法" class="headerlink" title="3. 安装输入法"></a><strong>3. 安装输入法</strong></h4><p>在 Linux 上折腾输入法总是让我破防，尤其是在 ARM 架构的生态下。经过多次尝试，我找到了一款能用的输入法：<strong>华宇拼音输入法</strong>（搜狗和讯飞无法使用，Google 输入法的那个候选词是真难找）。</p>
-<ol>
-<li><p>访问华宇拼音输入法官网，选择“信创版下载”：<br><a class="link"   href="https://pinyin.thunisoft.com/index.html" >华宇拼音输入法<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/96b88f39d331475f940ff91c0c42e78a.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>选择“银河麒麟，ARM”版，下载适用于 ARM 架构的 DEB 包：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/6f939688af284712b959c0d5e5b04db6.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>会出现点击安装会没反应的情况，看页面上方火狐浏览器会提示禁止弹窗，直接允许弹窗以下载就行。</p>
-</li>
-<li><p>下载完成后，在终端中输入以下命令进行安装：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install &lt;直接用鼠标把下载的.deb文件拖进去&gt;</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/1d9056fc0f984f25b05311aebf35230c.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<ul>
-<li><strong>说明</strong>：<code>apt</code> 会自动补全依赖，因此无需手动安装 <code>fcitx</code> 框架。</li>
-</ul>
-</li>
-<li><p>安装完成后，在应用菜单中找到 <code>fcitx</code> 并启动。右下角会显示输入法标志（环境变量已提前配置在启动脚本中，因此无需额外设置）：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/f8b52d5794184230b56e3adfcee4290a.png"
-                      alt="在这里插入图片描述"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/c33b6916f4d0446c8406c457135bce43.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>输入法简单配置：</p>
-<ul>
-<li><p>打开输入法设置：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/dfb84c399f2f40318682d433f2dafd76.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>将切换输入法快捷键设置为 <strong>左 Shift</strong>：<br> <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/63d65728ad7e4484aa8bfda5743d6403.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>调整字体大小为 <strong>35</strong>，关闭“竖排候选词列表”：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/3cb434c76c2940f6ad0bacdb6c672c53.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ul>
-</li>
-<li><p>配置完成后，<strong>左Shift</strong>切换输入法就能正常使用了！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/4995adc6c4fe47cd9774e20a897e9331.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ol>
-<hr>
-<h4 id="4-安装-VS-Code"><a href="#4-安装-VS-Code" class="headerlink" title="4. 安装 VS Code"></a><strong>4. 安装 VS Code</strong></h4><ol>
-<li><p><strong>下载 VS Code</strong></p>
-<ul>
-<li><p>访问 VS Code 官网：<a class="link"   href="https://code.visualstudio.com/" >Visual Studio Code - Code Editing. Redefined<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-<li><p>点击“其他平台”（other platforms）：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/7636f1dcde584ff2b09aad2d16c48892.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>选择 <code>.deb</code> 的 <code>Arm64</code> 版本，点击下载：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/fbbc69ba23924ceba41dbd55294d08f1.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-</ul>
-</li>
-<li><p><strong>安装 VS Code</strong></p>
-<ul>
-<li>下载完成后，打开终端，输入以下命令：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install</span><br></pre></td></tr></table></figure></div></li>
-<li>将下载的 <code>.deb</code> 文件拖入终端，回车执行安装：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/8db9a1181727480c8638e6528c1eb7f6.png"
-                      alt="在这里插入图片描述"
-                ><br>这里yes&#x2F;no都行：<br> <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/da4abb5dbe964525bd22978325ab7f6f.png"
-                      alt="在这里插入图片描述"
-                >3. <strong>找到 VS Code</strong>   - 安装完成后，可以在“开发”选项中找到 VS Code：<br> <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/831aa9bf4ebb433c9c278ef200ba8899.png"
-                      alt="在这里插入图片描述"
-                ></li>
-</ul>
-</li>
-<li><p><strong>禁用沙盒以启动 VS Code</strong></p>
-<ul>
-<li><p>现在点击 VS Code 图标，发现无法打开。这是因为 VS Code 默认启用沙盒，防止一些代码对系统造成危害，而我们使用的Proot 不支持沙盒。<strong>注意一下：以后若遇到应用无法打开，也可以试试这个解决方法（比如微信，QQ，Chromium）</strong></p>
-</li>
-<li><p>将 VS Code 图标拖到桌面上，右键点击“编辑启动器”：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/cf1c6bc277634b2d877fc146b41a4826.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>在“命令”最后添加 <code>--no-sandbox</code>：（<strong>注意是后面！！！！并且要与前面的命令要有空格</strong>）<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/8dfe32c3883f426aaef22d196104f812.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>保存后，双击 VS Code 图标就能正常打开了。</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/ad58e58509b34c408dd7e2d995837a65.jpeg"
-                      alt="在这里插入图片描述"
-                ></p>
-<ol start="5">
-<li><p>配置开发环境</p>
-<p>emmmmm…….这个自己摸索吧，教程挺多的。直接去搜Linux环境下怎么配置自己想要的环境就行。</p>
-</li>
-</ol>
-<hr>
-<h4 id="5-安装WPS"><a href="#5-安装WPS" class="headerlink" title="5.安装WPS"></a>5.安装WPS</h4><p>在我刚开始折腾 Termux 的时候，WPS 官网上还能找到 ARM 版的安装包。那时还能正常使用。但突然（没错，就是突然的），它就消失了，就像下定了某种决心……</p>
-<p>虽然网上还能找到一些用户留下的旧版本，比如这个：<br><a class="link"   href="https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/9719/wps-office_11.1.0.9719_arm64.deb" >WPS Office ARM64 版本<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>但安装后，我发现它有时打不开，有时 PDF 功能无法使用，总之用起来不太稳定（技艺不精的我也不会修）。于是，在经历了漫长的搜索后，我找到了一个更<del>牛逼</del>的解决方案：<strong>星火应用商店</strong>。它不仅能解决 WPS 的问题，还能直接缓解 ARM 生态应用短缺的困境,直接打开了新世界的大门！直接看P6</p>
-<hr>
-<h4 id="6-安装星火商店"><a href="#6-安装星火商店" class="headerlink" title="6.安装星火商店"></a>6.安装星火商店</h4><p>星火官网：<a class="link"   href="https://www.spark-app.store/" >首页 - 星火应用商店<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>点击“下载最新版本”</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/0b38edb0e6a24f9cb2099f00301d32cf.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>点击下载软件本体</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/725594d6b2ad4cd48611f90f5e9f4ce9.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>一定要看一下安装说明：然后点击开始下载</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/ece4a8a4b101496c883a0914a57a5be3.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>下载这个arm64的版本。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/e86c6cdb20fc4fd190200dd162a5a9aa.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>老方法，下完后直接安装：</p>
-<p>sudo apt install &lt;拖入下载的 DEB 文件&gt;</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/277adfa6123148d99aa29547d1d7e2b3.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>装完后这里就能找到</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/b0da6e5f5d09486a8ea94e15a8810340.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>直接打开的话会发现它的缩放非常小：（<strong>不显示字体是正常现象）</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/ad28a1d50d814a1cb64f36eb63c38041.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>先关掉，然后拖到桌面上，右键，编辑启动器：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/a215f9e90d794a0686ee0285794b4ad0.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>在命令前面(<strong>注意是前面！！！</strong>)加入这行命令：(后面的数字自己设置，我设置的是150)，加完以后要留空格。（<strong>以后的缩放问题都可以这样解决！！！</strong>）</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">env</span> QT_QPA_PLATFORMTHEME=qt5ct QT_SCALE_FACTOR=1 QT_FONT_DPI=150 </span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/6ff72d9817cb4ab0b7afbce9b6fdd4f3.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>现在就变大了：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/f1dd7b7688f44969b6e80db4714ef97f.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>于是我们迫不及待地点击“办公”,点击WPS图标：</p>
-<p>（PS：这里看到搜狗输入法的图标，就别想了，实测用不了）</p>
-<p>这里会发现wps是安装不了的（滑稽）</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/25bea2f2e2344cff9fb755fa6fae97de.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>这个问题我也不知道为什么（实测在VNC里使用时可以正常下载）但是星火商店提供了终端的包管理工具：<code>aptss</code>(用法和apt一样,但是只能安装星火商店内的应用)</p>
-<p>在这里可以看到你要安装的包名：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/62acf64a88b349d9aa92f23972bf0859.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>直接打开终端：</p>
-<p>先更新一下：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">aptss update</span><br></pre></td></tr></table></figure></div>
-
-<p>安装WPS：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">aptss install wps-office</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/aefd43f221784e0881d11bdc796752c4.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>成功以后就能在桌面看到WPS了，实测正常使用没有问题。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/267522f04b6b4f9faf18a6730101ccb8.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<hr>
-<h4 id="7-星火商店补充"><a href="#7-星火商店补充" class="headerlink" title="7.星火商店补充"></a>7.<strong>星火商店补充</strong></h4><h5 id="1-当我们安装完星火商店以后，切换中文输入法时，可以看到华宇拼音输入法的面板出来的（其实直接在星火商店里安装华宇也可以显示出来-手动滑稽-）"><a href="#1-当我们安装完星火商店以后，切换中文输入法时，可以看到华宇拼音输入法的面板出来的（其实直接在星火商店里安装华宇也可以显示出来-手动滑稽-）" class="headerlink" title="1.当我们安装完星火商店以后，切换中文输入法时，可以看到华宇拼音输入法的面板出来的（其实直接在星火商店里安装华宇也可以显示出来[手动滑稽]）"></a>1.当我们安装完星火商店以后，切换中文输入法时，可以看到华宇拼音输入法的面板出来的（其实直接在星火商店里安装华宇也可以显示出来[<del>手动滑稽]</del>）</h5><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/3fb41c4e9321410f892a682ce79445d1.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>这样就可以进入华宇的设置页面<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/ce79daff264345ebaa77a1f30038dd0d.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>这里设置一下字体大小（我还是设置的35）就能正常使用了，主题风格可以自己设置：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/457d1fd1272e45d3a9fda20ff8ce22d6.png"
-                      alt="在这里插入图片描述"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/5270fdd7c6eb4e53980072a7adbd5649.png"
-                      alt="在这里插入图片描述"
-                ></p>
-<h5 id="2-补充："><a href="#2-补充：" class="headerlink" title="2.补充："></a>2.补充：</h5><ul>
-<li>在星火商店里还能安装更多应用，比如 QQ、微信（别忘了关沙盒）等。</li>
-<li><strong>注意</strong>：大多数应用可能无法正常使用，建议谨慎安装。</li>
-</ul>
-<hr>
-<h4 id="8-其他开发工具"><a href="#8-其他开发工具" class="headerlink" title="8.其他开发工具"></a>8.其他开发工具</h4><p>其实，IDEA、Android Studio、CLion 等开发工具都可以在 Termux 上运行。不过，这篇博客是在期末周如火如荼的复习和高压下写出的（<del>没错，只有在期末周才知道折腾起来有多爽</del>），所以实在是写不下去了。这些开发工具的安装方法可以类比前面的教程，或者参考网上的详细步骤。这里就不再详细写了。</p>
-<hr>
-<h3 id="十、快捷启动"><a href="#十、快捷启动" class="headerlink" title="十、快捷启动"></a><strong>十、快捷启动</strong></h3><p>每次启动都要先进入 Termux，再输入 <code>./start.sh</code>，像我这么懒的人，肯定不愿意一直这么干。于是，我找到了一个偷懒神器：<strong>Termux:Widget</strong>。</p>
-<hr>
-<h4 id="1-配置快捷启动"><a href="#1-配置快捷启动" class="headerlink" title="1. 配置快捷启动"></a><strong>1. 配置快捷启动</strong></h4><ol>
-<li>划掉所有后台，重新进入 Termux。</li>
-<li>创建目录：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ./.shortcuts/tasks</span><br></pre></td></tr></table></figure></div></li>
-<li>将启动脚本移动到该目录：<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> ./start.sh ./.shortcuts/tasks</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<hr>
-<h4 id="2-添加桌面小部件"><a href="#2-添加桌面小部件" class="headerlink" title="2. 添加桌面小部件"></a><strong>2. 添加桌面小部件</strong></h4><ol>
-<li><p>在桌面上添加 Termux:Widget 的小部件：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/3bb271566a104ed7a6fa528105f053af.png"
-                      alt="在这里插入图片描述"
-                ></p>
-</li>
-<li><p>使用时：</p>
-<ul>
-<li>先打开 Termux。</li>
-<li>返回桌面，点击小部件的命令。</li>
-<li>再打开 X11，等一小会儿就能看到图像了：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i-blog.csdnimg.cn/direct/158331cb9b0d4571916a100228d526b0.png"
-                      alt="在这里插入图片描述"
-                ></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h4 id="3-更多玩法"><a href="#3-更多玩法" class="headerlink" title="3. 更多玩法"></a><strong>3. 更多玩法</strong></h4><ul>
-<li><strong>添加图标</strong>：将图片（与脚本同名）放在 <code>./.shortcuts/icons/</code>目录下，可以在桌面快捷启动容器内的应用。</li>
-<li><strong>实测体验</strong>：虽然功能强大，但使用时仍需重复上述三步，感觉有点别扭，所以这里就不详细展开了。</li>
-<li>更多详细用法可以参考 Termux:Widget 的 GitHub 页面：<a class="link"   href="https://github.com/termux/termux-widget" >Termux:Widget GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
-</ul>
-<hr>
-<p>Termux交流群：637654759<br>至此，全部结束！！！<br>（再也不在期末周折腾了,希望我不挂科( ´•̥̥̥ω•̥̥̥&#96; )）</p>
 ]]></content>
       <categories>
-        <category>Linux</category>
+        <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
-        <tag>termux</tag>
-        <tag>debian</tag>
-        <tag>proot</tag>
+        <tag>“C语言”</tag>
       </tags>
   </entry>
 </search>
