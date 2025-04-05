@@ -1,75 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>git使用</title>
-    <url>/2025/03/27/git%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>不管是写代码项目，还是实验报告，我们总是要遇到这样的情况：为了写出最完美的版本，我们要更改多次，但是含怕更改后出现问题且无法恢复，就必须复制出一个副本,于是就有了这样的情况：</p>
-<ul>
-<li>“test_1”</li>
-<li>“test_2”</li>
-<li>“test_3”</li>
-<li>…最终版</li>
-<li>…究极版</li>
-<li>……</li>
-</ul>
-<p>于是写着写着,自己都忘记了每个版本都干了什么了，只能再一个一个去看,找了个看着还凑合的就提交上去了……</p>
-<p>不过，那些程序员大佬可没这个闲工夫看来看去。有了这样的需求，<strong>版本控制器</strong>应运而生，通过版本控制器，我们可以随时管理回溯到一个文件的各个版本，也方便多个人共同作业。</p>
-<p>当下最主流的一款版本控制器叫<strong>Git</strong>，当然我们也听说过大名鼎鼎的<strong>Github</strong>就是一个由git发展而来的远程管理的网站，方便一些开源以及团队协同办公。 </p>
-<h2 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h2><h2 id="Git基本操作"><a href="#Git基本操作" class="headerlink" title="Git基本操作"></a>Git基本操作</h2><h3 id="配置Git"><a href="#配置Git" class="headerlink" title="配置Git"></a>配置Git</h3><p>安装完Git后的第一个任务就是配置你的用户名称和邮箱地址（在团队协作中，我们需要知道是做了更改，并且可以通过什么方式联系到他）。配置方法：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config [--global] user.name <span class="string">&quot;Your Name&quot;</span> </span><br><span class="line">git config [--global] user.email <span class="string">&quot;email@example.com&quot;</span></span><br><span class="line"><span class="comment">#  Your Name 为你的昵称 </span></span><br><span class="line"><span class="comment">#  email@example.com 为你的邮箱 </span></span><br></pre></td></tr></table></figure></div>
-
-<p>配置完可以使用下面命令查看配置的信息：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config -l</span><br></pre></td></tr></table></figure></div>
-
-<p>也可以使用下面命令删除配置信息：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config [--global] --<span class="built_in">unset</span> user.name</span><br><span class="line">git config [--global] --<span class="built_in">unset</span> user.email</span><br></pre></td></tr></table></figure></div>
-
-<p>上方**[–global]**是一个可选项，使用这个选项表明我们以后管理所有的文件都使用这个名字，如果想要在不同的仓库中使用不同的名字，可以去掉这个选项，然后在某个仓库内部执行命令。</p>
-<h3 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h3><p>现实中我们可以使用仓库来对物品进行管理（贴标签，做记录等），同理我们想要对文件进行管理，也要建立一个仓库，在这里我们的仓库实际上就是文件夹，不同的项目可以对应创建不同的仓库（即文件夹），Git通过追踪仓库内文件的变化实现版本控制。以下是两种创建本地仓库的方法：</p>
-<hr>
-<p>第一种：直接创建并初始化仓库</p>
-<p>在终端内直接执行：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git init my-repo   <span class="comment">#my-repo为你的仓库名，可以自己取名</span></span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li>作用：在当前目录下自动创建名为 <code>my-repo</code> 的文件夹，并初始化Git仓库。</li>
-<li>注意：  <ul>
-<li>仓库名称建议使用英文、数字或连字符（如 <code>my-project</code>），避免空格或特殊字符。</li>
-<li>执行后会在 <code>my-repo</code> 目录下生成隐藏的 <code>.git</code> 子目录，存放Git的版本控制数据。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>第二种：手动创建文件夹后初始化</p>
-<ol>
-<li>先创建一个目录：</li>
-</ol>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> my-repo	<span class="comment"># 创建文件夹</span></span><br><span class="line"><span class="built_in">cd</span> my-repo		<span class="comment"># 进入该目录</span></span><br></pre></td></tr></table></figure></div>
-
-<ol start="2">
-<li>初始化仓库：</li>
-</ol>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></div>
-
-<p>注意：  </p>
-<ul>
-<li>此方法适用于已有项目目录的初始化。</li>
-<li>初始化后需确保当前目录下生成 <code>.git</code> 文件夹，可通过 <code>ls -a</code>（Linux&#x2F;macOS）或显示隐藏文件（Windows）查看。</li>
-</ul>
-<hr>
-<p>注意：仓库目录中包含 <code>.git</code> 隐藏文件夹，该目录由Git自动管理，不要手动修改内部文件，否则可能导致版本信息损坏。进入<code>.git</code>文件夹下，可以看到里面的文件（看看就行[dog]）</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">.git</span><br><span class="line">├── branches</span><br><span class="line">├── config</span><br><span class="line">├── description</span><br><span class="line">├── HEAD</span><br><span class="line">├── hooks</span><br><span class="line">│   ├── applypatch-msg.sample</span><br><span class="line">│   ├── commit-msg.sample</span><br><span class="line">│   ├── fsmonitor-watchman.sample</span><br><span class="line">│   ├── post-update.sample</span><br><span class="line">│   ├── pre-applypatch.sample</span><br><span class="line">│   ├── pre-commit.sample</span><br><span class="line">│   ├── pre-merge-commit.sample</span><br><span class="line">│   ├── prepare-commit-msg.sample</span><br><span class="line">│   ├── pre-push.sample</span><br><span class="line">│   ├── pre-rebase.sample</span><br><span class="line">│   ├── pre-receive.sample</span><br><span class="line">│   ├── push-to-checkout.sample</span><br><span class="line">│   └── update.sample</span><br><span class="line">├── info</span><br><span class="line">│   └── exclude</span><br><span class="line">├── objects</span><br><span class="line">│   ├── info</span><br><span class="line">│   └── pack</span><br><span class="line">└── refs</span><br><span class="line">    ├── heads</span><br><span class="line">    └── tags</span><br></pre></td></tr></table></figure></div>
-
-
-
-<hr>
-<h3 id="工作区、暂存区和版本库的概念"><a href="#工作区、暂存区和版本库的概念" class="headerlink" title="工作区、暂存区和版本库的概念"></a>工作区、暂存区和版本库的概念</h3><ol>
-<li><strong>工作区</strong>：就是我们刚刚创建的仓库目录，也是我们以后要放代码或其他文件的目录。</li>
-<li><strong>暂存区</strong>：</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>1.Linux基础命令</title>
     <url>/2024/12/14/1-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h5 id="如何理解文件："><a href="#如何理解文件：" class="headerlink" title="如何理解文件："></a>如何理解文件：</h5><ol>
@@ -607,24 +538,6 @@ done &gt; test.txt
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/1970/01/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>C语言自定义类型</title>
     <url>/2025/03/16/C%E8%AF%AD%E8%A8%80%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h2 id="结构体、枚举、联合"><a href="#结构体、枚举、联合" class="headerlink" title="结构体、枚举、联合"></a>结构体、枚举、联合</h2><p>自定义类型，区别与C语言的自带类型(int、char、double等)，由我们自己定义。</p>
@@ -745,6 +658,238 @@ done &gt; test.txt
 
 <p>因此我们得出结论：在设计结构体的时候，应尽量让占用空间小的成员集中在一起，才能更节省空间。</p>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+  </entry>
+  <entry>
+    <title>git使用</title>
+    <url>/2025/03/27/git%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>不管是写代码项目，还是实验报告，我们总是要遇到这样的情况：为了写出最完美的版本，我们要更改多次，但是含怕更改后出现问题且无法恢复，就必须复制出一个副本,于是就有了这样的情况：</p>
+<ul>
+<li>“test_1”</li>
+<li>“test_2”</li>
+<li>“test_3”</li>
+<li>…最终版</li>
+<li>…究极版</li>
+<li>……</li>
+</ul>
+<p>于是写着写着,自己都忘记了每个版本都干了什么了，只能再一个一个去看,找了个看着还凑合的就提交上去了……</p>
+<p>不过，那些程序员大佬可没这个闲工夫看来看去。有了这样的需求，<strong>版本控制器</strong>应运而生，通过版本控制器，我们可以随时管理回溯到一个文件的各个版本，也方便多个人共同作业。</p>
+<p>当下最主流的一款版本控制器叫<strong>Git</strong>，当然我们也听说过大名鼎鼎的<strong>Github</strong>就是一个由git发展而来的远程管理的网站，方便一些开源以及团队协同办公。 </p>
+<h2 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h2><h2 id="Git基本操作"><a href="#Git基本操作" class="headerlink" title="Git基本操作"></a>Git基本操作</h2><h3 id="配置Git"><a href="#配置Git" class="headerlink" title="配置Git"></a>配置Git</h3><p>安装完Git后的第一个任务就是配置你的用户名称和邮箱地址（在团队协作中，我们需要知道是做了更改，并且可以通过什么方式联系到他）。配置方法：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config [--global] user.name <span class="string">&quot;Your Name&quot;</span> </span><br><span class="line">git config [--global] user.email <span class="string">&quot;email@example.com&quot;</span></span><br><span class="line"><span class="comment">#  Your Name 为你的昵称 </span></span><br><span class="line"><span class="comment">#  email@example.com 为你的邮箱 </span></span><br></pre></td></tr></table></figure></div>
+
+<p>配置完可以使用下面命令查看配置的信息：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config -l</span><br></pre></td></tr></table></figure></div>
+
+<p>也可以使用下面命令删除配置信息：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config [--global] --<span class="built_in">unset</span> user.name</span><br><span class="line">git config [--global] --<span class="built_in">unset</span> user.email</span><br></pre></td></tr></table></figure></div>
+
+<p>上方**[–global]**是一个可选项，使用这个选项表明我们以后管理所有的文件都使用这个名字，如果想要在不同的仓库中使用不同的名字，可以去掉这个选项，然后在某个仓库内部执行命令。</p>
+<h3 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h3><p>现实中我们可以使用仓库来对物品进行管理（贴标签，做记录等），同理我们想要对文件进行管理，也要建立一个仓库，在这里我们的仓库实际上就是文件夹，不同的项目可以对应创建不同的仓库（即文件夹），Git通过追踪仓库内文件的变化实现版本控制。以下是两种创建本地仓库的方法：</p>
+<hr>
+<p>第一种：直接创建并初始化仓库</p>
+<p>在终端内直接执行：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git init my-repo   <span class="comment">#my-repo为你的仓库名，可以自己取名</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>作用：在当前目录下自动创建名为 <code>my-repo</code> 的文件夹，并初始化Git仓库。</li>
+<li>注意：  <ul>
+<li>仓库名称建议使用英文、数字或连字符（如 <code>my-project</code>），避免空格或特殊字符。</li>
+<li>执行后会在 <code>my-repo</code> 目录下生成隐藏的 <code>.git</code> 子目录，存放Git的版本控制数据。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>第二种：手动创建文件夹后初始化</p>
+<ol>
+<li>先创建一个目录：</li>
+</ol>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> my-repo	<span class="comment"># 创建文件夹</span></span><br><span class="line"><span class="built_in">cd</span> my-repo		<span class="comment"># 进入该目录</span></span><br></pre></td></tr></table></figure></div>
+
+<ol start="2">
+<li>初始化仓库：</li>
+</ol>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></div>
+
+<p>注意：  </p>
+<ul>
+<li>此方法适用于已有项目目录的初始化。</li>
+<li>初始化后需确保当前目录下生成 <code>.git</code> 文件夹，可通过 <code>ls -a</code>（Linux&#x2F;macOS）或显示隐藏文件（Windows）查看。</li>
+</ul>
+<hr>
+<p>注意：仓库目录中包含 <code>.git</code> 隐藏文件夹，该目录由Git自动管理，不要手动修改内部文件，否则可能导致版本信息损坏。进入<code>.git</code>文件夹下，可以看到里面的文件（看看就行[dog]）</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">.git</span><br><span class="line">├── branches</span><br><span class="line">├── config</span><br><span class="line">├── description</span><br><span class="line">├── HEAD</span><br><span class="line">├── hooks</span><br><span class="line">│   ├── applypatch-msg.sample</span><br><span class="line">│   ├── commit-msg.sample</span><br><span class="line">│   ├── fsmonitor-watchman.sample</span><br><span class="line">│   ├── post-update.sample</span><br><span class="line">│   ├── pre-applypatch.sample</span><br><span class="line">│   ├── pre-commit.sample</span><br><span class="line">│   ├── pre-merge-commit.sample</span><br><span class="line">│   ├── prepare-commit-msg.sample</span><br><span class="line">│   ├── pre-push.sample</span><br><span class="line">│   ├── pre-rebase.sample</span><br><span class="line">│   ├── pre-receive.sample</span><br><span class="line">│   ├── push-to-checkout.sample</span><br><span class="line">│   └── update.sample</span><br><span class="line">├── info</span><br><span class="line">│   └── exclude</span><br><span class="line">├── objects</span><br><span class="line">│   ├── info</span><br><span class="line">│   └── pack</span><br><span class="line">└── refs</span><br><span class="line">    ├── heads</span><br><span class="line">    └── tags</span><br></pre></td></tr></table></figure></div>
+
+
+
+<hr>
+<h3 id="工作区、暂存区和版本库的概念"><a href="#工作区、暂存区和版本库的概念" class="headerlink" title="工作区、暂存区和版本库的概念"></a>工作区、暂存区和版本库的概念</h3><ol>
+<li><strong>工作区</strong>：就是我们刚刚创建的仓库目录，也是我们以后要放代码或其他文件的目录。</li>
+<li><strong>暂存区</strong>：</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/1970/01/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>算法效率的度量</title>
+    <url>/2025/03/20/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
+    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。</p>
+<p>但是这样会存在一些问题：</p>
+<ol>
+<li><p>每台电脑性能是不一样的。如超级计算机和单片机</p>
+</li>
+<li><p>不同的编程语言运行速度也不一样，编译型语言会比解释型语言要快一些</p>
+</li>
+<li><p>和编译程序产生的机器指令的质量有关</p>
+</li>
+<li><p>有些算法比如（导弹控制算法），是不能事后统计的</p>
+</li>
+</ol>
+<p>因此我们需要别的方法来统计算法效率，能够排除外界因素对算法本身的干扰。要知道：算法在编写成可执行程序后，运行时需要耗费时间资源和空间(内存)资源 。于是就有了<strong>时间复杂度</strong>和<strong>空间复杂度</strong>的概念。时间复杂度主要衡量一个算法的运行快慢，而空间复杂度主要衡量一个算法运行所需要的额外空间。</p>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>时间复杂度：在计算机科学中，<strong>算法的时间复杂度是一个函数</strong>，它定量描述了该算法的运行时间。一个算法所花费的时间与其中语句的执行次数成正比例，<strong>算法中的基本操作的执行次数，为算法的时间复杂度。</strong></p>
+<p>比如一个例子：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Func1</span><span class="params">(<span class="type">int</span> N)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N ; ++ i) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N ; ++ j)</span><br><span class="line">        &#123;</span><br><span class="line">             ++count;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">2</span> * N ; ++ k) </span><br><span class="line">    &#123;</span><br><span class="line">     ++count; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> M = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">while</span> (M--) </span><br><span class="line">    &#123;</span><br><span class="line">         ++count; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>动态内存管理</title>
+    <url>/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<p>在C语言中，我们已经知道有两种方式来获取内存空间：定义变量和创建数组</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;<span class="comment">//在栈空间获取4个字节来存储10</span></span><br><span class="line"><span class="type">int</span> arry[<span class="number">10</span>];<span class="comment">//在栈区获取10个字节的连续空间</span></span><br></pre></td></tr></table></figure></div>
+
+<p>他们特点很明显：内存空间都是固定的，数组也需要在声明的时候就指定长度（但c99中支持了数组定义时[]内写变量）。</p>
+<p>但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申请固定内存已经不满足了。这个时候就需要来动态开辟内存。</p>
+<p>C语言中共有三个申请内存空间的函数：malloc ， calloc ，realloc，也提供了一个将空间还给内存的函数：free。这四个函数都在头文件<strong>stdlib.h</strong>中声明。</p>
+<h3 id="malloc和free"><a href="#malloc和free" class="headerlink" title="malloc和free"></a>malloc和free</h3><p>malloc函数的原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>size_t为无符号整形，即在内存中申请一块连续可用的大小为size的空间（大小为字节）， 若申请并开辟成功，则返回值是指向这块空间起始位置的指针，类型为void* 需要我们自己来决定申请的类型。若申请失败，则返回NULL，因此使用mallloc函数时需要做检查。如果参数 size 为0，malloc的行为是标准是未定义的，出现的情况取决于你使用编译器。</p>
+<p>例如申请一个16字节的空间</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//在c语言中void*可以隐式类型转换，这里推荐第一种显式类型转换，可提高代码可读性</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这样p就指向了一个16字节的空间:</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317142649337.png"
+                      class="" title="image-20250317142649337"
+                >
+
+<p>有借有换，再借不难。我们向内存申请了空间，当我们不需要的时候，就需要将空间还给内存，C语言提供了free函数来对内存进行释放和回收，否则会有内存泄露的风险。函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">free</span> <span class="params">(<span class="type">void</span>* ptr)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>free用来释放我们自己动态开辟的内存，不能释放非动态开辟的。</p>
+<p>举例：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span>* p = <span class="literal">NULL</span>;</span><br><span class="line">    p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*n个字节的空间，即n个整形</span></span><br><span class="line">    <span class="keyword">if</span>(p!=<span class="literal">NULL</span>)		<span class="comment">//判断是否申请失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            *(p+i)=<span class="number">0</span>;	<span class="comment">//int*型指针，每次+1跳过4个字节，将n个整形全部赋值为0</span></span><br><span class="line">                <span class="comment">//其实这里对于整形指针p指向空间的访问既可以写:*(p+i),更直观的写法是:p[i]两种写法是等价的，就像数组一样</span></span><br><span class="line">            	<span class="comment">//其他类型的指针也是一样的，比如char*指针*(p+1)一次跳过1个字节</span></span><br><span class="line">            	<span class="comment">//long long一次8个字节</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在使用完以后，就需要释放掉p所指向的空间</span></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;<span class="comment">//这里要注意的是我们只是将空间还给了内存，p对该区域不再有访问权限，但是它仍指向了这个位置即现在p指向了非法的位置，成了野指针，因此需要置空。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h3><p>calloc函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">calloc</span><span class="params">(<span class="type">size_t</span> num,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>calloc函数的功能:是为num（元素个数）个大小为size（一个元素所占的字节数）的函数申请一块空间，并且把空间内的每个字节都初始化为0</p>
+<p><strong>calloc与malloc函数区别就是将每个字节都置为0且calloc函数可自定义每个元素长度</strong>，calloc更适合初始化大型数据结构，比如创建数组或结构体</p>
+<p>举例：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*4个整形的空间，即4个整形</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    if(p!= NULL)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        //这里直接就可以使用，无需自己初始化。</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//或者另一种判断是否为空的方法：</span></span><br><span class="line">    <span class="keyword">if</span>(p==<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);<span class="comment">//中间可以填任意非0数字，在申请内存失败时就可以终止程序并终止程序</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//.....使用空间</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//释放空间</span></span><br><span class="line">   	<span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a>realloc</h3><p>realloc函数可以对我们申请到的空间动态的调整。函数原型：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">realloc</span><span class="params">(<span class="type">void</span>* ptr,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>ptr为我们要调整内存的地址，size是重新调整之后的大小。返回值仍然是是调整之后的内存起始位置。</p>
+<p>当我们缩小空间时，会直接在原空间后面切除。如果后面有数据也会直接丢失。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p = <span class="built_in">realloc</span>(p,<span class="number">5</span>);<span class="comment">//由10个字节缩减为5个字节</span></span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317164844609.png"
+                      class="" title="image-20250317164844609"
+                >
+
+<p>当我们放大空间时就会有问题：</p>
+<p>我们知道申请的空间在内存中是连续的，所以在使用realloc函数拓展内存时我们会遇到两种情况：</p>
+<p>第一种是后面的内存够用：会直接往后延长</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317153346617.png"
+                      class="" title="image-20250317153346617"
+                >
+
+<p>第二种是后面的内存不够用：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317154253721.png"
+                      class="" title="image-20250317154253721"
+                >
+
+<p>此时realloc会在堆区找一块新的连续空间，将原内存块的数据拷贝到新内存，然后再释放掉原内存块。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        p[i] = i*<span class="number">2</span>;</span><br><span class="line">    &#125;<span class="comment">//p的四个值分别是0,2,4,6</span></span><br><span class="line">    <span class="type">int</span>* q = p;<span class="comment">//使用q来记录p的地址</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//再申请多块空间</span></span><br><span class="line">    <span class="type">int</span>* a = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* b = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* c = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">    </span><br><span class="line">    p=<span class="built_in">realloc</span>(p, <span class="number">100000</span>);	<span class="comment">//将p扩大到10000个字节</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p:%p\n&quot;</span>, p);<span class="comment">//查看现在p的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;q:%p\n&quot;</span>, q);<span class="comment">//查看原来p的地址</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p[%d]:%d &quot;</span>,i,p[i]);<span class="comment">//访问现在p内的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="comment">//free(q);</span></span><br><span class="line">    <span class="built_in">free</span>(a);</span><br><span class="line">    <span class="built_in">free</span>(b);</span><br><span class="line">    <span class="built_in">free</span>(c);</span><br><span class="line">    p=q=a=b=c=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这是输出结果：可以看到p的地址发生了改变。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317160634225.png"
+                      class="" title="image-20250317160634225"
+                >
+
+<p>这时就要考虑一个问题：要是realloc失败了呢？</p>
+<p>此时p就会得到一个NULL，而原数据就消失在内存的茫茫大海中了（并不会被释放）此时我们丢了数据又泄露了内存。而解决方法就是和上面一样：使用一个临时指针来接受返回值，若失败了仍然可以操作原内存。</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="type">int</span> *tmp = <span class="built_in">realloc</span>(p, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="keyword">if</span>(tmp!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    p=tmp;<span class="comment">//这样就可以避免原指针丢失</span></span><br><span class="line">    tmp=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="动态内存常见的问题："><a href="#动态内存常见的问题：" class="headerlink" title="动态内存常见的问题："></a>动态内存常见的问题：</h3><ol>
+<li><p>内存泄露：使用了malloc但是未释放内存</p>
+</li>
+<li><p>重复释放内存：</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//对同已块空间连续释放两次，会导致程序崩溃</span></span><br><span class="line"><span class="comment">//解决方法是：释放完内存后立即置空</span></span><br><span class="line"><span class="comment">//即：</span></span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">p=<span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//这时再free(p)就不会报错了</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>迷航指针</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = <span class="built_in">malloc</span>(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">*p = <span class="number">10</span>;<span class="comment">//这里操作已经释放的内存</span></span><br></pre></td></tr></table></figure></div>
+
+<p>解决方法同上：操作完就置空free(p);p&#x3D;NULL</p>
+</li>
+<li><p>对非动态开辟的内存free释放</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span>* p = &amp;a;</span><br><span class="line">    <span class="built_in">free</span>(p);<span class="comment">//这里会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>使用free释放动态开辟内存的一部分</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p++;</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//这时p已经指向了下一个位置，解决方法是使用*(p+i)即p[i]或者使用新指针指向下一个位置</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>申请多少内存就只能使用多少内存，不能越界访问。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>C语言</tag>
+      </tags>
   </entry>
   <entry>
     <title>python语法基础</title>
@@ -980,153 +1125,16 @@ done &gt; test.txt
 
 <div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># nonlocal</span></span><br><span class="line"><span class="comment"># 用来声明外层的局部变量，只能在嵌套函数中使用，</span></span><br><span class="line"><span class="comment"># 在外部函数先进行声明，内部函数进行nonlocal声明</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">10</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>():    <span class="comment"># 外函数</span></span><br><span class="line">    a = <span class="number">5</span>       <span class="comment"># 局部变量</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>():    <span class="comment">#内函数</span></span><br><span class="line">        <span class="keyword">nonlocal</span> a</span><br><span class="line">        a = <span class="number">20</span> <span class="comment"># 同时对上一层进行修改（上上层不会被修改）</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;内函数中a的值:&#x27;</span>,a)</span><br><span class="line"></span><br><span class="line">    inner()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;外函数中a的值:&#x27;</span>,a)</span><br><span class="line"></span><br><span class="line">outer()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure></div>
 
-<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 匿名函数(参数和上面一样)</span></span><br><span class="line"><span class="comment"># 语法：</span></span><br><span class="line"><span class="comment"># 函数名 = lambda 形参 : 返回值</span></span><br><span class="line"><span class="comment"># 调用: 结果 = 函数名(实参)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># def add(a,b):</span></span><br><span class="line"><span class="comment">#     return a+b</span></span><br><span class="line"></span><br><span class="line">add = <span class="keyword">lambda</span> a,b: a+b</span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 匿名函数(参数的使用和上面一样)</span></span><br><span class="line"><span class="comment"># 语法：</span></span><br><span class="line"><span class="comment"># 函数名 = lambda 形参 : 返回值</span></span><br><span class="line"><span class="comment"># 调用: 结果 = 函数名(实参)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># def add(a,b):</span></span><br><span class="line"><span class="comment">#     return a+b</span></span><br><span class="line"></span><br><span class="line">add = <span class="keyword">lambda</span> a,b: a+b</span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line"><span class="comment"># 如果有多个返回值,仍是元组的形式</span></span><br></pre></td></tr></table></figure></div>
 
-]]></content>
-  </entry>
-  <entry>
-    <title>算法效率的度量</title>
-    <url>/2025/03/20/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
-    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。</p>
-<p>但是这样会存在一些问题：</p>
-<ol>
-<li><p>每台电脑性能是不一样的。如超级计算机和单片机</p>
-</li>
-<li><p>不同的编程语言运行速度也不一样，编译型语言会比解释型语言要快一些</p>
-</li>
-<li><p>和编译程序产生的机器指令的质量有关</p>
-</li>
-<li><p>有些算法比如（导弹控制算法），是不能事后统计的</p>
-</li>
-</ol>
-<p>因此我们需要别的方法来统计算法效率，能够排除外界因素对算法本身的干扰。要知道：算法在编写成可执行程序后，运行时需要耗费时间资源和空间(内存)资源 。于是就有了<strong>时间复杂度</strong>和<strong>空间复杂度</strong>的概念。时间复杂度主要衡量一个算法的运行快慢，而空间复杂度主要衡量一个算法运行所需要的额外空间。</p>
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>时间复杂度：在计算机科学中，<strong>算法的时间复杂度是一个函数</strong>，它定量描述了该算法的运行时间。一个算法所花费的时间与其中语句的执行次数成正比例，<strong>算法中的基本操作的执行次数，为算法的时间复杂度。</strong></p>
-<p>比如一个例子：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Func1</span><span class="params">(<span class="type">int</span> N)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N ; ++ i) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N ; ++ j)</span><br><span class="line">        &#123;</span><br><span class="line">             ++count;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">2</span> * N ; ++ k) </span><br><span class="line">    &#123;</span><br><span class="line">     ++count; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> M = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">while</span> (M--) </span><br><span class="line">    &#123;</span><br><span class="line">         ++count; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h5 id="lambdia结合if判断"><a href="#lambdia结合if判断" class="headerlink" title="lambdia结合if判断"></a>lambdia结合if判断</h5><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># lambda结合if判断</span></span><br><span class="line"><span class="comment"># a = 5</span></span><br><span class="line"><span class="comment"># b = 8</span></span><br><span class="line"><span class="comment"># 三目运算符：</span></span><br><span class="line"><span class="comment"># 为真结果 if 条件 else 为假结果</span></span><br><span class="line"><span class="comment"># print(&quot;a比b小&quot;) if a&lt;b else print(&quot;a比b大&quot;)</span></span><br><span class="line"><span class="comment"># 将三目运算当成一个返回值</span></span><br><span class="line">comp = <span class="keyword">lambda</span> a,b : <span class="string">&quot;a比b小&quot;</span> <span class="keyword">if</span> a&lt;b <span class="keyword">else</span> <span class="string">&quot;a比b大&quot;</span></span><br><span class="line"><span class="built_in">print</span>(comp(<span class="number">3</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 内置函数</span></span><br><span class="line"><span class="keyword">import</span> builtins</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dir</span>(builtins))</span><br><span class="line"><span class="comment"># 大写字母开头一般是内置常量名，小写字母开头一般是内置函数名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回绝对值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">abs</span>(-<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求和</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])) <span class="comment"># 必须是可迭代对象</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>((<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>))) <span class="comment"># 字符串也不可以</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>(&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5.1</span>&#125;)) <span class="comment"># 运算时只要有一个浮点数，结果就也是浮点数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 求最大最小值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">min</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">max</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,))</span><br><span class="line"><span class="comment"># 根据绝对值来求最值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">max</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,-<span class="number">7</span>,key=<span class="built_in">abs</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># zip():将可迭代对象作为参数，将对象中对应的元素打包成一个个元组</span></span><br><span class="line">li1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">li2 = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">zip</span>(li1,li2)) <span class="comment"># 元素个数不一致，按长度最短的来返回</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(li1,li2):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(i))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(li1,li2))) <span class="comment"># 还是两个必须是可迭代对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># map():可以对可迭代对象中每一个元素进行映射，分别去执行</span></span><br><span class="line"><span class="comment"># map(func,iter1) func:自己定义的函数，iter1:要放进去的可迭代对象</span></span><br><span class="line"><span class="comment"># 即：对象中的每一个函数都会传入函数执行</span></span><br><span class="line">li = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">funa</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span></span><br><span class="line">mp = <span class="built_in">map</span>(funa,li) <span class="comment"># 只需写函数名，不用写()</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(mp)) <span class="comment">#取出方法和上面一样</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># reduce()</span></span><br><span class="line"><span class="comment"># 先把对象中的两个元素取出，计算出一个值然后保存着，</span></span><br><span class="line"><span class="comment"># 接下来把这个值跟第三个元素进行计算</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="comment"># reduce(function,sequence)</span></span><br><span class="line"><span class="comment"># function:函数且必须能接收两个参数，</span></span><br><span class="line"><span class="comment"># sequence：序列必须是可迭代对象</span></span><br><span class="line">li3 = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(reduce(add, li3))</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="拆包"><a href="#拆包" class="headerlink" title="拆包"></a>拆包</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 拆包：对于函数中的多个返回数据，去掉元组、列表或字典，直接从里面获取数据的过程</span></span><br><span class="line">tua = (<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(tua)</span><br><span class="line"><span class="built_in">print</span>(tua[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 方法一：要求元组内的个数与接收的变量个数相同，</span></span><br><span class="line"><span class="comment"># 对象内有多少个数据就定义多少个变量接收</span></span><br><span class="line">a,b,c,d = tua</span><br><span class="line"><span class="built_in">print</span>(a,b,c,d)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二：</span></span><br><span class="line">a,*b = tua</span><br><span class="line"><span class="built_in">print</span>(a,b)</span><br><span class="line"><span class="comment"># 一般在函数调用时使用</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">funa</span>(<span class="params">a,b,*args</span>):</span><br><span class="line">    <span class="built_in">print</span>(a,b)</span><br><span class="line">    <span class="built_in">print</span>(args,<span class="built_in">type</span>(args))</span><br><span class="line">funa(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">arg = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">funa(*arg)</span><br></pre></td></tr></table></figure></div>
 
 
 
-
-
-
-
-]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>动态内存管理</title>
-    <url>/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<p>在C语言中，我们已经知道有两种方式来获取内存空间：定义变量和创建数组</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;<span class="comment">//在栈空间获取4个字节来存储10</span></span><br><span class="line"><span class="type">int</span> arry[<span class="number">10</span>];<span class="comment">//在栈区获取10个字节的连续空间</span></span><br></pre></td></tr></table></figure></div>
-
-<p>他们特点很明显：内存空间都是固定的，数组也需要在声明的时候就指定长度（但c99中支持了数组定义时[]内写变量）。</p>
-<p>但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申请固定内存已经不满足了。这个时候就需要来动态开辟内存。</p>
-<p>C语言中共有三个申请内存空间的函数：malloc ， calloc ，realloc，也提供了一个将空间还给内存的函数：free。这四个函数都在头文件<strong>stdlib.h</strong>中声明。</p>
-<h3 id="malloc和free"><a href="#malloc和free" class="headerlink" title="malloc和free"></a>malloc和free</h3><p>malloc函数的原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>size_t为无符号整形，即在内存中申请一块连续可用的大小为size的空间（大小为字节）， 若申请并开辟成功，则返回值是指向这块空间起始位置的指针，类型为void* 需要我们自己来决定申请的类型。若申请失败，则返回NULL，因此使用mallloc函数时需要做检查。如果参数 size 为0，malloc的行为是标准是未定义的，出现的情况取决于你使用编译器。</p>
-<p>例如申请一个16字节的空间</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="comment">//在c语言中void*可以隐式类型转换，这里推荐第一种显式类型转换，可提高代码可读性</span></span><br></pre></td></tr></table></figure></div>
-
-<p>这样p就指向了一个16字节的空间:</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317142649337.png"
-                      class="" title="image-20250317142649337"
-                >
-
-<p>有借有换，再借不难。我们向内存申请了空间，当我们不需要的时候，就需要将空间还给内存，C语言提供了free函数来对内存进行释放和回收，否则会有内存泄露的风险。函数原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">free</span> <span class="params">(<span class="type">void</span>* ptr)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>free用来释放我们自己动态开辟的内存，不能释放非动态开辟的。</p>
-<p>举例：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span>* p = <span class="literal">NULL</span>;</span><br><span class="line">    p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*n个字节的空间，即n个整形</span></span><br><span class="line">    <span class="keyword">if</span>(p!=<span class="literal">NULL</span>)		<span class="comment">//判断是否申请失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            *(p+i)=<span class="number">0</span>;	<span class="comment">//int*型指针，每次+1跳过4个字节，将n个整形全部赋值为0</span></span><br><span class="line">                <span class="comment">//其实这里对于整形指针p指向空间的访问既可以写:*(p+i),更直观的写法是:p[i]两种写法是等价的，就像数组一样</span></span><br><span class="line">            	<span class="comment">//其他类型的指针也是一样的，比如char*指针*(p+1)一次跳过1个字节</span></span><br><span class="line">            	<span class="comment">//long long一次8个字节</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在使用完以后，就需要释放掉p所指向的空间</span></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;<span class="comment">//这里要注意的是我们只是将空间还给了内存，p对该区域不再有访问权限，但是它仍指向了这个位置即现在p指向了非法的位置，成了野指针，因此需要置空。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h3><p>calloc函数原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">calloc</span><span class="params">(<span class="type">size_t</span> num,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>calloc函数的功能:是为num（元素个数）个大小为size（一个元素所占的字节数）的函数申请一块空间，并且把空间内的每个字节都初始化为0</p>
-<p><strong>calloc与malloc函数区别就是将每个字节都置为0且calloc函数可自定义每个元素长度</strong>，calloc更适合初始化大型数据结构，比如创建数组或结构体</p>
-<p>举例：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//申请4*4个整形的空间，即4个整形</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    if(p!= NULL)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        //这里直接就可以使用，无需自己初始化。</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//或者另一种判断是否为空的方法：</span></span><br><span class="line">    <span class="keyword">if</span>(p==<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);<span class="comment">//中间可以填任意非0数字，在申请内存失败时就可以终止程序并终止程序</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//.....使用空间</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//释放空间</span></span><br><span class="line">   	<span class="built_in">free</span>(p);</span><br><span class="line">    p=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a>realloc</h3><p>realloc函数可以对我们申请到的空间动态的调整。函数原型：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">realloc</span><span class="params">(<span class="type">void</span>* ptr,<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>ptr为我们要调整内存的地址，size是重新调整之后的大小。返回值仍然是是调整之后的内存起始位置。</p>
-<p>当我们缩小空间时，会直接在原空间后面切除。如果后面有数据也会直接丢失。</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p = <span class="built_in">realloc</span>(p,<span class="number">5</span>);<span class="comment">//由10个字节缩减为5个字节</span></span><br></pre></td></tr></table></figure></div>
-
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317164844609.png"
-                      class="" title="image-20250317164844609"
-                >
-
-<p>当我们放大空间时就会有问题：</p>
-<p>我们知道申请的空间在内存中是连续的，所以在使用realloc函数拓展内存时我们会遇到两种情况：</p>
-<p>第一种是后面的内存够用：会直接往后延长</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317153346617.png"
-                      class="" title="image-20250317153346617"
-                >
-
-<p>第二种是后面的内存不够用：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317154253721.png"
-                      class="" title="image-20250317154253721"
-                >
-
-<p>此时realloc会在堆区找一块新的连续空间，将原内存块的数据拷贝到新内存，然后再释放掉原内存块。</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        p[i] = i*<span class="number">2</span>;</span><br><span class="line">    &#125;<span class="comment">//p的四个值分别是0,2,4,6</span></span><br><span class="line">    <span class="type">int</span>* q = p;<span class="comment">//使用q来记录p的地址</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//再申请多块空间</span></span><br><span class="line">    <span class="type">int</span>* a = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* b = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span>* c = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">    </span><br><span class="line">    p=<span class="built_in">realloc</span>(p, <span class="number">100000</span>);	<span class="comment">//将p扩大到10000个字节</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p:%p\n&quot;</span>, p);<span class="comment">//查看现在p的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;q:%p\n&quot;</span>, q);<span class="comment">//查看原来p的地址</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p[%d]:%d &quot;</span>,i,p[i]);<span class="comment">//访问现在p内的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="comment">//free(q);</span></span><br><span class="line">    <span class="built_in">free</span>(a);</span><br><span class="line">    <span class="built_in">free</span>(b);</span><br><span class="line">    <span class="built_in">free</span>(c);</span><br><span class="line">    p=q=a=b=c=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>这是输出结果：可以看到p的地址发生了改变。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/03/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20250317160634225.png"
-                      class="" title="image-20250317160634225"
-                >
-
-<p>这时就要考虑一个问题：要是realloc失败了呢？</p>
-<p>此时p就会得到一个NULL，而原数据就消失在内存的茫茫大海中了（并不会被释放）此时我们丢了数据又泄露了内存。而解决方法就是和上面一样：使用一个临时指针来接受返回值，若失败了仍然可以操作原内存。</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="type">int</span> *tmp = <span class="built_in">realloc</span>(p, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="keyword">if</span>(tmp!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    p=tmp;<span class="comment">//这样就可以避免原指针丢失</span></span><br><span class="line">    tmp=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="动态内存常见的问题："><a href="#动态内存常见的问题：" class="headerlink" title="动态内存常见的问题："></a>动态内存常见的问题：</h3><ol>
-<li><p>内存泄露：使用了malloc但是未释放内存</p>
-</li>
-<li><p>重复释放内存：</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//对同已块空间连续释放两次，会导致程序崩溃</span></span><br><span class="line"><span class="comment">//解决方法是：释放完内存后立即置空</span></span><br><span class="line"><span class="comment">//即：</span></span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">p=<span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//这时再free(p)就不会报错了</span></span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>迷航指针</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = <span class="built_in">malloc</span>(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">*p = <span class="number">10</span>;<span class="comment">//这里操作已经释放的内存</span></span><br></pre></td></tr></table></figure></div>
-
-<p>解决方法同上：操作完就置空free(p);p&#x3D;NULL</p>
-</li>
-<li><p>对非动态开辟的内存free释放</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span>* p = &amp;a;</span><br><span class="line">    <span class="built_in">free</span>(p);<span class="comment">//这里会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>使用free释放动态开辟内存的一部分</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">p++;</span><br><span class="line"><span class="built_in">free</span>(p);<span class="comment">//这时p已经指向了下一个位置，解决方法是使用*(p+i)即p[i]或者使用新指针指向下一个位置</span></span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>申请多少内存就只能使用多少内存，不能越界访问。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>C语言</tag>
-      </tags>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3>]]></content>
   </entry>
 </search>
