@@ -654,7 +654,7 @@ print(a)
 ```
 
 ```python
-# 匿名函数(参数和上面一样)
+# 匿名函数(参数的使用和上面一样)
 # 语法：
 # 函数名 = lambda 形参 : 返回值
 # 调用: 结果 = 函数名(实参)
@@ -664,5 +664,109 @@ print(a)
 
 add = lambda a,b: a+b
 print(add(1,2))
+# 如果有多个返回值,仍是元组的形式
 ```
+
+##### lambdia结合if判断
+
+```python
+# lambda结合if判断
+# a = 5
+# b = 8
+# 三目运算符：
+# 为真结果 if 条件 else 为假结果
+# print("a比b小") if a<b else print("a比b大")
+# 将三目运算当成一个返回值
+comp = lambda a,b : "a比b小" if a<b else "a比b大"
+print(comp(3,2))
+```
+
+#### 内置函数
+
+```python
+
+# 内置函数
+import builtins
+print(dir(builtins))
+# 大写字母开头一般是内置常量名，小写字母开头一般是内置函数名
+
+# 返回绝对值
+print(abs(-10))
+
+# 求和
+print(sum([1,2,3])) # 必须是可迭代对象
+print(sum((3,4,5))) # 字符串也不可以
+print(sum({1,2,3,4,5.1})) # 运算时只要有一个浮点数，结果就也是浮点数
+
+# 求最大最小值
+print(min(2,4,5,6,7,))
+print(max(2,4,5,6,7,))
+# 根据绝对值来求最值
+print(max(2,4,5,6,-7,key=abs))
+
+# zip():将可迭代对象作为参数，将对象中对应的元素打包成一个个元组
+li1 = [1,2,3]
+li2 = ['a','b','c','d']
+print(zip(li1,li2)) # 元素个数不一致，按长度最短的来返回
+for i in zip(li1,li2):
+    print(i)
+    print(type(i))
+
+print(list(zip(li1,li2))) # 还是两个必须是可迭代对象
+
+
+# map():可以对可迭代对象中每一个元素进行映射，分别去执行
+# map(func,iter1) func:自己定义的函数，iter1:要放进去的可迭代对象
+# 即：对象中的每一个函数都会传入函数执行
+li = [1,2,3,4]
+def funa(x):
+    return x*2
+mp = map(funa,li) # 只需写函数名，不用写()
+print(list(mp)) #取出方法和上面一样
+
+# reduce()
+# 先把对象中的两个元素取出，计算出一个值然后保存着，
+# 接下来把这个值跟第三个元素进行计算
+from functools import reduce
+# reduce(function,sequence)
+# function:函数且必须能接收两个参数，
+# sequence：序列必须是可迭代对象
+li3 = [2,3,5,6]
+def add(x,y):
+    return x+y
+
+print(reduce(add, li3))
+```
+
+#### 拆包
+
+```python
+# 拆包：对于函数中的多个返回数据，去掉元组、列表或字典，直接从里面获取数据的过程
+tua = (1,3,4,5)
+print(tua)
+print(tua[0])
+# 方法一：要求元组内的个数与接收的变量个数相同，
+# 对象内有多少个数据就定义多少个变量接收
+a,b,c,d = tua
+print(a,b,c,d)
+
+# 方法二：
+a,*b = tua
+print(a,b)
+# 一般在函数调用时使用
+def funa(a,b,*args):
+    print(a,b)
+    print(args,type(args))
+funa(1,2,3,4,5,6,7)
+arg = (1,2,3,4,5,6,7)
+funa(*arg)
+```
+
+
+
+### 异常
+
+
+
+
 
