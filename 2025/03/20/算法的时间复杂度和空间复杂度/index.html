@@ -515,29 +515,21 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。</p>
+			<h2 id="介绍">介绍</h2>
+<p>想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。</p>
 <p>但是这样会存在一些问题：</p>
-<ol>
-<li><p>每台电脑性能是不一样的。如超级计算机和单片机</p>
-</li>
-<li><p>不同的编程语言运行速度也不一样，编译型语言会比解释型语言要快一些</p>
-</li>
-<li><p>和编译程序产生的机器指令的质量有关</p>
-</li>
-<li><p>有些算法比如（导弹控制算法），是不能事后统计的</p>
-</li>
+<ol type="1">
+<li><p>每台电脑性能是不一样的。如超级计算机和单片机</p></li>
+<li><p>不同的编程语言运行速度也不一样，编译型语言会比解释型语言要快一些</p></li>
+<li><p>和编译程序产生的机器指令的质量有关</p></li>
+<li><p>有些算法比如（导弹控制算法），是不能事后统计的</p></li>
 </ol>
-<p>因此我们需要别的方法来统计算法效率，能够排除外界因素对算法本身的干扰。要知道：算法在编写成可执行程序后，运行时需要耗费时间资源和空间(内存)资源 。于是就有了<strong>时间复杂度</strong>和<strong>空间复杂度</strong>的概念。时间复杂度主要衡量一个算法的运行快慢，而空间复杂度主要衡量一个算法运行所需要的额外空间。</p>
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>时间复杂度：在计算机科学中，<strong>算法的时间复杂度是一个函数</strong>，它定量描述了该算法的运行时间。一个算法所花费的时间与其中语句的执行次数成正比例，<strong>算法中的基本操作的执行次数，为算法的时间复杂度。</strong></p>
+<p>因此我们需要别的方法来统计算法效率，能够排除外界因素对算法本身的干扰。要知道：算法在编写成可执行程序后，运行时需要耗费时间资源和空间(内存)资源
+。于是就有了<strong>时间复杂度</strong>和<strong>空间复杂度</strong>的概念。时间复杂度主要衡量一个算法的运行快慢，而空间复杂度主要衡量一个算法运行所需要的额外空间。</p>
+<h2 id="时间复杂度">时间复杂度</h2>
+<p>时间复杂度：在计算机科学中，<strong>算法的时间复杂度是一个函数</strong>，它定量描述了该算法的运行时间。一个算法所花费的时间与其中语句的执行次数成正比例，<strong>算法中的基本操作的执行次数，为算法的时间复杂度。</strong></p>
 <p>比如一个例子：</p>
 <div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Func1</span><span class="params">(<span class="type">int</span> N)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N ; ++ i) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N ; ++ j)</span><br><span class="line">        &#123;</span><br><span class="line">             ++count;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">2</span> * N ; ++ k) </span><br><span class="line">    &#123;</span><br><span class="line">     ++count; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> M = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">while</span> (M--) </span><br><span class="line">    &#123;</span><br><span class="line">         ++count; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-
-
-
-
-
 
 		</div>
 

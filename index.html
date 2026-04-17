@@ -689,16 +689,21 @@ mjx-container[display="true"] + br {
                     <div class="home-article-content markdown-body">
                         
                             
-                            第一章 行列式第一节 二阶和三阶行列式一、二阶行列式1. 定义由两行两列共4个元素组成的算式，记作：
+                            第一章 行列式
+第一节 二阶和三阶行列式
+一、二阶行列式
+1. 定义
+由两行两列共4个元素组成的算式，记作：
 
 其值为：
-
+D = a11a22 − a12a21
 此计算规则称为对角线法则：主对角线（左上到右下）元素乘积取正号，副对角线（右上到左下）元素乘积取负号，两者相加。
 2. 注意事项
+
 结果为两项的代数和。
 主对角线项为正，副对角线项为负。
-元素  的下标含义： 为行标， 为列标。
-展开式的每一项均由不同行、不同列的两个元素相乘得到...
+元素 aij
+的下标含义：i 为行标，j 为...
                         
                     </div>
 
@@ -738,8 +743,11 @@ mjx-container[display="true"] + br {
                     <div class="home-article-content markdown-body">
                         
                             
-                            面向对象类和对象类：对一系列具有相同属性和行为的事物的统称，是一个抽象的概念，不是一个真实存在的事物。对象：是类的具体实现
-123456789101112131415161718192021222324252627282930313233343536373839404142# # 定义类# class 类名: # 类名必须符合标识符规定，同时遵循大驼峰命名法# 代码块  class Wash...
+                            面向对象
+类和对象
+类：对一系列具有相同属性和行为的事物的统称，是一个抽象的概念，不是一个真实存在的事物。
+对象：是类的具体实现
+123456789101112131415161718192021222324252627282930313233343536373839404142# # 定义类# class 类名: # 类名必须符合标识符规定，同时遵循大驼峰命名法# 代码块  class W...
                         
                     </div>
 
@@ -861,9 +869,22 @@ mjx-container[display="true"] + br {
 强类型的动态脚本语言
 
 
+image-20250321162251563
 
 
-print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh#sep 用来间隔多个值,不写默认是空格print(&quot;hhhh&quot;,&quot;hhhhh&quot;,sep=&#x27;,&#x27;)	#输出：hhhh...
+
+image-20250321162345515
+
+
+
+image-20250321162447413
+
+
+
+image-20250321162528850
+
+print函数
+123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;...
                         
                     </div>
 
@@ -931,19 +952,16 @@ print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh
                     <div class="home-article-content markdown-body">
                         
                             
-                            介绍想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。
+                            介绍
+想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。
 但是这样会存在一些问题：
 
 每台电脑性能是不一样的。如超级计算机和单片机
-
 不同的编程语言运行速度也不一样，编译型语言会比解释型语言要快一些
-
 和编译程序产生的机器指令的质量有关
-
 有些算法比如（导弹控制算法），是不能事后统计的
 
-
-因此我们需要别的方法来统计算法效率，能够...
+因此我们需要别的方法来统计算法效率，能够排除外...
                         
                     </div>
 
@@ -999,21 +1017,27 @@ print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh
                     <div class="home-article-content markdown-body">
                         
                             
-                            第二章：数据的表示、运算和校验计算机中的信息可分为两大类：
+                            第二章：数据的表示、运算和校验
+计算机中的信息可分为两大类：
 
 计算机处理的对象：泛称为数据
+
 数值型数据
 非数值型数据
 
-
 控制计算机工作的信息：泛称为控制信息
+
 基本依据是指令信息
 
 
-
-2.1数值型数据2.1.1进位计数制1.计算机常用的进位制(1)二进制只有0、1两个数，逢2进位或借1当2，基数r&#x3D;2
-(2)八进制0～7，8个数，逢8进位，基数r&#x3D;8
-二进制与八进制转换...
+2.1数值型数据
+2.1.1进位计数制
+1.计算机常用的进位制
+(1)二进制
+只有0、1两个数，逢2进位或借1当2，基数r=2
+(2)八进制
+0～7，8个数，逢8进位，基数r=8
+二进制与八进制转换：3个二...
                         
                     </div>
 
@@ -1083,9 +1107,8 @@ print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh
                             
                             在C语言中，我们已经知道有两种方式来获取内存空间：定义变量和创建数组
 12int x = 10;//在栈空间获取4个字节来存储10int arry[10];//在栈区获取10个字节的连续空间
-
 他们特点很明显：内存空间都是固定的，数组也需要在声明的时候就指定长度（但c99中支持了数组定义时[]内写变量）。
-但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申...
+但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申请...
                         
                     </div>
 
@@ -1153,11 +1176,14 @@ print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh
                     <div class="home-article-content markdown-body">
                         
                             
-                            结构体、枚举、联合自定义类型，区别与C语言的自带类型(int、char、double等)，由我们自己定义。
+                            结构体、枚举、联合
+自定义类型，区别与C语言的自带类型(int、char、double等)，由我们自己定义。
 在C语言中共有3种自定义类型，分别是：结构体、枚举类型和联合体
 
-结构体结构体是一个集合类型，在结构体内，我们可以定义多个变量，这些变量称为成员变量。
-结构体的声明：12345struct tag  //struct + 标签&#123;   //成员变量    ......&#125...
+结构体
+结构体是一个集合类型，在结构体内，我们可以定义多个变量，这些变量称为成员变量。
+结构体的声明：
+12345struct tag  //struct + 标签&#123;   //成员变量    ......&#...
                         
                     </div>
 
@@ -1198,19 +1224,18 @@ print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh
                         
                             
                             如何理解文件：
+
 文件本文件
 
 在磁盘上创建，因为内存具有掉电易失性
 如果创建了一个空文件，也会占有磁盘空间
-文件&#x3D;文件的内容（数据）+文件的属性（元数据）（属性也是数据）
+文件=文件的内容（数据）+文件的属性（元数据）（属性也是数据）
 故文件的实际占有内存大于标的内存（数据）
-
 
 操作文件：
 
 操作文件的内容
 操作文件的属性
-
 
 文件之间（普通文件 vs 目录）：
 
@@ -1218,8 +1243,11 @@ print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh
 目录-&gt;文件夹-&gt;保存其他文件的场所
 
 
+文件的简单命令：
 
-文件的简单命...
+
+
+c...
                         
                     </div>
 
@@ -1297,7 +1325,11 @@ print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh
                     <div class="home-article-content markdown-body">
                         
                             
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+                            Welcome to Hexo! This is your very
+first post. Check documentation for
+more info. If you get any problems when using Hexo, you can find the
+answer in troubleshooting or
+you can ask me on GitHub.
 Qu...
                         
                     </div>
