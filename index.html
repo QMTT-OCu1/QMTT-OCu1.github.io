@@ -5,7 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Hexo Theme Redefine">
     
+    
     <meta name="author" content="qmtt">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +82,6 @@
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
-    
     
     
         
@@ -74,6 +138,10 @@
     
     
     
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
     
     
     
@@ -84,8 +152,9 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"qmtt.com","root":"/","language":"zh-CN","path":"search.json"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/Background.png","skip_dirs":[]}},"colors":{"primary":"#CCCCFF","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"open_graph":{"enable":true,"image":"/images/OIP-C.jpg","description":"my_blog"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/Background.png","dark":"/images/Background.png"},"title":"Welcome To My Blog!","subtitle":{"text":["Hi!"],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":36000,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/QMTT-OCu1","instagram":null,"zhihu":null,"twitter":null,"email":"2402025908@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#367df7","right":"#f78736","transparency":75},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/11/11 11:11:11"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"github-dark"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/Background.png","skip_dirs":[]}},"colors":{"primary":"#CCCCFF","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Zhi+Mang+Xing&display=swap"},"english":{"enable":true,"family":"Noto Sans Math","url":"https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/OIP-C.jpg","description":"my_blog"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/Background.png","dark":"/images/Background.png"},"title":"Welcome To My Blog!","subtitle":{"text":["Hi!"],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":36000,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":[{"icon":"fa-brands fa-github","url":"https://github.com/QMTT-OCu1"},{"icon":"fa-brands fa-twitter","url":null},{"icon":"fa-solid fa-at","url":"you@example.com"},{"icon":"fa-brands fa-telegram","url":null},{"icon":"/images/custom-icon.svg","url":null}],"qrs":null}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":true,"color":{"left":"#367df7","right":"#f78736","transparency":50},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","masonry":{"batch_size":12,"initial_batch_size":24}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footer":{"runtime":true,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2024/11/11 11:11:11","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2024/11/11 11:11:11","mermaid":{"style":{"light":"default","dark":"dark"}}};
     window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
     window.data = {"masonry":false};
   </script>
     
@@ -219,7 +288,6 @@ mjx-container[display="true"] + br {
   display: none;
 }
 </style></head>
-
 
 
 <body>
@@ -429,22 +497,30 @@ mjx-container[display="true"] + br {
             Welcome To My Blog!
             
             
+            
+            
+            
                 <p><i id="subtitle"></i></p>
             
         </div>
         
             
-            <div class="absolute bottom-0.5 flex flex-row justify-between max-w-[1340px] items-center w-full px-8 sm:px-12">
-                <div class="flex p-3 bg-gray-300/50 dark:bg-gray-500/40 backdrop-blur-lg border border-white/20 dark:border-gray-500/30 group rounded-full cursor-pointer flex justify-center items-center aspect-square h-full shadow-redefine-flat hover:shadow-redefine-flat-hover transition-shadow" onclick="scrollToMain()" >
+            <div class="absolute bottom-0.5 flex flex-row justify-center max-w-[1340px] items-center w-full px-8 sm:px-12">
+                <div class="hidden p-3 bg-gray-300/50 dark:bg-gray-500/40 backdrop-blur-lg border border-white/20 dark:border-gray-500/30 group rounded-full cursor-pointer flex justify-center items-center aspect-square h-full shadow-redefine-flat hover:shadow-redefine-flat-hover transition-shadow" onclick="scrollToMain()" >
                     <i class="fa-solid fa-arrow-down fa-fw fa-lg group-hover:translate-y-1 transition-transform"></i>
                 </div>
                 <div class="social-contacts px-6 py-3 bg-gray-300/50 dark:bg-gray-500/40 backdrop-blur-lg border border-white/20 dark:border-gray-500/30 shadow-redefine-flat rounded-full flex flex-row gap-3 items-center">
                     
                         
                             
-                                <span class="social-contact-item github">
+                            
+                            
+                            
+                            
+                            
+                                <span class="social-contact-item">
                                     <a target="_blank" href="https://github.com/QMTT-OCu1">
-                                        <i class="fa-brands fa-fw fa-lg fa-github"></i>
+                                        <i class="fa-brands fa-github fa-fw fa-lg"></i>
                                     </a>
                                 </span>
                             
@@ -453,17 +529,23 @@ mjx-container[display="true"] + br {
                         
                     
                         
-                    
-                        
-                    
-                        
                             
-                                <span class="social-contact-item email ">
-                                    <a href="mailto:2402025908@qq.com">
-                                        <i class="fa-solid fa-fw fa-at fa-lg"></i>
+                            
+                            
+                            
+                            
+                            
+                                
+                                <span class="social-contact-item ">
+                                    <a href="mailto:you@example.com">
+                                        <i class="fa-solid fa-at fa-fw fa-lg"></i>
                                     </a>
                                 </span>
                             
+                        
+                    
+                        
+                    
                         
                     
                     
@@ -471,14 +553,36 @@ mjx-container[display="true"] + br {
             </div>
         
     </div>
-    <script>
-        const scrollToMain = ()=> {
-            console.log('scroll');
-            const target = document.querySelector('.main-content-container');
-            target.scrollIntoView({ behavior: 'smooth'});
+    <style>
+        /* Mobile-specific QR code styles */
+        .qr-toggle-item.qr-active .qr-popup {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
-    </script>
+        
+        /* Prevent button from staying in focus/hover state on mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .qr-toggle-item:focus,
+            .qr-toggle-item:hover {
+                background-color: transparent;
+            }
+            
+            .qr-toggle-item .qr-trigger:focus,
+            .qr-toggle-item .qr-trigger:hover {
+                background-color: transparent;
+                color: inherit;
+            }
+            
+            /* Only show active state when explicitly toggled */
+            .qr-popup {
+                visibility: hidden !important;
+                opacity: 0 !important;
+            }
+        }
+    </style>
 </div>
+
 	
 
 	<div class="main-content-container flex flex-col justify-between min-h-dvh">
@@ -488,7 +592,7 @@ mjx-container[display="true"] + br {
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/images/OIP-C.jpg" class="w-full h-full rounded-sm">
+                    <img src="/images/OIP-C.jpg" class="w-full h-full rounded-xs">
                 </a>
             
             <a class="logo-title" href="/">
@@ -689,21 +793,16 @@ mjx-container[display="true"] + br {
                     <div class="home-article-content markdown-body">
                         
                             
-                            第一章 行列式
-第一节 二阶和三阶行列式
-一、二阶行列式
-1. 定义
-由两行两列共4个元素组成的算式，记作：
+                            第一章 行列式第一节 二阶和三阶行列式一、二阶行列式1. 定义由两行两列共4个元素组成的算式，记作：
 
 其值为：
-D = a11a22 − a12a21
+
 此计算规则称为对角线法则：主对角线（左上到右下）元素乘积取正号，副对角线（右上到左下）元素乘积取负号，两者相加。
 2. 注意事项
-
 结果为两项的代数和。
 主对角线项为正，副对角线项为负。
-元素 aij
-的下标含义：i 为行标，j 为...
+元素  的下标含义： 为行标， 为列标。
+展开式的每一项均由不同行、不同列的两个元素相乘得到...
                         
                     </div>
 
@@ -743,11 +842,8 @@ D = a11a22 − a12a21
                     <div class="home-article-content markdown-body">
                         
                             
-                            面向对象
-类和对象
-类：对一系列具有相同属性和行为的事物的统称，是一个抽象的概念，不是一个真实存在的事物。
-对象：是类的具体实现
-123456789101112131415161718192021222324252627282930313233343536373839404142# # 定义类# class 类名: # 类名必须符合标识符规定，同时遵循大驼峰命名法# 代码块  class W...
+                            面向对象类和对象类：对一系列具有相同属性和行为的事物的统称，是一个抽象的概念，不是一个真实存在的事物。对象：是类的具体实现
+123456789101112131415161718192021222324252627282930313233343536373839404142# # 定义类# class 类名: # 类名必须符合标识符规定，同时遵循大驼峰命名法# 代码块  class Wash...
                         
                     </div>
 
@@ -869,22 +965,9 @@ D = a11a22 − a12a21
 强类型的动态脚本语言
 
 
-image-20250321162251563
 
 
-
-image-20250321162345515
-
-
-
-image-20250321162447413
-
-
-
-image-20250321162528850
-
-print函数
-123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;...
+print函数123456print(&quot;hhhh&quot;,&quot;hhhhh&quot;) 	#输出：hhhh hhhhh#sep 用来间隔多个值,不写默认是空格print(&quot;hhhh&quot;,&quot;hhhhh&quot;,sep=&#x27;,&#x27;)	#输出：hhhh...
                         
                     </div>
 
@@ -952,16 +1035,19 @@ print函数
                     <div class="home-article-content markdown-body">
                         
                             
-                            介绍
-想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。
+                            介绍想要知道自己写的代码的效率这么样，我们首先想到的就是把代码跑一遍，代码跑起来就知道自己写的代码运行的是快还是慢了。
 但是这样会存在一些问题：
 
 每台电脑性能是不一样的。如超级计算机和单片机
+
 不同的编程语言运行速度也不一样，编译型语言会比解释型语言要快一些
+
 和编译程序产生的机器指令的质量有关
+
 有些算法比如（导弹控制算法），是不能事后统计的
 
-因此我们需要别的方法来统计算法效率，能够排除外...
+
+因此我们需要别的方法来统计算法效率，能够...
                         
                     </div>
 
@@ -1017,27 +1103,21 @@ print函数
                     <div class="home-article-content markdown-body">
                         
                             
-                            第二章：数据的表示、运算和校验
-计算机中的信息可分为两大类：
+                            第二章：数据的表示、运算和校验计算机中的信息可分为两大类：
 
 计算机处理的对象：泛称为数据
-
 数值型数据
 非数值型数据
 
-控制计算机工作的信息：泛称为控制信息
 
+控制计算机工作的信息：泛称为控制信息
 基本依据是指令信息
 
 
-2.1数值型数据
-2.1.1进位计数制
-1.计算机常用的进位制
-(1)二进制
-只有0、1两个数，逢2进位或借1当2，基数r=2
-(2)八进制
-0～7，8个数，逢8进位，基数r=8
-二进制与八进制转换：3个二...
+
+2.1数值型数据2.1.1进位计数制1.计算机常用的进位制(1)二进制只有0、1两个数，逢2进位或借1当2，基数r&#x3D;2
+(2)八进制0～7，8个数，逢8进位，基数r&#x3D;8
+二进制与八进制转换...
                         
                     </div>
 
@@ -1107,8 +1187,9 @@ print函数
                             
                             在C语言中，我们已经知道有两种方式来获取内存空间：定义变量和创建数组
 12int x = 10;//在栈空间获取4个字节来存储10int arry[10];//在栈区获取10个字节的连续空间
+
 他们特点很明显：内存空间都是固定的，数组也需要在声明的时候就指定长度（但c99中支持了数组定义时[]内写变量）。
-但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申请...
+但是实际情况是：在有些情况下只有程序运行的时候我们才知道它需要多大的内存，而那时原先申...
                         
                     </div>
 
@@ -1176,14 +1257,11 @@ print函数
                     <div class="home-article-content markdown-body">
                         
                             
-                            结构体、枚举、联合
-自定义类型，区别与C语言的自带类型(int、char、double等)，由我们自己定义。
+                            结构体、枚举、联合自定义类型，区别与C语言的自带类型(int、char、double等)，由我们自己定义。
 在C语言中共有3种自定义类型，分别是：结构体、枚举类型和联合体
 
-结构体
-结构体是一个集合类型，在结构体内，我们可以定义多个变量，这些变量称为成员变量。
-结构体的声明：
-12345struct tag  //struct + 标签&#123;   //成员变量    ......&#...
+结构体结构体是一个集合类型，在结构体内，我们可以定义多个变量，这些变量称为成员变量。
+结构体的声明：12345struct tag  //struct + 标签&#123;   //成员变量    ......&#125...
                         
                     </div>
 
@@ -1224,18 +1302,19 @@ print函数
                         
                             
                             如何理解文件：
-
 文件本文件
 
 在磁盘上创建，因为内存具有掉电易失性
 如果创建了一个空文件，也会占有磁盘空间
-文件=文件的内容（数据）+文件的属性（元数据）（属性也是数据）
+文件&#x3D;文件的内容（数据）+文件的属性（元数据）（属性也是数据）
 故文件的实际占有内存大于标的内存（数据）
+
 
 操作文件：
 
 操作文件的内容
 操作文件的属性
+
 
 文件之间（普通文件 vs 目录）：
 
@@ -1243,11 +1322,8 @@ print函数
 目录-&gt;文件夹-&gt;保存其他文件的场所
 
 
-文件的简单命令：
 
-
-
-c...
+文件的简单命...
                         
                     </div>
 
@@ -1325,11 +1401,7 @@ c...
                     <div class="home-article-content markdown-body">
                         
                             
-                            Welcome to Hexo! This is your very
-first post. Check documentation for
-more info. If you get any problems when using Hexo, you can find the
-answer in troubleshooting or
-you can ask me on GitHub.
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
 Qu...
                         
                     </div>
@@ -1412,7 +1484,7 @@ Qu...
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
         </div>
         
         
@@ -1486,9 +1558,43 @@ Qu...
 </div>
 	</div>
 
-	<div class="image-viewer-container">
-	<img src="">
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
 </div>
+
 
 	
 	<div class="search-pop-overlay">
@@ -1530,7 +1636,7 @@ Qu...
 <script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
 
 <script>
-    const swup = new Swup({
+    window.swup = new Swup({
         plugins: [
             new SwupScriptsPlugin({
                 optin: true,
@@ -1546,48 +1652,23 @@ Qu...
         ],
         containers: ["#swup"],
     });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
 </script>
 
 
 
 
 	
-<script src="/js/build/tools/imageViewer.js" type="module"></script>
-
-<script src="/js/build/utils.js" type="module"></script>
-
 <script src="/js/build/main.js" type="module"></script>
 
-<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
 
-<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
-
-<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
-
-<script src="/js/build/layouts/categoryList.js" type="module"></script>
-
-
-
-    
-<script src="/js/build/tools/localSearch.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/tools/codeBlock.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/layouts/lazyload.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/tools/runtime.js"></script>
 
     
 <script src="/js/build/libs/odometer.min.js"></script>
@@ -1598,38 +1679,22 @@ Qu...
 
 
 
+
+
+
   
 <script src="/js/build/libs/Typed.min.js"></script>
 
-  
-<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
 
 
-
-
-
-
-
-
-    
-<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
 
 
 
 
 <script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
-
-
-<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
-
-
 
 
 
